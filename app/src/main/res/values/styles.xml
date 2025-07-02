@@ -1,0 +1,12 @@
+
+
+<resources>
+    <style name="Base" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Budget_Prorated_Fields" parent="Base">
+        <item name="android:layout_width">100sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+</resources>

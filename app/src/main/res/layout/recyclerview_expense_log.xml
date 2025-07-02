@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/constraintLayout_expense_log"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView_date"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical|end"
+        android:background="@color/white"
+        android:text="00/00/2025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_tender"
+        android:layout_width="230dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/textView_date"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_vendor"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/white"
+        android:textSize="18sp"
+        android:hint="vendor"
+        app:layout_constraintStart_toEndOf="@+id/spinner_tender"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_groups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/inset_border"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_vendor">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_group_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/light_teal_1">
+
+            <Spinner
+                android:id="@+id/spinner_category_1"
+                style="@style/Base"
+                android:layout_width="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_tender" />
+
+            <TextView
+                android:id="@+id/textView_debit_1"
+                style="@style/Base"
+                android:layout_width="60sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$0,000.00" />
+
+            <TextView
+                android:id="@+id/textView_tax_1"
+                style="@style/Base"
+                android:layout_width="55sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$000.00" />
+
+            <TextView
+                android:id="@+id/textView_for_whom_1"
+                style="@style/Base"
+                android:layout_width="126dp"
+                android:layout_marginStart="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_group_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:background="@color/light_teal_0">
+
+            <Spinner
+                android:id="@+id/spinner_category_2"
+                style="@style/Base"
+                android:layout_width="300dp" />
+
+            <TextView
+                android:id="@+id/textView_debit_2"
+                style="@style/Base"
+                android:layout_width="60sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$0,000.00" />
+
+            <TextView
+                android:id="@+id/textView_tax_2"
+                style="@style/Base"
+                android:layout_width="55sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$000.00" />
+
+            <TextView
+                android:id="@+id/textView_for_whom_2"
+                style="@style/Base"
+                android:layout_width="126dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_group_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:background="@color/light_teal_1">
+
+            <Spinner
+                android:id="@+id/spinner_category_3"
+                style="@style/Base"
+                android:layout_width="300dp" />
+
+            <TextView
+                android:id="@+id/textView_debit_3"
+                style="@style/Base"
+                android:layout_width="60sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$0,000.00" />
+
+            <TextView
+                android:id="@+id/textView_tax_3"
+                style="@style/Base"
+                android:layout_width="55sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$000.00" />
+
+            <TextView
+                android:id="@+id/textView_for_whom_3"
+                style="@style/Base"
+                android:layout_width="126dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_group_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:background="@color/light_teal_0">
+
+            <Spinner
+                android:id="@+id/spinner_category_4"
+                style="@style/Base"
+                android:layout_width="300dp" />
+
+            <TextView
+                android:id="@+id/textView_debit_4"
+                style="@style/Base"
+                android:layout_width="60sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$0,000.00" />
+
+            <TextView
+                android:id="@+id/textView_tax_4"
+                style="@style/Base"
+                android:layout_width="55sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$000.00" />
+
+            <TextView
+                android:id="@+id/textView_for_whom_4"
+                style="@style/Base"
+                android:layout_width="126dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_group_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:background="@color/light_teal_1">
+
+            <Spinner
+                android:id="@+id/spinner_category_5"
+                style="@style/Base"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView_debit_5"
+                style="@style/Base"
+                android:layout_width="60sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$0,000.00" />
+
+            <TextView
+                android:id="@+id/textView_tax_5"
+                style="@style/Base"
+                android:layout_width="55sp"
+                android:layout_marginStart="5dp"
+                android:hint="±$000.00" />
+
+            <TextView
+                android:id="@+id/textView_for_whom_5"
+                style="@style/Base"
+                android:layout_width="126dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner_recurring"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/checkBox_is_recurring"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
+
+    <CheckBox
+        android:id="@+id/checkBox_receipt"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:text="Receipt?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
+
+    <CheckBox
+        android:id="@+id/checkBox_server"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:text="On statement?"
+        app:layout_constraintStart_toEndOf="@+id/checkBox_receipt"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
+
+    <CheckBox
+        android:id="@+id/checkBox_is_recurring"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:text="Recurring?  "
+        app:layout_constraintStart_toEndOf="@+id/checkBox_server"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_is_recurring" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyclerView_ExpenseLogGroup"-->
+    <!--        android:layout_width="417dp"-->
+    <!--        android:layout_height="73dp"-->
+    <!--        android:layout_marginStart="28dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/spinner_tender" />-->

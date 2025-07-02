@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Waterfront</string>
+    <string-array name="category_periodicity">
+        <item>Once</item>
+        <item>Weekly</item>
+        <item>Biweekly</item>
+        <item>Semimonthly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Triannual</item>
+        <item>Semiannually</item>
+        <item>Annually</item>
+        <item>Yearly</item>
+    </string-array>
+    <string-array name="category">
+        <item>Account Transfer</item>
+        <item>Fuel (car)</item>
+        <item>Insurance (car)</item>
+        <item>Loans (car)</item>
+        <item>Registration (car)</item>
+        <item>Shop (car)</item>
+        <item>Charity (general)</item>
+        <item>Church (charity)</item>
+        <item>Fast Offering (charity)</item>
+        <item>Missions</item>
+        <item>Tithing</item>
+        <item>Food (consumables)</item>
+        <item>Non-food (consumables)</item>
+        <item>Household (home)</item>
+        <item>Mortgage (home)</item>
+        <item>Office (home)</item>
+        <item>Repairs (home)</item>
+        <item>Utilities (home)</item>
+        <item>Yards (home)</item>
+        <item>Gifts (general)</item>
+        <item>Mad Money</item>
+        <item>Copay (personal health)</item>
+        <item>Personal Health (general)</item>
+        <item>Dental (personal health)</item>
+        <item>Education (personal health)</item>
+        <item>Insurance Premium</item>
+        <item>Vision</item>
+        <item>Prescriptions</item>
+        <item>Entertainment</item>
+        <item>Services</item>
+    </string-array>
+    <string-array name="tender">
+        <item>CA-cash</item>
+        <item>CC-Chase credit card</item>
+        <item>CK-checking</item>
+        <item>DB-disbursement</item>
+        <item>DC-debit card</item>
+        <item>FA-Flexible Spending Account</item>
+        <item>GC-gift card</item>
+        <item>IN-income</item>
+        <item>LC-Lowe\'s credit card</item>
+        <item>PP-Paypal</item>
+        <item>RE-reimbursement</item>
+        <item>TR-transfer</item>
+        <item>VM-Venmo</item>
+    </string-array>
+</resources>
