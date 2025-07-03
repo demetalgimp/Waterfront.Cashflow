@@ -1,16 +1,15 @@
 <resources>
     <string name="app_name">Waterfront</string>
     <string-array name="category_periodicity">
-        <item>Once</item>
-        <item>Weekly</item>
-        <item>Biweekly</item>
-        <item>Semimonthly</item>
-        <item>Monthly</item>
-        <item>Quarterly</item>
-        <item>Triannual</item>
-        <item>Semiannually</item>
-        <item>Annually</item>
-        <item>Yearly</item>
+        <item>Weekly (52/yr)</item>
+        <item>Biweekly (26/yr)</item>
+        <item>Semimonthly (24/yr)</item>
+        <item>Monthly (12/yr)</item>
+        <item>Quarterly (4/yr)</item>
+        <item>Triannual (3/yr)</item>
+        <item>Semiannually (2/yr)</item>
+        <item>Annually (1/yr)</item>
+        <item>Yearly (1/yr)</item>
     </string-array>
     <string-array name="category">
         <item>Account Transfer</item>

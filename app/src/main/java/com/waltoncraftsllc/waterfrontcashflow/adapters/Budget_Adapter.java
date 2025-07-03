@@ -150,186 +150,186 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
     private void setupTestData() {
         mBudgetItems.add(new BudgetItem("./Cars/Insurance", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("600"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("600"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Cars/Shop/Maintenance/Ford F150", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Cars/Shop/Maintenance/Subaru Forester", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Cars/Shop/Repairs/Ford F150", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("500"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("500"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Cars/Shop/Repairs/Subaru Forester", new ArrayList<>(Arrays.asList(
-                new BudgetItem_TimeBracket[]{new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("150"), "Annually")
+                new BudgetItem_TimeBracket[]{new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("150"), "Annually (1/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Home/Mortgage/Regular", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("764"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("764"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Mortgage/Additional principal", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("184"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("184"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Mortgage/Taxes", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("1802"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("1802"), "Annually (1/yr)")
                 })), "2025-08-01", new Money("1802")));
         mBudgetItems.add(new BudgetItem("./Home/Mortgage/Home Insurance", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("1132"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("1132"), "Annually (1/yr)")
                 })), "2025-08-01", new Money("1132")));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Cellphone", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("45"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("45"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Water", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("170"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("170"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Electricity", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("117"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("117"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Natural Gas", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("60"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("60"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Fiber -- Utopia", new ArrayList<>(Arrays.asList(
-                new BudgetItem_TimeBracket[]{new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("30"), "Monthly")
+                new BudgetItem_TimeBracket[]{new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("30"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Utilities/Internet", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("54"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("54"), "Monthly (12/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Home/Maintenance/Repairs/Professional", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Maintenance/Repairs/Self repairs", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("15"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("15"), "Monthly (12/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Home/Maintenance/General/Household", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Maintenance/General/Office", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("10"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Home/Maintenance/General/Yard", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Consumables/Food", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-04-01", "2025-07-31", new Money("275"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-08-01", "2025-10-31", new Money("275"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-11-01", "2025-12-31", new Money("275"), "Weekly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-04-01", "2025-07-31", new Money("275"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-08-01", "2025-10-31", new Money("275"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-11-01", "2025-12-31", new Money("275"), "Weekly (52/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Consumables/Non-Food", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-04-01", "2025-12-31", new Money("50"), "Weekly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-04-01", "2025-12-31", new Money("50"), "Weekly (52/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Personal/Health/Dental", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("11"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("11"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/Medical", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("9"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("9"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/Prescriptions", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("16"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("16"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/Copay", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/Vision", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/General", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Personal/Health/Hygiene", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Provisions/Education", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Provisions/Mad money/Father", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Provisions/Mad money/Mother", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-05-17", new Money("50"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-05-18", "2025-12-31", new Money("0"), "Weekly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-05-17", new Money("50"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-05-18", "2025-12-31", new Money("0"), "Weekly (52/yr)")
                 })
         )));
 
         mBudgetItems.add(new BudgetItem("./Provisions/Personal Gifts/Family", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Provisions/Personal Gifts/Other", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Subscription Services/Entertainment/Amazon channels", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-30", new Money("0"), "Monthly"),
-                        new BudgetItem_TimeBracket("2025-04-01", "2025-12-31", new Money("10"), "Monthly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-03-30", new Money("0"), "Monthly (12/yr)"),
+                        new BudgetItem_TimeBracket("2025-04-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Subscription Services/Entertainment/Rentals", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-07-17", new Money("3"), "Weekly"),
-                        new BudgetItem_TimeBracket("2025-07-18", "2025-12-31", new Money("3"), "Weekly")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-07-17", new Money("3"), "Weekly (52/yr)"),
+                        new BudgetItem_TimeBracket("2025-07-18", "2025-12-31", new Money("3"), "Weekly (52/yr)")
                 }))));
 
         mBudgetItems.add(new BudgetItem("./Services/Google Drive", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("26"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("26"), "Annually (1/yr)")
                 }))));
         mBudgetItems.add(new BudgetItem("./Services/Orem Rec Center", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Annually (1/yr)")
                 })), "2025-01-01", new Money("310")));
         mBudgetItems.add(new BudgetItem("./Services/Amazon Prime", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("149"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("149"), "Annually (1/yr)")
                 })), "2025-10-01", new Money("149")));
         mBudgetItems.add(new BudgetItem("./Services/Audible", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("160"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("160"), "Annually (1/yr)")
                 })), "2025-07-01", new Money("160")));
         mBudgetItems.add(new BudgetItem("./Services/Accountants", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("335"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("335"), "Annually (1/yr)")
                 })), "2025-05-01", new Money("330")));
         mBudgetItems.add(new BudgetItem("./Services/Costco", new ArrayList<>(Arrays.asList(
                 new BudgetItem_TimeBracket[]{
-                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("130"), "Annually")
+                        new BudgetItem_TimeBracket("2025-01-01", "2025-12-31", new Money("130"), "Annually (1/yr)")
                 })), "2025-03-01", new Money("130")));
     }
 }

@@ -21,19 +21,19 @@ public class BudgetItem_TimeBracket {
         this.mToDate = Date.valueOf(to);
         this.mAmount = amount;
         this.mPeriodicity_str = periodicity;
-        double week_scaler = 52/12.0;
+        double week_scaler = 6.5/52;
         double month_scaler = 1;
+        this.mPerAnnum = Integer.valueOf(periodicity.replaceAll("[^0-9]*", ""));
         switch ( periodicity ) {
-            case "Weekly":       this.mPerAnnum = 52; week_scaler = 1.0;    month_scaler = 52/12.0; break;
-            case "Biweekly":     this.mPerAnnum = 26; week_scaler = 1/2.0;  month_scaler = 52/24.0; break;
-            case "Semimonthly":  this.mPerAnnum = 24; week_scaler = 1/24.0; month_scaler = 2.0;     break;
-            case "Monthly":      this.mPerAnnum = 12; week_scaler = 1/12.0; month_scaler = 1.0;     break;
-            case "Quarterly":    this.mPerAnnum = 4;  week_scaler = 4/52.0; month_scaler = 1/4.0;   break;
-            case "Triannually":  this.mPerAnnum = 3;  week_scaler = 3/52.0; month_scaler = 1/3.0;   break;
-            case "Semiannually": this.mPerAnnum = 2;  week_scaler = 2/52.0; month_scaler = 1/6.0;   break;
-            case "Once":         this.mPerAnnum = 1;  week_scaler = 1/52.0; month_scaler = 1/12.0;  break;
-            case "Annually":     this.mPerAnnum = 1;  week_scaler = 1/52.0; month_scaler = 1/12.0;  break;
-            case "Yearly":       this.mPerAnnum = 1;  week_scaler = 1/52.0; month_scaler = 1/12.0;  break;
+            case "Weekly (52/yr)":          week_scaler = 52.0/52; month_scaler = 52.0/12; break;
+            case "Biweekly (26/yr)":        week_scaler = 26.0/52; month_scaler = 26.0/12; break;
+            case "Semimonthly (24/yr)":     week_scaler = 13.0/52; month_scaler = 24.0/12; break;
+            case "Monthly (12/yr)":         week_scaler =  6.5/52; month_scaler = 12.0/12; break;
+            case "Quarterly (4/yr)":        week_scaler =  4.0/52; month_scaler =  3.0/12; break;
+            case "Triannually (3/yr)":      week_scaler =  3.0/52; month_scaler =  3.0/12; break;
+            case "Semiannually (2/yr)":     week_scaler =  2.0/52; month_scaler =  2.0/12; break;
+            case "Annually/yearly (1/yr)":
+            default:                        week_scaler =  1.0/52; month_scaler = 1.0/12; break;
         }
         this.proratedMonthly = mAmount.multiply(month_scaler);
         this.proratedWeekly = mAmount.multiply(week_scaler);

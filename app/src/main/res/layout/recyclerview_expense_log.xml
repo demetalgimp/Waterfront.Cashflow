@@ -8,19 +8,19 @@
 
     <TextView
         android:id="@+id/textView_date"
-        android:layout_width="85dp"
+        android:layout_width="45dp"
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical|end"
         android:background="@color/white"
-        android:text="00/00/2025"
+        android:text="00/00"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_tender"
-        android:layout_width="230dp"
+        android:layout_width="310dp"
         android:layout_height="30dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="6dp"
@@ -43,11 +43,10 @@
         android:id="@+id/linearLayout_groups"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/inset_border"
         android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="0.099"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/inset_border"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_vendor">
 
@@ -55,27 +54,27 @@
             android:id="@+id/linearLayout_group_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/light_teal_1">
+            android:background="@color/light_teal_1"
+            android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/spinner_category_1"
                 style="@style/Base"
-                android:layout_width="300dp"
+                android:layout_width="350dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_tender" />
 
             <TextView
                 android:id="@+id/textView_debit_1"
                 style="@style/Base"
-                android:layout_width="60sp"
+                android:layout_width="75sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$0,000.00" />
 
             <TextView
                 android:id="@+id/textView_tax_1"
                 style="@style/Base"
-                android:layout_width="55sp"
+                android:layout_width="65sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$000.00" />
 
@@ -91,26 +90,26 @@
             android:id="@+id/linearLayout_group_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/light_teal_0"
             android:orientation="horizontal"
-            android:visibility="visible"
-            android:background="@color/light_teal_0">
+            android:visibility="visible">
 
             <Spinner
                 android:id="@+id/spinner_category_2"
                 style="@style/Base"
-                android:layout_width="300dp" />
+                android:layout_width="350dp" />
 
             <TextView
                 android:id="@+id/textView_debit_2"
                 style="@style/Base"
-                android:layout_width="60sp"
+                android:layout_width="75sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$0,000.00" />
 
             <TextView
                 android:id="@+id/textView_tax_2"
                 style="@style/Base"
-                android:layout_width="55sp"
+                android:layout_width="65sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$000.00" />
 
@@ -125,26 +124,26 @@
             android:id="@+id/linearLayout_group_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/light_teal_1"
             android:orientation="horizontal"
-            android:visibility="visible"
-            android:background="@color/light_teal_1">
+            android:visibility="visible">
 
             <Spinner
                 android:id="@+id/spinner_category_3"
                 style="@style/Base"
-                android:layout_width="300dp" />
+                android:layout_width="350dp" />
 
             <TextView
                 android:id="@+id/textView_debit_3"
                 style="@style/Base"
-                android:layout_width="60sp"
+                android:layout_width="75sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$0,000.00" />
 
             <TextView
                 android:id="@+id/textView_tax_3"
                 style="@style/Base"
-                android:layout_width="55sp"
+                android:layout_width="65sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$000.00" />
 
@@ -159,26 +158,26 @@
             android:id="@+id/linearLayout_group_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/light_teal_0"
             android:orientation="horizontal"
-            android:visibility="visible"
-            android:background="@color/light_teal_0">
+            android:visibility="visible">
 
             <Spinner
                 android:id="@+id/spinner_category_4"
                 style="@style/Base"
-                android:layout_width="300dp" />
+                android:layout_width="350dp" />
 
             <TextView
                 android:id="@+id/textView_debit_4"
                 style="@style/Base"
-                android:layout_width="60sp"
+                android:layout_width="75sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$0,000.00" />
 
             <TextView
                 android:id="@+id/textView_tax_4"
                 style="@style/Base"
-                android:layout_width="55sp"
+                android:layout_width="65sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$000.00" />
 
@@ -193,27 +192,27 @@
             android:id="@+id/linearLayout_group_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/light_teal_1"
             android:orientation="horizontal"
-            android:visibility="visible"
-            android:background="@color/light_teal_1">
+            android:visibility="visible">
 
             <Spinner
                 android:id="@+id/spinner_category_5"
                 style="@style/Base"
-                android:layout_width="300dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView_debit_5"
                 style="@style/Base"
-                android:layout_width="60sp"
+                android:layout_width="75sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$0,000.00" />
 
             <TextView
                 android:id="@+id/textView_tax_5"
                 style="@style/Base"
-                android:layout_width="55sp"
+                android:layout_width="65sp"
                 android:layout_marginStart="5dp"
                 android:hint="±$000.00" />
 
@@ -227,7 +226,7 @@
 
     <Spinner
         android:id="@+id/spinner_recurring"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:visibility="visible"

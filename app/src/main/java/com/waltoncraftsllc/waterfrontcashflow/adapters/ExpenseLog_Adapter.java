@@ -53,7 +53,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView_Date, mTextView_Vendor;
-        Spinner mSpinner_Tender, mSpinner_Recurring;
+        Spinner mSpinner_Tender, mSpinner_Periodicity;
         CheckBox mCheckbox_Receipt, mCheckbox_Server, mCheckbox_IsRecurring;
         ArrayList<ExpenseLogGroup> mExpenseLogGroups = new ArrayList<>();
 
@@ -79,7 +79,8 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     itemView.findViewById(R.id.spinner_category_5), itemView.findViewById(R.id.textView_debit_5),
                     itemView.findViewById(R.id.textView_tax_5), itemView.findViewById(R.id.textView_for_whom_5)));
 
-            mSpinner_Recurring = itemView.findViewById(R.id.spinner_recurring);
+            mSpinner_Periodicity = itemView.findViewById(R.id.spinner_recurring);
+            mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
             mCheckbox_Receipt = itemView.findViewById(R.id.checkBox_receipt);
             mCheckbox_Server = itemView.findViewById(R.id.checkBox_server);
             mCheckbox_IsRecurring = itemView.findViewById(R.id.checkBox_is_recurring);
@@ -124,13 +125,13 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
         holder.mCheckbox_Receipt.setChecked(expenseLogItem.hasReceipt());
         holder.mCheckbox_Server.setChecked(expenseLogItem.hasServer());
         holder.mCheckbox_IsRecurring.setChecked(expenseLogItem.isRecurring());
-        holder.mSpinner_Recurring.setVisibility( (expenseLogItem.isRecurring()? View.VISIBLE: View.GONE) );
-        holder.mCheckbox_IsRecurring.setOnClickListener(v -> { holder.mSpinner_Recurring.setVisibility( (((CheckBox)v).isChecked()? View.VISIBLE: View.GONE) ); });
+        holder.mSpinner_Periodicity.setVisibility( (expenseLogItem.isRecurring()? View.VISIBLE: View.GONE) );
+        holder.mCheckbox_IsRecurring.setOnClickListener(v -> { holder.mSpinner_Periodicity.setVisibility( (((CheckBox)v).isChecked()? View.VISIBLE: View.GONE) ); });
 
         if ( expenseLogItem.isRecurring() ) {
-            holder.mSpinner_Recurring.setAdapter(mCategoryPeriodicity_ArrayAdapter);
+            holder.mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
             index = mCategoryPeriodicity_ArrayAdapter.getPosition(expenseLogItem.getRecurring());
-            holder.mSpinner_Recurring.setSelection(index);
+            holder.mSpinner_Periodicity.setSelection(index);
         }
     }
 
@@ -141,7 +142,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
 
     static void setupTestData() {
 //        if ( items.size() > 0 ) {
-            items.add(new ExpenseLogItem("2025-05-28", "LC-Lowe's credit card", "Lowe's",
+            items.add(new ExpenseLogItem("2025-05-28", "CC-Credit card", "Lowe's",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Repairs (home)", new Money("-141.54"), new Money("9.81"), "")
@@ -149,7 +150,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-28", "CC-Chase credit card", "Walmart",
+            items.add(new ExpenseLogItem("2025-05-28", "CC-Credit card", "Walmart",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-15.33"), new Money("0.45"), "")
@@ -157,7 +158,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-29", "CC-Chase credit card", "Harbor Freight",
+            items.add(new ExpenseLogItem("2025-05-29", "CC-Credit card", "Harbor Freight",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Repairs (home)", new Money("-10.72"), new Money("0.74"), "")
@@ -165,7 +166,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-29", "CC-Chase credit card", "RevereHealth",
+            items.add(new ExpenseLogItem("2025-05-29", "CC-Credit card", "RevereHealth",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Copay (personal health)", new Money("-162.99"), new Money("0.00"), "")
@@ -237,7 +238,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✖")
             );
-            items.add(new ExpenseLogItem("2025-05-31", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-115.39"), new Money("3.31"), "")
@@ -245,7 +246,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-31", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Non-food (consumables)", new Money("-11.81"), new Money("0.82"), ""),
@@ -254,7 +255,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "")
             );
-            items.add(new ExpenseLogItem("2025-05-31", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-125.60"), new Money("0.00"), "")
@@ -302,7 +303,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-31", "CC-Chase credit card", "Target/CVS",
+            items.add(new ExpenseLogItem("2025-05-31", "CC-Credit card", "Target/CVS",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Prescriptions (personal health)", new Money("-70.91"), new Money("0.00"), "")
@@ -310,7 +311,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-05-31", "CC-Chase credit card", "Target",
+            items.add(new ExpenseLogItem("2025-05-31", "CC-Credit card", "Target",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-2.87"), new Money("0.08"), "")
@@ -343,7 +344,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "n/a", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-01", "CC-Chase credit card", "Utopia Fiber",
+            items.add(new ExpenseLogItem("2025-06-01", "CC-Credit card", "Utopia Fiber",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Utilities (home)", new Money("-30.00"), new Money("0.00"), "")
@@ -351,7 +352,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "n/a", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-02", "CC-Chase credit card", "eBay",
+            items.add(new ExpenseLogItem("2025-06-02", "CC-Credit card", "eBay",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-29.67"), new Money("1.41"), "")
@@ -367,7 +368,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-02", "CC-Chase credit card", "USCCA",
+            items.add(new ExpenseLogItem("2025-06-02", "CC-Credit card", "USCCA",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Services (subscriptions)", new Money("-33.23"), new Money("0.00"), "Sean")
@@ -375,7 +376,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "n/a", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-03", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-03", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-4.74"), new Money("0.00"), "")
@@ -383,7 +384,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-03", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-03", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-4.19"), new Money("0.00"), "")
@@ -391,7 +392,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-03", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-03", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-4.74"), new Money("0.00"), "")
@@ -399,7 +400,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-03", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-03", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-4.74"), new Money("0.00"), "")
@@ -407,7 +408,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-03", "CC-Chase credit card", "Holiday Oil",
+            items.add(new ExpenseLogItem("2025-06-03", "CC-Credit card", "Holiday Oil",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Fuel (Car)", new Money("-46.64"), new Money("0.00"), "")
@@ -423,7 +424,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "n/a")
             );
-            items.add(new ExpenseLogItem("2025-06-04", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-04", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-4.74"), new Money("0.00"), "")
@@ -431,7 +432,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-04", "CC-Chase credit card", "Great Clips",
+            items.add(new ExpenseLogItem("2025-06-04", "CC-Credit card", "Great Clips",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Haircuts (personal health)", new Money("-26.00"), new Money("0.00"), "")
@@ -447,7 +448,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "n/a")
             );
-            items.add(new ExpenseLogItem("2025-06-05", "CC-Chase credit card", "Savory Thai Orem",
+            items.add(new ExpenseLogItem("2025-06-05", "CC-Credit card", "Savory Thai Orem",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-27.05"), new Money("0.00"), "")
@@ -463,7 +464,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-05", "CC-Chase credit card", "Target",
+            items.add(new ExpenseLogItem("2025-06-05", "CC-Credit card", "Target",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-1.43"), new Money("0.04"), "")
@@ -471,7 +472,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-06", "CC-Chase credit card", "Gunnies",
+            items.add(new ExpenseLogItem("2025-06-06", "CC-Credit card", "Gunnies",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-64.46"), new Money("4.47"), "")
@@ -479,7 +480,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-06", "CC-Chase credit card", "Walmart",
+            items.add(new ExpenseLogItem("2025-06-06", "CC-Credit card", "Walmart",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-9.98"), new Money("0.29"), "")
@@ -487,7 +488,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-07", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-06-07", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-45.16"), new Money("1.32"), ""),
@@ -496,7 +497,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-07", "CC-Chase credit card", "Get Some Guns",
+            items.add(new ExpenseLogItem("2025-06-07", "CC-Credit card", "Get Some Guns",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-13.70"), new Money("0.95"), "")
@@ -504,7 +505,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-07", "CC-Chase credit card", "Michael's",
+            items.add(new ExpenseLogItem("2025-06-07", "CC-Credit card", "Michael's",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-5.25"), new Money("0.36"), "")
@@ -521,7 +522,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-08", "CC-Chase credit card", "Pluralsight",
+            items.add(new ExpenseLogItem("2025-06-08", "CC-Credit card", "Pluralsight",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Services (subscriptions)", new Money("240.00"), new Money("0.00"), "")
@@ -545,7 +546,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-09", "CC-Chase credit card", "Holiday Oil",
+            items.add(new ExpenseLogItem("2025-06-09", "CC-Credit card", "Holiday Oil",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Fuel (car)", new Money("-69.71"), new Money("7.98"), "21.86 gal")
@@ -553,7 +554,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-09", "CC-Chase credit card", "Web*BlueHost.com",
+            items.add(new ExpenseLogItem("2025-06-09", "CC-Credit card", "Web*BlueHost.com",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Services (subscriptions)", new Money("-2.68"), new Money("0.19"), "")
@@ -561,7 +562,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "n/a", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-10", "CC-Chase credit card", "Provo InstaCare",
+            items.add(new ExpenseLogItem("2025-06-10", "CC-Credit card", "Provo InstaCare",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Copay (personal health)", new Money("-10.00"), new Money("0.00"), "")
@@ -577,7 +578,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-11", "CC-Chase credit card", "Amazon",
+            items.add(new ExpenseLogItem("2025-06-11", "CC-Credit card", "Amazon",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-23.19"), new Money("1.61"), "")
@@ -585,7 +586,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-11", "CC-Chase credit card", "Target",
+            items.add(new ExpenseLogItem("2025-06-11", "CC-Credit card", "Target",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Prescriptions (personal health)", new Money("-24.66"), new Money("0.00"), "")
@@ -601,7 +602,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "n/a", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-12", "CC-Chase credit card", "Amazon",
+            items.add(new ExpenseLogItem("2025-06-12", "CC-Credit card", "Amazon",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Yard (home)", new Money("-21.48"), new Money("1.49"), "")
@@ -626,7 +627,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-13", "CC-Chase credit card", "Audible",
+            items.add(new ExpenseLogItem("2025-06-13", "CC-Credit card", "Audible",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Entertainment (subscriptions)", new Money("-49.42"), new Money("0.00"), "")
@@ -634,7 +635,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-14", "CC-Chase credit card", "Amazon",
+            items.add(new ExpenseLogItem("2025-06-14", "CC-Credit card", "Amazon",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Yard (home)", new Money("-23.63"), new Money("1.64"), "")
@@ -642,7 +643,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-14", "CC-Chase credit card", "Amazon",
+            items.add(new ExpenseLogItem("2025-06-14", "CC-Credit card", "Amazon",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Yard (home)", new Money("-40.82"), new Money("2.83"), "")
@@ -650,7 +651,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-14", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-06-14", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-101.42"), new Money("3.04"), ""),
@@ -660,7 +661,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-14", "CC-Chase credit card", "Great Clips",
+            items.add(new ExpenseLogItem("2025-06-14", "CC-Credit card", "Great Clips",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Haircuts (personal health)", new Money("-54.00"), new Money("0.00"), ""),
@@ -671,7 +672,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-14", "CC-Chase credit card", "LabCorp",
+            items.add(new ExpenseLogItem("2025-06-14", "CC-Credit card", "LabCorp",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Copay (personal health)", new Money("-15.00"), new Money("0.00"), "")
@@ -679,7 +680,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-17", "CC-Chase credit card", "HUR Jewelers",
+            items.add(new ExpenseLogItem("2025-06-17", "CC-Credit card", "HUR Jewelers",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-244.99"), new Money("0.00"), "")
@@ -687,7 +688,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-17", "CC-Chase credit card", "Mt Timpanogos Temple",
+            items.add(new ExpenseLogItem("2025-06-17", "CC-Credit card", "Mt Timpanogos Temple",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-6.00"), new Money("0.00"), "")
@@ -695,7 +696,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-17", "CC-Chase credit card", "Utah Dept of Commerce",
+            items.add(new ExpenseLogItem("2025-06-17", "CC-Credit card", "Utah Dept of Commerce",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("-18.00"), new Money("0.00"), "")
@@ -735,7 +736,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-20", "CC-Chase credit card", "Gunnies",
+            items.add(new ExpenseLogItem("2025-06-20", "CC-Credit card", "Gunnies",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Mad Money", new Money("64.46"), new Money("-4.47"), "")
@@ -743,7 +744,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-20", "CC-Chase credit card", "Target/CVS",
+            items.add(new ExpenseLogItem("2025-06-20", "CC-Credit card", "Target/CVS",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Prescriptions (personal health)", new Money("-161.15"), new Money("0.00"), "")
@@ -751,7 +752,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "✔", "")
             );
-            items.add(new ExpenseLogItem("2025-06-21", "CC-Chase credit card", "Amazon Digital",
+            items.add(new ExpenseLogItem("2025-06-21", "CC-Credit card", "Amazon Digital",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Utilities (home)", new Money("-3.75"), new Money("0.26"), "Rachel")
@@ -759,7 +760,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "Monthly", "", "✔")
             );
-            items.add(new ExpenseLogItem("2025-06-21", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-06-21", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Food (consumables)", new Money("-69.07"), new Money("1.76"), "")
@@ -767,7 +768,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                     )),
                     "", "", "")
             );
-            items.add(new ExpenseLogItem("2025-06-21", "CC-Chase credit card", "CostCo Wholesale",
+            items.add(new ExpenseLogItem("2025-06-21", "CC-Credit card", "CostCo Wholesale",
                     new ArrayList<>(Arrays.asList(
                             new ExpenseLogItem_Group[]{
                                     new ExpenseLogItem_Group("Non-Food (consumables)", new Money("-12.85"), new Money("0.86"), "")

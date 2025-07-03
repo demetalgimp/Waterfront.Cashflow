@@ -9,7 +9,11 @@ import android.widget.ArrayAdapter;
 
 import com.waltoncraftsllc.waterfrontcashflow.adapters.Budget_Adapter;
 import com.waltoncraftsllc.waterfrontcashflow.adapters.ExpenseLog_Adapter;
+import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
 import com.waltoncraftsllc.waterfrontcashflow.databinding.ActivityMainBinding;
+import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static ArrayAdapter<CharSequence> mCategoryPeriodicity_ArrayAdapter;
@@ -21,15 +25,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ActivityMainBinding binding;
+    public Sqlite_ConnectionHelper db_helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCategoryPeriodicity_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category_periodicity, android.R.layout.simple_spinner_item);
+        db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), null, null, 2);
+        ArrayList<CharSequence> categories = db_helper.getDefaultCategories();
+        ArrayList<CharSequence> periodicities = db_helper.getPeriodicities();
+        ArrayList<CharSequence> tenders = db_helper.getDefaultTenders();
+        //TODO: fill periodicity spinner
+
+//        mCategoryPeriodicity_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category_periodicity, android.R.layout.simple_spinner_item);
+        mCategoryPeriodicity_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, periodicities);
         mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mCategory_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
+
+//        mCategory_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
+        mCategory_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         mCategory_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mTender_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.tender, android.R.layout.simple_spinner_item);
+
+//        mTender_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.tender, android.R.layout.simple_spinner_item);
+        mTender_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tenders);
         mTender_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
