@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/constraintLayout_expense_log"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center_vertical|end"
         android:background="@color/white"
-        android:text="00/00"
+        android:text="@string/_00_00"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +34,7 @@
         android:layout_marginTop="6dp"
         android:background="@color/white"
         android:textSize="18sp"
-        android:hint="vendor"
+        android:hint="@string/vendor"
         app:layout_constraintStart_toEndOf="@+id/spinner_tender"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,14 +68,14 @@
                 style="@style/Base"
                 android:layout_width="75sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$0,000.00" />
+                android:hint="@string/_0_000_00" />
 
             <TextView
                 android:id="@+id/textView_tax_1"
                 style="@style/Base"
                 android:layout_width="65sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$000.00" />
+                android:hint="@string/_000_00" />
 
             <TextView
                 android:id="@+id/textView_for_whom_1"
@@ -104,14 +103,14 @@
                 style="@style/Base"
                 android:layout_width="75sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$0,000.00" />
+                android:hint="@string/_0_000_00" />
 
             <TextView
                 android:id="@+id/textView_tax_2"
                 style="@style/Base"
                 android:layout_width="65sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$000.00" />
+                android:hint="@string/_000_00" />
 
             <TextView
                 android:id="@+id/textView_for_whom_2"
@@ -138,14 +137,14 @@
                 style="@style/Base"
                 android:layout_width="75sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$0,000.00" />
+                android:hint="@string/_0_000_00" />
 
             <TextView
                 android:id="@+id/textView_tax_3"
                 style="@style/Base"
                 android:layout_width="65sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$000.00" />
+                android:hint="@string/_000_00" />
 
             <TextView
                 android:id="@+id/textView_for_whom_3"
@@ -172,14 +171,14 @@
                 style="@style/Base"
                 android:layout_width="75sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$0,000.00" />
+                android:hint="@string/_0_000_00" />
 
             <TextView
                 android:id="@+id/textView_tax_4"
                 style="@style/Base"
                 android:layout_width="65sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$000.00" />
+                android:hint="@string/_000_00" />
 
             <TextView
                 android:id="@+id/textView_for_whom_4"
@@ -207,14 +206,14 @@
                 style="@style/Base"
                 android:layout_width="75sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$0,000.00" />
+                android:hint="@string/_0_000_00" />
 
             <TextView
                 android:id="@+id/textView_tax_5"
                 style="@style/Base"
                 android:layout_width="65sp"
                 android:layout_marginStart="5dp"
-                android:hint="±$000.00" />
+                android:hint="@string/_000_00" />
 
             <TextView
                 android:id="@+id/textView_for_whom_5"
@@ -240,7 +239,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
-        android:text="Receipt?"
+        android:text="@string/receipt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
 
@@ -251,7 +250,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
-        android:text="On statement?"
+        android:text="@string/on_statement"
         app:layout_constraintStart_toEndOf="@+id/checkBox_receipt"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
 
@@ -262,7 +261,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
-        android:text="Recurring?  "
+        android:text="@string/recurring"
         app:layout_constraintStart_toEndOf="@+id/checkBox_server"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
 

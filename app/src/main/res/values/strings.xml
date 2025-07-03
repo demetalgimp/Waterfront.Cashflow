@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">Waterfront</string>
+    <string name="_00_00">00/00</string>
+    <string name="vendor">vendor</string>
+    <string name="_0_000_00">±$0,000.00</string>
+    <string name="_000_00">±$000.00</string>
+    <string name="receipt">Receipt?</string>
+    <string name="on_statement">On statement?</string>
+    <string name="recurring">Recurring?</string>
+    <string name="_0_000_mo">$0,000/mo</string>
+    <string name="_000_wk">$000/wk</string>
+    <string name="hyphen">-</string>
+    <string name="due_date">Due date:</string>
+    <string name="cap">Cap:</string>
+    <string name="category_name">Category Name</string>
+    <string name="expense_log">Expense Log</string>
+    <string name="budget_planner">Budget Planner</string>
     <string-array name="category_periodicity">
         <item>Weekly (52/yr)</item>
         <item>Biweekly (26/yr)</item>

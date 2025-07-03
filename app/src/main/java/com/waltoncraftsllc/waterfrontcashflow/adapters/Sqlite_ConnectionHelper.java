@@ -10,10 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.waltoncraftsllc.waterfrontcashflow.tools.ExpenseLogItem;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     public final int DATABASE_VERSION = 2;

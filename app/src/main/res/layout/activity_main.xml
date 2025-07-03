@@ -29,7 +29,7 @@
         android:id="@+id/button_ExpenseLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Expense Log"
+        android:text="@string/expense_log"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -37,7 +37,7 @@
         android:id="@+id/button_BudgetPlanner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Budget Planner"
+        android:text="@string/budget_planner"
         app:layout_constraintBottom_toTopOf="@+id/button_ExpenseLog"
         app:layout_constraintEnd_toEndOf="parent" />
 
