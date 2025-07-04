@@ -107,7 +107,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
         ExpenseLogItem expenseLogItem = items.get(position);
         holder.mTextView_Date.setText(expenseLogItem.dateToString());
         holder.mSpinner_Tender.setAdapter(mTender_ArrayAdapter);
-        index = mTender_ArrayAdapter.getPosition(expenseLogItem.getTender());
+        index = mTender_ArrayAdapter.getPosition(expenseLogItem.getTenderString());
         holder.mSpinner_Tender.setSelection(index);
         holder.mTextView_Vendor.setText(expenseLogItem.getVendor());
 
