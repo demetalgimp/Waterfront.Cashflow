@@ -3,7 +3,7 @@ package com.waltoncraftsllc.waterfrontcashflow.tools;
 import java.util.ArrayList;
 
 public class BudgetTree {
-    String mName = "";
+    String mName;
     ArrayList<BudgetTree> mChildren = new ArrayList<>();
     Budget mBudget = null;
     Money mWeekSum = null, mMonthSum = null;

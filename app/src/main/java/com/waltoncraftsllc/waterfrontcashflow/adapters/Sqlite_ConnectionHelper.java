@@ -347,7 +347,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * ArrayList<Budget> getBudgetRecords() - Retrieve all budget records. These include "time bracketed" items which encapsulate changes in expected expenses.
      * @return budget_records: #ArrayList<Budget>#
      */
-    public ArrayList<Budget> getBudgetRecords() {
+    public ArrayList<Budget> queryBudgetRecords() {
         ArrayList<Budget> budget_records = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
@@ -467,7 +467,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * ArrayList<ExpenseLog> getExpenseRecords() - Get expense records. I imagine that this can ultimately be very huge. That's a problem.
      * @return results: #ArrayList<ExpenseLog>#
      */
-    public ArrayList<ExpenseLog> getExpenseLogRecords() {
+    public ArrayList<ExpenseLog> queryExpenseLogRecords() {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<ExpenseLog> results = new ArrayList<>();
 //TODO

@@ -10,7 +10,7 @@ public class Budget_TimeBracket {
         Date mToDate;
         Money mAmount;
         String mPeriodicity_str;
-        int mPerAnnum = 1;
+        int mPerAnnum;
         Money proratedMonthly; // <-- generated
         Money proratedWeekly; // <-- generated
 
