@@ -11,7 +11,7 @@ public class BudgetItem {
     private static final String DATE_FORMAT = "MM/dd";
     long mID;
     String mName;
-    ArrayList<BudgetItem_TimeBracket> mTimeBrackets = null;
+    ArrayList<BudgetItem_TimeBracket> mTimeBrackets;
     Date mDueDate = null;//String mDueDate = null;
     Money mAmountCap = null;
 

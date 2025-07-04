@@ -2,7 +2,6 @@ package com.waltoncraftsllc.waterfrontcashflow;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -12,7 +11,6 @@ import com.waltoncraftsllc.waterfrontcashflow.adapters.ExpenseLog_Adapter;
 import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
 import com.waltoncraftsllc.waterfrontcashflow.databinding.ActivityMainBinding;
 import com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 
 import java.util.ArrayList;
 

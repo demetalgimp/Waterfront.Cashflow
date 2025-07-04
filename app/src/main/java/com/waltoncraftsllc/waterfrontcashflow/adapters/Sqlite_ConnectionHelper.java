@@ -31,39 +31,29 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     private final Pair[] mDefaultPeriodicity = new Pair[] {
-            new Pair<Long, String>(52L, "Weekly (52/yr)"), new Pair<Long, String>(26L, "Biweekly (26/yr)"), 
-            new Pair<Long, String>(24L, "Semimonthly (24/yr)"), new Pair<Long, String>(12L, "Monthly (12/yr)"), 
-            new Pair<Long, String>(4L, "Quarterly (4/yr)"), new Pair<Long, String>(3L, "Triannual (3/yr)")
+            new Pair<>(52L, "Weekly (52/yr)"), new Pair<>(26L, "Biweekly (26/yr)"), new Pair<>(24L, "Semimonthly (24/yr)"),
+            new Pair<>(12L, "Monthly (12/yr)"), new Pair<>(4L, "Quarterly (4/yr)"), new Pair<>(3L, "Triannual (3/yr)")
     };
 
     private final Pair[] mDefaultTender = new Pair[] {
-            new Pair<Long, String>(0L, "CA-cash"), new Pair<Long, String>(0L, "CC-Credit card"),
-            new Pair<Long, String>(0L, "CK-checking"), new Pair<Long, String>(0L, "DB-disbursement"),
-            new Pair<Long, String>(0L, "DC-debit card"), new Pair<Long, String>(0L, "FA-Flexible Spending Account"),
-            new Pair<Long, String>(0L, "GC-gift card"), new Pair<Long, String>(0L, "PP-Paypal"),
-            new Pair<Long, String>(0L, "RE-reimbursement"), new Pair<Long, String>(0L, "TR-transfer"),
-            new Pair<Long, String>(0L, "VM-Venmo")
+            new Pair<>(0L, "CA-cash"), new Pair<>(0L, "CC-Credit card"), new Pair<>(0L, "CK-checking"), new Pair<>(0L, "DB-disbursement"),
+            new Pair<>(0L, "DC-debit card"), new Pair<>(0L, "FA-Flexible Spending Account"), new Pair<>(0L, "GC-gift card"),
+            new Pair<>(0L, "PP-Paypal"), new Pair<>(0L, "RE-reimbursement"), new Pair<>(0L, "TR-transfer"), new Pair<>(0L, "VM-Venmo")
     };
 
     private final Pair[] mDefaultCategories = new Pair[] {
-            new Pair<Long, String>(0L, "Cars/Insurance"), new Pair<Long, String>(0L, "Cars/Shop/Maintenance"),
-            new Pair<Long, String>(0L, "Cars/Shop/Repairs"), new Pair<Long, String>(0L, "Cars/Fuel"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Regular"), new Pair<Long, String>(0L, "Home/Mortgage/Additional principal"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Taxes"), new Pair<Long, String>(0L, "Home/Mortgage/Home insurance"),
-            new Pair<Long, String>(0L, "Home/Utilities/Cellphone"), new Pair<Long, String>(0L, "Home/Utilities/City"),
-            new Pair<Long, String>(0L, "Home/Utilities/Electricity"), new Pair<Long, String>(0L, "Home/Utilities/Gas"),
-            new Pair<Long, String>(0L, "Home/Utilities/Internet"), new Pair<Long, String>(0L, "Home/Repairs/Professional"),
-            new Pair<Long, String>(0L, "Home/Repairs/Self repairs"), new Pair<Long, String>(0L, "Home/General/Household"),
-            new Pair<Long, String>(0L, "Home/General/Office"), new Pair<Long, String>(0L, "Home/General/Yard"),
-            new Pair<Long, String>(0L, "Consumables/Food"), new Pair<Long, String>(0L, "Consumables/Non-Food"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Dental"), new Pair<Long, String>(0L, "Personal/Insurance/Medical"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Prescriptions"), new Pair<Long, String>(0L, "Personal/Insurance/Copay"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Vision"), new Pair<Long, String>(0L, "Personal/Health/General"),
-            new Pair<Long, String>(0L, "Provisions/Education"), new Pair<Long, String>(0L, "Provisions/Gifts/Family"),
-            new Pair<Long, String>(0L, "Provisions/Gifts/Other"), new Pair<Long, String>(0L, "Subscription Services/Entertainment/Amazon channels"),
-            new Pair<Long, String>(0L, "Subscription Services/Entertainment/Rentals"), new Pair<Long, String>(0L, "Services/USCCA"),
-            new Pair<Long, String>(0L, "Services/Amazon Prime"), new Pair<Long, String>(0L, "Services/Audible"),
-            new Pair<Long, String>(0L, "Services/Accountants"), new Pair<Long, String>(0L, "Services/Costco")
+            new Pair<>(0L, "Cars/Insurance"), new Pair<>(0L, "Cars/Shop/Maintenance"), new Pair<>(0L, "Cars/Shop/Repairs"), new Pair<>(0L, "Cars/Fuel"),
+            new Pair<>(0L, "Home/Mortgage/Regular"), new Pair<>(0L, "Home/Mortgage/Additional principal"), new Pair<>(0L, "Home/Mortgage/Taxes"),
+            new Pair<>(0L, "Home/Mortgage/Home insurance"), new Pair<>(0L, "Home/Utilities/Cellphone"), new Pair<>(0L, "Home/Utilities/City"),
+            new Pair<>(0L, "Home/Utilities/Electricity"), new Pair<>(0L, "Home/Utilities/Gas"), new Pair<>(0L, "Home/Utilities/Internet"),
+            new Pair<>(0L, "Home/Repairs/Professional"), new Pair<>(0L, "Home/Repairs/Self repairs"), new Pair<>(0L, "Home/General/Household"),
+            new Pair<>(0L, "Home/General/Office"), new Pair<>(0L, "Home/General/Yard"), new Pair<>(0L, "Consumables/Food"),
+            new Pair<>(0L, "Consumables/Non-Food"), new Pair<>(0L, "Personal/Insurance/Dental"), new Pair<>(0L, "Personal/Insurance/Medical"),
+            new Pair<>(0L, "Personal/Insurance/Prescriptions"), new Pair<>(0L, "Personal/Insurance/Copay"), new Pair<>(0L, "Personal/Insurance/Vision"),
+            new Pair<>(0L, "Personal/Health/General"), new Pair<>(0L, "Provisions/Education"), new Pair<>(0L, "Provisions/Gifts/Family"),
+            new Pair<>(0L, "Provisions/Gifts/Other"), new Pair<>(0L, "Subscription Services/Entertainment/Amazon channels"),
+            new Pair<>(0L, "Subscription Services/Entertainment/Rentals"), new Pair<>(0L, "Services/USCCA"), new Pair<>(0L, "Services/Amazon Prime"),
+            new Pair<>(0L, "Services/Audible"), new Pair<>(0L, "Services/Accountants"), new Pair<>(0L, "Services/Costco")
     };
     public long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
         for ( Pair<Long, String> pair : list ) {
@@ -156,6 +146,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 categories.add(cursor.getString(columnIndex));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
 
         return categories;
@@ -187,6 +178,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 periods.add(cursor.getString(columnIndex));
             } while ( cursor.moveToNext() );
         }
+        cursor.close();
         db.close();
 
         return periods;
@@ -218,6 +210,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 tenders.add(tender);
             } while ( cursor.moveToNext() );
         }
+        cursor.close();
 
     //--- Close database link and return labels.
         db.close();
@@ -276,6 +269,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                         brackets.add(new BudgetItem_TimeBracket(from_date, to_date, new Money(amount), period));
                     } while ( bracket_cursor.moveToNext() );
                 }
+                bracket_cursor.close();
 
             //--- Get the rest of the Budget record fields and populate the struct.
 
@@ -289,6 +283,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 budget_records.add(budgetItem);
             } while ( budget_cursor.moveToNext() );
         }
+        budget_cursor.close();
 
     //--- Close and return all of the Budget items
         db.close();
