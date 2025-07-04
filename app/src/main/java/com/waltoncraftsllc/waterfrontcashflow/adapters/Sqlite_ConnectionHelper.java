@@ -339,7 +339,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     //--- Add Expense record
         values.put(DatabaseContract.EXPENSE_LOG__DATE, item.dateToString());
         values.put(DatabaseContract.EXPENSE_LOG__TENDER_FK, item.getTenderString());
-        long row_id = db.insert(BUDGET__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
+        rec_id = db.insert(BUDGET__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
 
         //--- For all group items...
         for ( ExpenseLogItem_Group group : item.getGroup() ) {

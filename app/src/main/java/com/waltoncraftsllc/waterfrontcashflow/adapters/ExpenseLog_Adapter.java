@@ -127,9 +127,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
         holder.mCheckbox_Server.setChecked(expenseLogItem.hasServer());
         holder.mCheckbox_IsRecurring.setChecked(expenseLogItem.isRecurring());
         holder.mSpinner_Periodicity.setVisibility( (expenseLogItem.isRecurring()? View.VISIBLE: View.GONE) );
-        holder.mCheckbox_IsRecurring.setOnClickListener(v -> {
-            holder.mSpinner_Periodicity.setVisibility((((CheckBox) v).isChecked() ? View.VISIBLE : View.GONE));
-        });
+        holder.mCheckbox_IsRecurring.setOnClickListener(v -> holder.mSpinner_Periodicity.setVisibility((((CheckBox) v).isChecked() ? View.VISIBLE : View.GONE)));
 
         if ( expenseLogItem.isRecurring() ) {
             holder.mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
