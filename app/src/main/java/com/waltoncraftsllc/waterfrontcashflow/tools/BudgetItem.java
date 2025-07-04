@@ -37,6 +37,7 @@ public class BudgetItem {
     public boolean hasAmountCap() { return (mAmountCap != null); }
     public String dueDateToString() { return sqlDateToString(mDueDate); }
     public void setDueDate(String due_date) { this.mDueDate = Date.valueOf(due_date); }
+    public String getDueDate() { return sqlDateToString(mDueDate); }
     public String getAmountCap() {
         return mAmountCap.toString();
     }

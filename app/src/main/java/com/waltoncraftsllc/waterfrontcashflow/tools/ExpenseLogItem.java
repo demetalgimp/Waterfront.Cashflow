@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ExpenseLogItem {
     Date mDate;
-    String mTender;
+    String mTenderString;
     String mVendor;
     ArrayList<ExpenseLogItem_Group> mGroup;
     String mRecurring;
@@ -15,7 +15,7 @@ public class ExpenseLogItem {
 
     public ExpenseLogItem(String date, String tender, String vendor, ArrayList<ExpenseLogItem_Group> group, String recurring, String receipt, String server) {
         this.mDate = Date.valueOf(date);
-        this.mTender = tender;
+        this.mTenderString = tender;
         this.mVendor = vendor;
         this.mGroup = group;
         this.mRecurring = recurring;
@@ -24,7 +24,7 @@ public class ExpenseLogItem {
     }
     public ExpenseLogItem(String date, String tender, String vendor, ArrayList<ExpenseLogItem_Group> group) {
         this.mDate = Date.valueOf(date);
-        this.mTender = tender;
+        this.mTenderString = tender;
         this.mVendor = vendor;
         this.mGroup = group;
         this.mRecurring = "";
@@ -35,8 +35,8 @@ public class ExpenseLogItem {
     public String dateToString() {
         return BudgetItem.sqlDateToString(mDate);
     }
-    public String getTender() {
-        return mTender;
+    public String getTenderString() {
+        return mTenderString;
     }
     public String getVendor() {
         return mVendor;

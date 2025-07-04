@@ -145,28 +145,23 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
 
     static void setupTestData() {
         items.add(new ExpenseLogItem("2025-05-28", "CC-Credit card", "Lowe's",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Repairs (home)", new Money("-141.54"), new Money("9.81"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Repairs (home)", new Money("-141.54"), new Money("9.81"), ""))),
                 "", "✔", "✔")
         );
         items.add(new ExpenseLogItem("2025-05-28", "CC-Credit card", "Walmart",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Food (consumables)", new Money("-15.33"), new Money("0.45"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Food (consumables)", new Money("-15.33"), new Money("0.45"), ""))),
                 "", "✔", "✔")
         );
         items.add(new ExpenseLogItem("2025-05-29", "CC-Credit card", "Harbor Freight",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Repairs (home)", new Money("-10.72"), new Money("0.74"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Repairs (home)", new Money("-10.72"), new Money("0.74"), ""))),
                 "", "✔", "✔")
         );
         items.add(new ExpenseLogItem("2025-05-29", "CC-Credit card", "RevereHealth",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Copay (personal health)", new Money("-162.99"), new Money("0.00"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Copay (personal health)", new Money("-162.99"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
         items.add(new ExpenseLogItem("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Fast Offering (Charity)", new Money("-50.00"), new Money("0.00"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Fast Offering (Charity)", new Money("-50.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
         items.add(new ExpenseLogItem("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
@@ -540,8 +535,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                 "", "", "")
         );
         items.add(new ExpenseLogItem("2025-06-21", "CC-Credit card", "CostCo Wholesale",
-                new ArrayList<>(Collections.singletonList(
-                        new ExpenseLogItem_Group("Non-Food (consumables)", new Money("-12.85"), new Money("0.86"), ""))),
+                new ArrayList<>(Collections.singletonList(new ExpenseLogItem_Group("Non-Food (consumables)", new Money("-12.85"), new Money("0.86"), ""))),
                 "", "✔", "")
         );
         items.add(new ExpenseLogItem("2025-06-21", "VM-Venmo", "T.Mobile",
