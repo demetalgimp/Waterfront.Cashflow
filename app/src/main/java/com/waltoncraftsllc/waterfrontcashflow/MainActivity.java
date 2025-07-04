@@ -11,6 +11,7 @@ import com.waltoncraftsllc.waterfrontcashflow.adapters.Budget_Adapter;
 import com.waltoncraftsllc.waterfrontcashflow.adapters.ExpenseLog_Adapter;
 import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
 import com.waltoncraftsllc.waterfrontcashflow.databinding.ActivityMainBinding;
+import com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), null, null, 2);
+        db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), DatabaseContract.DATABASE_NAME, null, DatabaseContract.DATABASE_VERSION);
         ArrayList<CharSequence> categories = db_helper.getDefaultCategories();
         ArrayList<CharSequence> periodicities = db_helper.getPeriodicities();
         ArrayList<CharSequence> tenders = db_helper.getDefaultTenders();

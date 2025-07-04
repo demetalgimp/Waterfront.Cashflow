@@ -20,24 +20,23 @@ import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 import java.util.ArrayList;
 
 public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
-    public final int DATABASE_VERSION = 2;
-    private static Sqlite_ConnectionHelper mSQLiteHelper = null;
+//    private static Sqlite_ConnectionHelper mSQLiteHelper = null;
 
-    public Sqlite_ConnectionHelper getInstance() {
-        return mSQLiteHelper;
-    }
+//    public Sqlite_ConnectionHelper getInstance() {
+//        return mSQLiteHelper;
+//    }
     public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, 1);
-        mSQLiteHelper = this;
+        super(context, name, factory, version);
+//        mSQLiteHelper = this;
     }
 
-    private final Pair<Long, String>[] mDefaultPeriodicity = new Pair[] {
+    private final Pair[] mDefaultPeriodicity = new Pair[] {
             new Pair<Long, String>(52L, "Weekly (52/yr)"), new Pair<Long, String>(26L, "Biweekly (26/yr)"), 
             new Pair<Long, String>(24L, "Semimonthly (24/yr)"), new Pair<Long, String>(12L, "Monthly (12/yr)"), 
             new Pair<Long, String>(4L, "Quarterly (4/yr)"), new Pair<Long, String>(3L, "Triannual (3/yr)")
     };
 
-    private final Pair<Long, String>[] mDefaultTender = new Pair[] {
+    private final Pair[] mDefaultTender = new Pair[] {
             new Pair<Long, String>(0L, "CA-cash"), new Pair<Long, String>(0L, "CC-Credit card"),
             new Pair<Long, String>(0L, "CK-checking"), new Pair<Long, String>(0L, "DB-disbursement"),
             new Pair<Long, String>(0L, "DC-debit card"), new Pair<Long, String>(0L, "FA-Flexible Spending Account"),
@@ -46,7 +45,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             new Pair<Long, String>(0L, "VM-Venmo")
     };
 
-    private final Pair<Long, String>[] mDefaultCategories = new Pair[] {
+    private final Pair[] mDefaultCategories = new Pair[] {
             new Pair<Long, String>(0L, "Cars/Insurance"), new Pair<Long, String>(0L, "Cars/Shop/Maintenance"),
             new Pair<Long, String>(0L, "Cars/Shop/Repairs"), new Pair<Long, String>(0L, "Cars/Fuel"),
             new Pair<Long, String>(0L, "Home/Mortgage/Regular"), new Pair<Long, String>(0L, "Home/Mortgage/Additional principal"),
@@ -255,7 +254,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
             //--- Get the budget record ID to get time brackets
                 ArrayList<BudgetItem_TimeBracket> brackets = new ArrayList<>();
-                int id = budget_cursor.getInt(id_col_index);
+                long id = budget_cursor.getLong(id_col_index);
                 query = "select * from " + BUDGET_TIME_BRACKET__TABLE_NAME + " where " + BUDGET_TIME_BRACKET__BUDGET_FK + "=?";
                 String[] where_args = new String[] { String.valueOf(id) };
                 Cursor bracket_cursor = db.rawQuery(query, where_args);
@@ -279,10 +278,12 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 }
 
             //--- Get the rest of the Budget record fields and populate the struct.
+
                 String name = budget_cursor.getString(name_col_index);
                 String due_date = budget_cursor.getString(due_date_col_index);
                 String amount_cap = budget_cursor.getString(amount_cap_col_index);
                 BudgetItem budgetItem = new BudgetItem(name, brackets, due_date, new Money(amount_cap));
+                budgetItem.setID(id);
 
             //--- Add to list.
                 budget_records.add(budgetItem);

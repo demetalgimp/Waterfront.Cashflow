@@ -22,15 +22,15 @@ public class ExpenseLogItem {
         this.mReceipt = (receipt.equals("✔"));
         this.mServer = (server.equals("✔"));
     }
-    public ExpenseLogItem(String date, String tender, String vendor, ArrayList<ExpenseLogItem_Group> group) {
-        this.mDate = Date.valueOf(date);
-        this.mTenderString = tender;
-        this.mVendor = vendor;
-        this.mGroup = group;
-        this.mRecurring = "";
-        this.mReceipt = false;
-        this.mServer = false;
-    }
+//    public ExpenseLogItem(String date, String tender, String vendor, ArrayList<ExpenseLogItem_Group> group) {
+//        this.mDate = Date.valueOf(date);
+//        this.mTenderString = tender;
+//        this.mVendor = vendor;
+//        this.mGroup = group;
+//        this.mRecurring = "";
+//        this.mReceipt = false;
+//        this.mServer = false;
+//    }
 
     public String dateToString() {
         return BudgetItem.sqlDateToString(mDate);
