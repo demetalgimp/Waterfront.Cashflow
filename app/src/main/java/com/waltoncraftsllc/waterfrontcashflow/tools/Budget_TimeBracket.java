@@ -1,10 +1,10 @@
 package com.waltoncraftsllc.waterfrontcashflow.tools;
 
-import static com.waltoncraftsllc.waterfrontcashflow.tools.BudgetItem.sqlDateToString;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.Budget.sqlDateToString;
 
 import java.sql.Date;
 
-public class BudgetItem_TimeBracket {
+public class Budget_TimeBracket {
         int mID;
         Date mFromDate;
         Date mToDate;
@@ -14,7 +14,7 @@ public class BudgetItem_TimeBracket {
         Money proratedMonthly; // <-- generated
         Money proratedWeekly; // <-- generated
 
-    public BudgetItem_TimeBracket(String from, String to, Money amount, String periodicity) {
+    public Budget_TimeBracket(String from, String to, Money amount, String periodicity) {
         this.mFromDate = Date.valueOf(from);
         this.mToDate = Date.valueOf(to);
         this.mAmount = amount;
@@ -22,6 +22,7 @@ public class BudgetItem_TimeBracket {
         double week_scaler;
         double month_scaler;
         this.mPerAnnum = Integer.parseInt(periodicity.replaceAll("[^0-9]*", ""));
+//FIXME: out of date
         switch ( periodicity ) {
             case "Weekly (52/yr)":          week_scaler = 52.0/52; month_scaler = 52.0/12; break;
             case "Biweekly (26/yr)":        week_scaler = 26.0/52; month_scaler = 26.0/12; break;
@@ -31,8 +32,9 @@ public class BudgetItem_TimeBracket {
             case "Triannually (3/yr)":      week_scaler =  3.0/52; month_scaler =  3.0/12; break;
             case "Semiannually (2/yr)":     week_scaler =  2.0/52; month_scaler =  2.0/12; break;
             case "Annually/yearly (1/yr)":
-            default:                        week_scaler =  1.0/52; month_scaler = 1.0/12; break;
+            default:                        week_scaler =  1.0/52; month_scaler =  1.0/12; break;
         }
+//---
         this.proratedMonthly = mAmount.multiply(month_scaler);
         this.proratedWeekly = mAmount.multiply(week_scaler);
     }

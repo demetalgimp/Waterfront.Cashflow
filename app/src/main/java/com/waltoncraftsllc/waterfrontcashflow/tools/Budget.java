@@ -7,21 +7,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class BudgetItem {
+public class Budget {
     private static final String DATE_FORMAT = "MM/dd";
     long mID;
     String mName;
-    ArrayList<BudgetItem_TimeBracket> mTimeBrackets;
+    ArrayList<Budget_TimeBracket> mTimeBrackets;
     Date mDueDate = null;//String mDueDate = null;
     Money mAmountCap = null;
 
-    public BudgetItem(@NonNull String name, @NonNull ArrayList<BudgetItem_TimeBracket> brackets, @NonNull String due_date, Money amount_cap) {
+    public Budget(@NonNull String name, @NonNull ArrayList<Budget_TimeBracket> brackets, @NonNull String due_date, Money amount_cap) {
         this.mName = name;
         this.mTimeBrackets = brackets;
         this.mDueDate = Date.valueOf(due_date);
         this.mAmountCap = amount_cap;
     }
-    public BudgetItem(String mName, @NonNull ArrayList<BudgetItem_TimeBracket> brackets) {
+    public Budget(String mName, @NonNull ArrayList<Budget_TimeBracket> brackets) {
         this.mName = mName;
         this.mTimeBrackets = brackets;
     }
@@ -50,7 +50,7 @@ public class BudgetItem {
 //    }
     public String getName() { return mName; }
     public void setName(String mName) { this.mName = mName; }
-    public ArrayList<BudgetItem_TimeBracket> getTimeBrackets() {
+    public ArrayList<Budget_TimeBracket> getTimeBrackets() {
         return mTimeBrackets;
     }
 //    public void setTimeBrackets(ArrayList<BudgetItem_TimeBracket> mTimeBrackets) {

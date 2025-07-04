@@ -30,20 +30,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), DatabaseContract.DATABASE_NAME, null, DatabaseContract.DATABASE_VERSION);
-        ArrayList<CharSequence> categories = db_helper.getDefaultCategories();
-        ArrayList<CharSequence> periodicities = db_helper.getPeriodicities();
-        ArrayList<CharSequence> tenders = db_helper.getDefaultTenders();
+        ArrayList<CharSequence> categories = db_helper.queryCategories();
+        ArrayList<CharSequence> periodicities = db_helper.queryPeriodicities();
+        ArrayList<CharSequence> tenders = db_helper.queryTenders();
         //TODO: fill periodicity spinner
 
-//        mCategoryPeriodicity_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category_periodicity, android.R.layout.simple_spinner_item);
         mCategoryPeriodicity_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, periodicities);
         mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-//        mCategory_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
         mCategory_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         mCategory_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-//        mTender_ArrayAdapter = ArrayAdapter.createFromResource(this, R.array.tender, android.R.layout.simple_spinner_item);
         mTender_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tenders);
         mTender_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
