@@ -332,7 +332,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 //--- Expense Item Record ----------------------------------------------------------------------------------------------------------------------------
     public long insertExpenseRecord(ExpenseLogItem item) {
-        long rec_id = -1;
+        long rec_id;
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
