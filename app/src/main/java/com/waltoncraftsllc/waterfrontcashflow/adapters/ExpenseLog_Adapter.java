@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.ViewHolder> {
-    static ArrayList<ExpenseLog> items = new ArrayList<>();
+    static ArrayList<ExpenseLog> expenses = new ArrayList<>();
 
     static class ExpenseLogGroup {
         public LinearLayout mLinearLayout_group;
@@ -105,7 +105,7 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
         int index;
         holder.itemView.findViewById(R.id.constraintLayout_expense_log).setBackgroundColor( ((position & 1) == 0? 0x8EE2BF: 0xD7F5E9) );
 
-        ExpenseLog expenseLog = items.get(position);
+        ExpenseLog expenseLog = expenses.get(position);
         holder.mTextView_Date.setText(expenseLog.dateToString());
         holder.mSpinner_Tender.setAdapter(mTender_ArrayAdapter);
         String tender = expenseLog.getTenderString();
@@ -140,338 +140,338 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return expenses.size();
     }
 
     static void setupTestData() {
-        items.add(new ExpenseLog("2025-05-28", "CC-Credit card", "Lowe's",
+        expenses.add(new ExpenseLog("2025-05-28", "CC-Credit card", "Lowe's",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Repairs/Self repairs", new Money("-141.54"), new Money("9.81"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-28", "CC-Credit card", "Walmart",
+        expenses.add(new ExpenseLog("2025-05-28", "CC-Credit card", "Walmart",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-15.33"), new Money("0.45"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CC-Credit card", "Harbor Freight",
+        expenses.add(new ExpenseLog("2025-05-29", "CC-Credit card", "Harbor Freight",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Repairs/Self repairs", new Money("-10.72"), new Money("0.74"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CC-Credit card", "RevereHealth",
+        expenses.add(new ExpenseLog("2025-05-29", "CC-Credit card", "RevereHealth",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Copay", new Money("-162.99"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Charities/Church/Fast Offerings", new Money("-50.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-338.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-05-29", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Charities/Church/Tithing", new Money("-135.10"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-29", "DC-debit card", "Winco Foods",
+        expenses.add(new ExpenseLog("2025-05-29", "DC-debit card", "Winco Foods",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-12.80"), new Money("0.37"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-30", "CA-cash", "Memo's Bakery",
+        expenses.add(new ExpenseLog("2025-05-30", "CA-cash", "Memo's Bakery",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-10.21"), new Money("0.71"), ""))),
                 "", "✔", "✖")
         );
-        items.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-115.39"), new Money("3.31"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-11.81"), new Money("0.82"), ""),
                         new ExpenseLog_Group("Consumables/Food", new Money("9.99"), new Money("0.00"), ""))),
                 "", "", "")
         );
-        items.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-05-31", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-125.60"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "GC-gift card", "CVS Pharmacy",
+        expenses.add(new ExpenseLog("2025-05-31", "GC-gift card", "CVS Pharmacy",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-18.45"), new Money("0.54"), ""))),
                 "", "✔", "n/a")
         );
-        items.add(new ExpenseLog("2025-05-31", "Venmo", "John",
+        expenses.add(new ExpenseLog("2025-05-31", "Venmo", "John",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("1.00"), new Money("0.00"), ""))),
                 "", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "CK-checking", "Newrez",
+        expenses.add(new ExpenseLog("2025-05-31", "CK-checking", "Newrez",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Mortgage/Regular", new Money("-1200.00"), new Money("0.00"), ""))),
                 "Monthly", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "RE-reimbursement", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-05-31", "RE-reimbursement", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("18.95"), new Money("0.00"), "who? May"))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "RE-reimbursement", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-05-31", "RE-reimbursement", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("18.95"), new Money("0.00"), "who? June"))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "CC-Credit card", "Target/CVS",
+        expenses.add(new ExpenseLog("2025-05-31", "CC-Credit card", "Target/CVS",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Prescriptions", new Money("-70.91"), new Money("0.00"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "CC-Credit card", "Target",
+        expenses.add(new ExpenseLog("2025-05-31", "CC-Credit card", "Target",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-2.87"), new Money("0.08"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-05-31", "DC-debit card", "Winco Foods",
+        expenses.add(new ExpenseLog("2025-05-31", "DC-debit card", "Winco Foods",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-133.31"), new Money("1.44"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-20.75"), new Money("1.44"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-01", "VM-Venmo", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-01", "VM-Venmo", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("14.66"), new Money("0.00"), "Elizabeth"))),
                 "", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-01", "CA-cash", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-01", "CA-cash", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("30.00"), new Money("0.00"), "John"))),
                 "", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-01", "CC-Credit card", "Utopia Fiber",
+        expenses.add(new ExpenseLog("2025-06-01", "CC-Credit card", "Utopia Fiber",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-30.00"), new Money("0.00"), ""))),
                 "Monthly", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-02", "CC-Credit card", "eBay",
+        expenses.add(new ExpenseLog("2025-06-02", "CC-Credit card", "eBay",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-29.67"), new Money("1.41"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-02", "CK-checking", "Rocky Mountain Power",
+        expenses.add(new ExpenseLog("2025-06-02", "CK-checking", "Rocky Mountain Power",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-117.00"), new Money("14.68"), ""))),
                 "Monthly", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-02", "CC-Credit card", "USCCA",
+        expenses.add(new ExpenseLog("2025-06-02", "CC-Credit card", "USCCA",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/USCCA", new Money("-33.23"), new Money("0.00"), "Sean"))),
                 "Monthly", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-4.74"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-4.19"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-4.74"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-4.74"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Holiday Oil",
+        expenses.add(new ExpenseLog("2025-06-03", "CC-Credit card", "Holiday Oil",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Cars/Fuel", new Money("-46.64"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-03", "CA-cash", "Memo's Bakery",
+        expenses.add(new ExpenseLog("2025-06-03", "CA-cash", "Memo's Bakery",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-6.18"), new Money("0.43"), ""))),
                 "", "✔", "n/a")
         );
-        items.add(new ExpenseLog("2025-06-04", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-04", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-4.74"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-04", "CC-Credit card", "Great Clips",
+        expenses.add(new ExpenseLog("2025-06-04", "CC-Credit card", "Great Clips",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Health/General", new Money("-26.00"), new Money("0.00"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-05", "CA-cash", "Memo's Bakery",
+        expenses.add(new ExpenseLog("2025-06-05", "CA-cash", "Memo's Bakery",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-6.72"), new Money("0.47"), ""))),
                 "", "✔", "n/a")
         );
-        items.add(new ExpenseLog("2025-06-05", "CC-Credit card", "Savory Thai Orem",
+        expenses.add(new ExpenseLog("2025-06-05", "CC-Credit card", "Savory Thai Orem",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-27.05"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-05", "DC-debit card", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-05", "DC-debit card", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-205.00"), new Money("0.61"), ""))),
                 "Monthly", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-05", "CC-Credit card", "Target",
+        expenses.add(new ExpenseLog("2025-06-05", "CC-Credit card", "Target",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-1.43"), new Money("0.04"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-06", "CC-Credit card", "Gunnies",
+        expenses.add(new ExpenseLog("2025-06-06", "CC-Credit card", "Gunnies",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-64.46"), new Money("4.47"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-06", "CC-Credit card", "Walmart",
+        expenses.add(new ExpenseLog("2025-06-06", "CC-Credit card", "Walmart",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-9.98"), new Money("0.29"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-07", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-06-07", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-45.16"), new Money("1.32"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-10.73"), new Money("0.74"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-07", "CC-Credit card", "Get Some Guns",
+        expenses.add(new ExpenseLog("2025-06-07", "CC-Credit card", "Get Some Guns",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-13.70"), new Money("0.95"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-07", "CC-Credit card", "Michael's",
+        expenses.add(new ExpenseLog("2025-06-07", "CC-Credit card", "Michael's",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-5.25"), new Money("0.36"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-07", "DC-debit card", "Winco Foods",
+        expenses.add(new ExpenseLog("2025-06-07", "DC-debit card", "Winco Foods",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-111.45"), new Money("3.25"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-3.20"), new Money("0.22"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-08", "CC-Credit card", "Pluralsight",
+        expenses.add(new ExpenseLog("2025-06-08", "CC-Credit card", "Pluralsight",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Other", new Money("240.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-09", "PP-Paypal", "(Chinese robbers - \"thermal camera\")",
+        expenses.add(new ExpenseLog("2025-06-09", "PP-Paypal", "(Chinese robbers - \"thermal camera\")",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("45.98"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-09", "CK-checking", "Enbridge Gas",
+        expenses.add(new ExpenseLog("2025-06-09", "CK-checking", "Enbridge Gas",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-56.00"), new Money("0.00"), ""))),
                 "Monthly", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-09", "CC-Credit card", "Holiday Oil",
+        expenses.add(new ExpenseLog("2025-06-09", "CC-Credit card", "Holiday Oil",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Cars/Fuel", new Money("-69.71"), new Money("7.98"), "21.86 gal"))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-09", "CC-Credit card", "Web*BlueHost.com",
+        expenses.add(new ExpenseLog("2025-06-09", "CC-Credit card", "Web*BlueHost.com",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Other", new Money("-2.68"), new Money("0.19"), ""))),
                 "Monthly", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-10", "CC-Credit card", "Provo InstaCare",
+        expenses.add(new ExpenseLog("2025-06-10", "CC-Credit card", "Provo InstaCare",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Copay", new Money("-10.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-10", "RE-reimbursement", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-10", "RE-reimbursement", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("14.58"), new Money("0.00"), "David"))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-11", "CC-Credit card", "Amazon",
+        expenses.add(new ExpenseLog("2025-06-11", "CC-Credit card", "Amazon",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-23.19"), new Money("1.61"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-11", "CC-Credit card", "Target",
+        expenses.add(new ExpenseLog("2025-06-11", "CC-Credit card", "Target",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Prescriptions", new Money("-24.66"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-11", "CK-checking", "XMission",
+        expenses.add(new ExpenseLog("2025-06-11", "CK-checking", "XMission",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-54.00"), new Money("0.00"), ""))),
                 "Monthly", "n/a", "✔")
         );
-        items.add(new ExpenseLog("2025-06-12", "CC-Credit card", "Amazon",
+        expenses.add(new ExpenseLog("2025-06-12", "CC-Credit card", "Amazon",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/General/Yard", new Money("-21.48"), new Money("1.49"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-12", "CK-checking", "City of Orem",
+        expenses.add(new ExpenseLog("2025-06-12", "CK-checking", "City of Orem",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-109.78"), new Money("0.00"), ""))),
                 "Monthly", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-12", "DC-debit card", "Winco Foods",
+        expenses.add(new ExpenseLog("2025-06-12", "DC-debit card", "Winco Foods",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-9.91"), new Money("0.29"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-38.80"), new Money("2.69"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-13", "CC-Credit card", "Audible",
+        expenses.add(new ExpenseLog("2025-06-13", "CC-Credit card", "Audible",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Services/Audible", new Money("-49.42"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Amazon",
+        expenses.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Amazon",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/General/Yard", new Money("-23.63"), new Money("1.64"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Amazon",
+        expenses.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Amazon",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/General/Yard", new Money("-40.82"), new Money("2.83"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-14", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-06-14", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-101.42"), new Money("3.04"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-73.34"), new Money("4.88"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-73.34"), new Money("4.88"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Great Clips",
+        expenses.add(new ExpenseLog("2025-06-14", "CC-Credit card", "Great Clips",
                 new ArrayList<>(Arrays.asList(
                         new ExpenseLog_Group("Personal/Health/General", new Money("-54.00"), new Money("0.00"), ""),
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-73.34"), new Money("4.88"), ""),
@@ -479,90 +479,94 @@ public class ExpenseLog_Adapter extends RecyclerView.Adapter<ExpenseLog_Adapter.
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-73.34"), new Money("4.88"), ""))),
                 "", "✔", "✔")
         );
-        items.add(new ExpenseLog("2025-06-14", "CC-Credit card", "LabCorp",
+        expenses.add(new ExpenseLog("2025-06-14", "CC-Credit card", "LabCorp",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Copay", new Money("-15.00"), new Money("0.00"), ""))),
                 "", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-17", "CC-Credit card", "HUR Jewelers",
+        expenses.add(new ExpenseLog("2025-06-17", "CC-Credit card", "HUR Jewelers",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-244.99"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-17", "CC-Credit card", "Mt Timpanogos Temple",
+        expenses.add(new ExpenseLog("2025-06-17", "CC-Credit card", "Mt Timpanogos Temple",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-6.00"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-17", "CC-Credit card", "Utah Dept of Commerce",
+        expenses.add(new ExpenseLog("2025-06-17", "CC-Credit card", "Utah Dept of Commerce",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("-18.00"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Charities/Church/Tithing", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Charities/Church/Tithing", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
+        expenses.add(new ExpenseLog("2025-06-18", "CK-checking", "The Church of Jesus Christ of Latter-day Saints",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Charities/Church/Tithing", new Money("-172.00"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-19", "DC-debit card", "Winco Foods",
+        expenses.add(new ExpenseLog("2025-06-19", "DC-debit card", "Winco Foods",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-14.74"), new Money("0.43"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-20", "CC-Credit card", "Gunnies",
+        expenses.add(new ExpenseLog("2025-06-20", "CC-Credit card", "Gunnies",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Provisions/Mad Money", new Money("64.46"), new Money("-4.47"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-20", "CC-Credit card", "Target/CVS",
+        expenses.add(new ExpenseLog("2025-06-20", "CC-Credit card", "Target/CVS",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Personal/Insurance/Prescriptions", new Money("-161.15"), new Money("0.00"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-21", "CC-Credit card", "Amazon Digital",
+        expenses.add(new ExpenseLog("2025-06-21", "CC-Credit card", "Amazon Digital",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("-3.75"), new Money("0.26"), "Rachel"))),
                 "Monthly", "", "✔")
         );
-        items.add(new ExpenseLog("2025-06-21", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-06-21", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Food", new Money("-69.07"), new Money("1.76"), ""))),
                 "", "", "")
         );
-        items.add(new ExpenseLog("2025-06-21", "CC-Credit card", "CostCo Wholesale",
+        expenses.add(new ExpenseLog("2025-06-21", "CC-Credit card", "CostCo Wholesale",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Consumables/Non-Food", new Money("-12.85"), new Money("0.86"), ""))),
                 "", "✔", "")
         );
-        items.add(new ExpenseLog("2025-06-21", "VM-Venmo", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-21", "VM-Venmo", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("42.52"), new Money("0.00"), "Risa"))),
                 "", "", "")
         );
-        items.add(new ExpenseLog("2025-06-22", "VM-Venmo", "T.Mobile",
+        expenses.add(new ExpenseLog("2025-06-22", "VM-Venmo", "T.Mobile",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Utilities/Cellphone", new Money("27.63"), new Money("0.00"), "Elizabeth"))),
                 "", "", "")
         );
-        items.add(new ExpenseLog("2025-06-23", "CK-checking", "Geico",
+        expenses.add(new ExpenseLog("2025-06-23", "CK-checking", "Geico",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Cars/Insurance", new Money("-303.00"), new Money("0.00"), ""))),
                 "", "", "")
         );
-        items.add(new ExpenseLog("2025-06-30", "CK-checking", "Newrez",
+        expenses.add(new ExpenseLog("2025-06-30", "CK-checking", "Newrez",
                 new ArrayList<>(Collections.singletonList(
                         new ExpenseLog_Group("Home/Mortgage/Regular", new Money("-1200.00"), new Money("0.00"), ""))),
                 "Monthly", "n/a", "")
         );
+        for ( ExpenseLog expense : expenses) {
+            Sqlite_ConnectionHelper.getInstance().insertExpenseLogRecord(expense);
+        }
+        ArrayList<ExpenseLog> log = Sqlite_ConnectionHelper.getInstance().queryExpenseLogRecords();
     }
 }

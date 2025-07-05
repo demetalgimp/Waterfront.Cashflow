@@ -247,5 +247,10 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
                 new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("335"), "Annually (1/yr)"))), "2025-05-01", new Money("330")));
         mBudgets.add(new Budget("./Services/Costco", new ArrayList<>(Collections.singletonList(
                 new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("130"), "Annually (1/yr)"))), "2025-03-01", new Money("130")));
+
+        for ( Budget budget: mBudgets ) {
+            long budget_id = Sqlite_ConnectionHelper.getInstance().insertBudgetRecord(budget);
+            budget.setID(budget_id);
+        }
     }
 }

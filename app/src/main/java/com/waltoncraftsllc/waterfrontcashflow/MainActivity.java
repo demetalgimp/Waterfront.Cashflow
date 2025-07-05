@@ -1,5 +1,8 @@
 package com.waltoncraftsllc.waterfrontcashflow;
 
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.DATABASE_NAME;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.DATABASE_VERSION;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -29,11 +32,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), DatabaseContract.DATABASE_NAME, null, DatabaseContract.DATABASE_VERSION);
+        db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
         ArrayList<CharSequence> categories = db_helper.queryCategories();
         ArrayList<CharSequence> periodicities = db_helper.queryPeriodicities();
         ArrayList<CharSequence> tenders = db_helper.queryTenders();
-        //TODO: fill periodicity spinner
 
         mCategoryPeriodicity_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, periodicities);
         mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

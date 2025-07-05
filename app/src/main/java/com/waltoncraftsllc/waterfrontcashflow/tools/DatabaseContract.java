@@ -1,13 +1,13 @@
 package com.waltoncraftsllc.waterfrontcashflow.tools;
 
 public class DatabaseContract {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 10;
     public static final String DATABASE_NAME = "Waterfront.db";
 
 //======================================================================= STRING CONSTANTS =======================================================================
 //--- Category-labels table
     public static final String DEFAULT_CATEGORIES__TABLE_NAME = "CategoryLabels";
-    public static final String DEFAULT_CATEGORIES__ID = "ID", DEFAULT_CATEGORIES__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String DEFAULT_CATEGORIES__ID = "Category_ID", DEFAULT_CATEGORIES__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
     public static final String DEFAULT_CATEGORIES__NAME = "Name", DEFAULT_CATEGORIES__NAME_TYPE = " TEXT NOT NULL UNIQUE ON CONFLICT REPLACE";
 
     public static final String DEFAULT_CATEGORIES__DEFINE_TABLE = "create table " + DEFAULT_CATEGORIES__TABLE_NAME + " (" +
@@ -19,7 +19,7 @@ public class DatabaseContract {
 
     //--- Tender-labels table
     public static final String DEFAULT_TENDER_LABELS__TABLE_NAME = "TenderLabels";
-    public static final String DEFAULT_TENDER_LABELS__ID = "ID", DEFAULT_TENDER_LABELS__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String DEFAULT_TENDER_LABELS__ID = "Tender_ID", DEFAULT_TENDER_LABELS__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
     public static final String DEFAULT_TENDER_LABELS__NAME = "Label", DEFAULT_TENDER_LABELS__NAME_TYPE = " TEXT NOT NULL UNIQUE ON CONFLICT REPLACE";
 
     public static final String DEFAULT_TENDER_LABELS__DEFINE_TABLE = "create table " + DEFAULT_TENDER_LABELS__TABLE_NAME + "(" +
@@ -31,7 +31,7 @@ public class DatabaseContract {
 
     //--- Periodicity-labels table
     public static final String DEFAULT_PERIODICITY_LABELS__TABLE_NAME = "PeriodicityLabels";
-    public static final String DEFAULT_PERIODICITY_LABELS__ID = "ID", DEFAULT_PERIODICITY_LABELS__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String DEFAULT_PERIODICITY_LABELS__ID = "Periodicity_ID", DEFAULT_PERIODICITY_LABELS__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
     public static final String DEFAULT_PERIODICITY_LABELS__NAME = "Label", DEFAULT_PERIODICITY_LABELS__NAME_TYPE = " TEXT NOT NULL UNIQUE ON CONFLICT REPLACE";
 
     public static final String DEFAULT_PERIODICITY_LABELS__DEFINE_TABLE = "create table " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" +
@@ -47,7 +47,7 @@ public class DatabaseContract {
 
     //--- Planned-Budget Table
     public static final String BUDGET__TABLE_NAME = "BudgetTable";
-    public static final String BUDGET__ID = "ID", BUDGET__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String BUDGET__ID = "Budget_ID", BUDGET__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
     public static final String BUDGET__NAME = "Name", BUDGET__NAME_TYPE = " TEXT"; // <-- this really is the category!!
     public static final String BUDGET__DUE_DATE = "DueDate", BUDGET__TO_DUE_DATE_TYPE = YYYY_MM_DD;
     public static final String BUDGET__AMOUNT_CAP = "AmountCap", BUDGET__AMOUNT_CAP_TYPE = MONEY;
@@ -63,14 +63,14 @@ public class DatabaseContract {
 
 //--- Planned-Budget-Time-Bracket Table
     public static final String BUDGET_TIME_BRACKET__TABLE_NAME = "TimeBracketTable";
-    public static final String BUDGET_TIME_BRACKET__ID = "ID", BUDGET_TIME_BRACKET__ID__TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
-    public static final String BUDGET_TIME_BRACKET__BUDGET_FK = "FK_BudgetID", BUDGET_TIME_BRACKET__BUDGET_FK__TYPE = " INTEGER NON NULL REFERENCES " +
-            BUDGET__TABLE_NAME + "(" + BUDGET__ID + ")";
+    public static final String BUDGET_TIME_BRACKET__ID = "Bracket_ID", BUDGET_TIME_BRACKET__ID__TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+//    public static final String BUDGET_TIME_BRACKET__BUDGET_FK = "FK_BudgetID", BUDGET_TIME_BRACKET__BUDGET_FK__TYPE = " INTEGER REFERENCES " + BUDGET__TABLE_NAME + "(" + BUDGET__ID + ")";
+    public static final String BUDGET_TIME_BRACKET__BUDGET_FK = "FK_BudgetID", BUDGET_TIME_BRACKET__BUDGET_FK__TYPE = " INTEGER";
     public static final String BUDGET_TIME_BRACKET__FROM_DATE = "FromDate", BUDGET_TIME_BRACKET__FROM_DATE__TYPE = YYYY_MM_DD;
     public static final String BUDGET_TIME_BRACKET__TO_DATE = "ToDate", BUDGET_TIME_BRACKET__TO_DATE__TYPE = YYYY_MM_DD;
     public static final String BUDGET_TIME_BRACKET__AMOUNT = "Amount", BUDGET_TIME_BRACKET__AMOUNT__TYPE = MONEY;  // <-- currency
-    public static final String BUDGET_TIME_BRACKET__PERIODICITY_FK = "FK_Periodicity", BUDGET_TIME_BRACKET__PERIODICITY_FK__TYPE =
-            " INTEGER NON NULL REFERENCES " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" + DEFAULT_PERIODICITY_LABELS__ID + ")";
+//    public static final String BUDGET_TIME_BRACKET__PERIODICITY_FK = "FK_Periodicity", BUDGET_TIME_BRACKET__PERIODICITY_FK__TYPE = " INTEGER NON NULL REFERENCES " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" + DEFAULT_PERIODICITY_LABELS__ID + ")";
+    public static final String BUDGET_TIME_BRACKET__PERIODICITY_FK = "FK_Periodicity", BUDGET_TIME_BRACKET__PERIODICITY_FK__TYPE = " INTEGER ";
 
     public static final String BUDGET_TIME_BRACKET__DEFINE_TABLE = "create table " + BUDGET_TIME_BRACKET__TABLE_NAME + " (" +
             BUDGET_TIME_BRACKET__ID + BUDGET_TIME_BRACKET__ID__TYPE + ", " +
@@ -80,21 +80,26 @@ public class DatabaseContract {
             BUDGET_TIME_BRACKET__AMOUNT + BUDGET_TIME_BRACKET__AMOUNT__TYPE + ", " +
             BUDGET_TIME_BRACKET__PERIODICITY_FK + BUDGET_TIME_BRACKET__PERIODICITY_FK__TYPE +
         ")";
-    public static final String BUDGET_TIME_BRACKET__QUERY_TABLE = "select * from " + BUDGET_TIME_BRACKET__TABLE_NAME + " where " +
-            BUDGET_TIME_BRACKET__BUDGET_FK + "=?";
+    public static final String BUDGET_TIME_BRACKET__QUERY_TABLE = "select * from " + BUDGET_TIME_BRACKET__TABLE_NAME + " where " + BUDGET_TIME_BRACKET__BUDGET_FK + "=?";
     public static final String BUDGET_TIME_BRACKET__DROP_TABLE = "drop table if exists " + BUDGET_TIME_BRACKET__TABLE_NAME;
 
 //--- Expense-Log Table
     public static final String EXPENSE_LOG__TABLE_NAME = "ExpenseLogTable";
-    public static final String EXPENSE_LOG__ID = "ID", EXPENSE_LOG__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String EXPENSE_LOG__ID = "ExpenseLog_ID", EXPENSE_LOG__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+//    public static final String EXPENSE_LOG__ID = "ExpenseLog_ID", EXPENSE_LOG__ID_TYPE = " INTEGER";
     public static final String EXPENSE_LOG__DATE = "Date", EXPENSE_LOG__DATE_TYPE = YYYY_MM_DD;
-    public static final String EXPENSE_LOG__TENDER_FK = "FK_Tender",
-            EXPENSE_LOG__TENDER_FK__TYPE = " INTEGER NON NULL REFERENCES " + DEFAULT_TENDER_LABELS__TABLE_NAME + "(" + DEFAULT_TENDER_LABELS__ID + ")"; // <-- enum?
+//    public static final String EXPENSE_LOG__TENDER_FK = "FK_Tender", EXPENSE_LOG__TENDER_FK__TYPE = " INTEGER NON NULL REFERENCES " + DEFAULT_TENDER_LABELS__TABLE_NAME + "(" + DEFAULT_TENDER_LABELS__ID + ")"; // <-- enum?
+//FIXME: broken Tender
+    public static final String EXPENSE_LOG__TENDER_FK = "FK_Tender", EXPENSE_LOG__TENDER_FK__TYPE = " TEXT";
     public static final String EXPENSE_LOG__VENDOR = "Vendor", EXPENSE_LOG__VENDOR_TYPE = " TEXT";
-    public static final String EXPENSE_LOG__RECURRING_FK = "Recurring", EXPENSE_LOG__RECURRING_FK__TYPE = " INTEGER NON NULL REFERENCES " +
-            DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" + DEFAULT_PERIODICITY_LABELS__ID + ")";
-    public static final String EXPENSE_LOG__RECEIPT = "Receipt", EXPENSE_LOG__RECEIPT_TYPE = " INTEGER";
-    public static final String EXPENSE_LOG__ON_SERVER = "Server", EXPENSE_LOG__SERVER_TYPE = " INTEGER";
+//    public static final String EXPENSE_LOG__RECURRING_FK = "Recurring", EXPENSE_LOG__RECURRING_FK__TYPE = " INTEGER NON NULL REFERENCES " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" + DEFAULT_PERIODICITY_LABELS__ID + ")";
+//FIXME: broken Recurring=-1
+//    public static final String EXPENSE_LOG__RECURRING_FK = "Recurring", EXPENSE_LOG__RECURRING_FK__TYPE = " INTEGER NON NULL REFERENCES " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME + "(" + DEFAULT_PERIODICITY_LABELS__ID + ")";
+    public static final String EXPENSE_LOG__RECURRING_FK = "Recurring", EXPENSE_LOG__RECURRING_FK__TYPE = " TEXT";
+//    public static final String EXPENSE_LOG__RECEIPT = "Receipt", EXPENSE_LOG__RECEIPT_TYPE = " INTEGER";
+    public static final String EXPENSE_LOG__RECEIPT = "Receipt", EXPENSE_LOG__RECEIPT_TYPE = " TEXT";
+//    public static final String EXPENSE_LOG__ON_SERVER = "Server", EXPENSE_LOG__SERVER_TYPE = " INTEGER";
+    public static final String EXPENSE_LOG__ON_SERVER = "Server", EXPENSE_LOG__SERVER_TYPE = " TEXT";
 
     public static final String EXPENSE_LOG__DEFINE_TABLE = "create table " + EXPENSE_LOG__TABLE_NAME + " (" +
             EXPENSE_LOG__ID + EXPENSE_LOG__ID_TYPE + ", " +
@@ -110,11 +115,12 @@ public class DatabaseContract {
 
 //--- Expense-Log-Group Table
     public static final String EXPENSE_LOG_GROUP__TABLE_NAME = "ExpenseLogGroupTable";
-    public static final String EXPENSE_LOG_GROUP__ID = "ID", EXPENSE_LOG_GROUP__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
-    public static final String EXPENSE_LOG_GROUP__EXPENSE_LOG__FK = "FK_EXPENSE_LOG",
-            EXPENSE_LOG_GROUP__EXPENSE_LOG_FK__TYPE = " INTEGER REFERENCES " + EXPENSE_LOG__TABLE_NAME + "(" + EXPENSE_LOG__ID + ")";
-    public static final String EXPENSE_LOG_GROUP__CATEGORY_FK = "Category",
-            EXPENSE_LOG_GROUP__CATEGORY_FK__TYPE = " INTEGER REFERENCES " + DEFAULT_CATEGORIES__TABLE_NAME + "(" + DEFAULT_CATEGORIES__ID + ")";
+//    public static final String EXPENSE_LOG_GROUP__ID = "Group_ID", EXPENSE_LOG_GROUP__ID_TYPE = " INTEGER PRIMARY KEY AUTOINCREMENT";
+    public static final String EXPENSE_LOG_GROUP__ID = "Group_ID", EXPENSE_LOG_GROUP__ID_TYPE = " INTEGER";
+//    public static final String EXPENSE_LOG_GROUP__EXPENSE_LOG__FK = "FK_EXPENSE_LOG", EXPENSE_LOG_GROUP__EXPENSE_LOG_FK__TYPE = " INTEGER REFERENCES " + EXPENSE_LOG__TABLE_NAME + "(" + EXPENSE_LOG__ID + ")";
+    public static final String EXPENSE_LOG_GROUP__EXPENSE_LOG__FK = "FK_EXPENSE_LOG", EXPENSE_LOG_GROUP__EXPENSE_LOG_FK__TYPE = " INTEGER";
+//    public static final String EXPENSE_LOG_GROUP__CATEGORY_FK = "Category", EXPENSE_LOG_GROUP__CATEGORY_FK__TYPE = " INTEGER REFERENCES " + DEFAULT_CATEGORIES__TABLE_NAME + "(" + DEFAULT_CATEGORIES__ID + ")";
+    public static final String EXPENSE_LOG_GROUP__CATEGORY_FK = "Category", EXPENSE_LOG_GROUP__CATEGORY_FK__TYPE = " INTEGER";
     public static final String EXPENSE_LOG_GROUP__DEBIT = "Debit", EXPENSE_LOG_GROUP__DEBIT__TYPE = MONEY;
     public static final String EXPENSE_LOG_GROUP__TAX = "Tax", EXPENSE_LOG_GROUP__TAX__TYPE = MONEY;
     public static final String EXPENSE_LOG_GROUP__FOR_WHOM = "ForWhom", EXPENSE_LOG_GROUP__FOR_WHOM__TYPE = "TEXT";

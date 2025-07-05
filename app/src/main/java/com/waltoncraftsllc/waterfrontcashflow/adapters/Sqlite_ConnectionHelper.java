@@ -5,7 +5,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -18,8 +20,51 @@ import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 import java.util.ArrayList;
 
 public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
+    private static Sqlite_ConnectionHelper instance;
+
     public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        instance = this;
+    }
+    public static Sqlite_ConnectionHelper getInstance() { return instance; }
+
+    /**
+     * void onCreate(SQLiteDatabase db) - do any initialization upon first creating new database.
+     * @param db: #SQLiteDatabase# The SQLite database handle.
+     */
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        //--- User data
+        db.execSQL(BUDGET__DEFINE_TABLE);
+        db.execSQL(BUDGET_TIME_BRACKET__DEFINE_TABLE);
+        db.execSQL(EXPENSE_LOG__DEFINE_TABLE);
+        db.execSQL(EXPENSE_LOG_GROUP__DEFINE_TABLE);
+
+        //--- Default labels
+        createCategoriesTable(db);
+        createTendersTable(db);
+        createPeriodicitiesTable(db);
+    }
+
+    /**
+     * void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) - do any revisions on the database as needed.
+     * @param db: #SQLiteDatabase# The SQLite database handle.
+     * @param oldVersion: #int# The old database version.
+     * @param newVersion: #int# The new database version.
+     */
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //--- Purge database
+        db.execSQL(BUDGET_TIME_BRACKET__DROP_TABLE);
+        db.execSQL(BUDGET__DROP_TABLE);
+        db.execSQL(EXPENSE_LOG__DROP_TABLE);
+        db.execSQL(EXPENSE_LOG_GROUP__DROP_TABLE);
+        db.execSQL(DEFAULT_CATEGORIES__DROP_TABLE);
+        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
+        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
+
+        //--- Create tables again
+        onCreate(db);
     }
 
     public static Pair<Long, String>[] mPeriodicities = new Pair[] {
@@ -149,7 +194,6 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             ContentValues columns = new ContentValues();
             columns.put(DEFAULT_TENDER_LABELS__NAME, tender.getValue());
             tender.setKey(db.insert(DEFAULT_TENDER_LABELS__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
-
         }
     }
 
@@ -165,45 +209,6 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             columns.put(DEFAULT_PERIODICITY_LABELS__NAME, periodicity.getValue());
             db.insert(DEFAULT_PERIODICITY_LABELS__TABLE_NAME, null, columns); // <-- no need to store ID as it's the key
         }
-    }
-
-    /**
-     * void onCreate(SQLiteDatabase db) - do any initialization upon first creating new database.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-    //--- User data
-        db.execSQL(BUDGET__DEFINE_TABLE);
-        db.execSQL(BUDGET_TIME_BRACKET__DEFINE_TABLE);
-        db.execSQL(EXPENSE_LOG__DEFINE_TABLE);
-        db.execSQL(EXPENSE_LOG_GROUP__DEFINE_TABLE);
-
-    //--- Default labels
-        createCategoriesTable(db);
-        createTendersTable(db);
-        createPeriodicitiesTable(db);
-    }
-
-    /**
-     * void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) - do any revisions on the database as needed.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     * @param oldVersion: #int# The old database version.
-     * @param newVersion: #int# The new database version.
-     */
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //--- Purge database
-        db.execSQL(BUDGET_TIME_BRACKET__DROP_TABLE);
-        db.execSQL(BUDGET__DROP_TABLE);
-        db.execSQL(EXPENSE_LOG__DROP_TABLE);
-        db.execSQL(EXPENSE_LOG_GROUP__DROP_TABLE);
-        db.execSQL(DEFAULT_CATEGORIES__DROP_TABLE);
-        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
-        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
-
-        //--- Create tables again
-        onCreate(db);
     }
 
 //====================================================================================================================================================
@@ -407,11 +412,12 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
     //--- First, add budget record, getting ID
+//        ContentValues values = Budget.fillDatabaseRecord(item);
         long budget_rec_id = db.insert(BUDGET__TABLE_NAME, null, Budget.fillDatabaseRecord(item)); // <-- Grab record ID for time brackets
 
     //--- For all time brackets, add records
         for ( Budget_TimeBracket bracket: item.getTimeBrackets() ) {
-            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
+            long id = db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
         }
 
     //--- Clean up
@@ -503,15 +509,24 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return rec_id: #long# - The database ID for the new record.
      */
     public long insertExpenseLogRecord(ExpenseLog item) {
-        long rec_id;
+        long rec_id = -1;
         SQLiteDatabase db = getWritableDatabase();
 
     //--- Add Expense record
-        rec_id = db.insert(BUDGET__TABLE_NAME, null, ExpenseLog.fillDatabaseRecord(item)); // <-- Grab record ID for time brackets
+        try {
+            ContentValues values = ExpenseLog.fillDatabaseRecord(item);
+            rec_id = db.insert(EXPENSE_LOG_GROUP__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
 
-    //--- For all group items, add records
-        for ( ExpenseLog_Group group : item.getGroup() ) {
-            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, ExpenseLog_Group.fillDatabaseRecord(group, rec_id));
+            //--- For all group items, add records
+            for (ExpenseLog_Group group : item.getGroup()) {
+                try {
+                    db.insert(EXPENSE_LOG_GROUP__TABLE_NAME, null, ExpenseLog_Group.fillDatabaseRecord(group, rec_id));
+                } catch (SQLiteException e) {
+                    Log.e("DatabaseError", "Error inserting data: " + e.getMessage());
+                }
+            }
+        } catch (SQLiteException e) {
+            Log.e("DatabaseError", "Error inserting data: " + e.getMessage());
         }
 
     //--- Clean up

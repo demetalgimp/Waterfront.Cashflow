@@ -61,12 +61,12 @@ public class ExpenseLog {
     public static ContentValues fillDatabaseRecord(ExpenseLog item) {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.EXPENSE_LOG__DATE, item.dateToString());
-        values.put(DatabaseContract.EXPENSE_LOG__TENDER_FK, item.getTenderString());
+//        values.put(DatabaseContract.EXPENSE_LOG__TENDER_FK, item.getTenderString());
         values.put(EXPENSE_LOG__VENDOR, item.getVendor());
     //NOTE: no group here required b/c ExpenseLog_Group points to this.
-        values.put(EXPENSE_LOG__RECURRING_FK, getSpinnerKey(mPeriodicities, item.mRecurring));
-        values.put(EXPENSE_LOG__RECEIPT, (item.mReceipt? "✔": ""));
-        values.put(EXPENSE_LOG__ON_SERVER, (item.mServer? "✔": ""));
+//        values.put(EXPENSE_LOG__RECURRING_FK, getSpinnerKey(mPeriodicities, item.mRecurring));
+//        values.put(EXPENSE_LOG__RECEIPT, item.mReceipt);
+//        values.put(EXPENSE_LOG__ON_SERVER, item.mServer);
         return values;
     }
 //    public void setID(long id) { mID = id; }

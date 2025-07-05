@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Budget {
-    private static final String DATE_FORMAT = "MM/dd";
+    private static final String DATE_FORMAT = "yyyy/MM/dd";
     long mID;
     String mName;
     ArrayList<Budget_TimeBracket> mTimeBrackets;
-    Date mDueDate = null;//String mDueDate = null;
+    Date mDueDate = null;
     Money mAmountCap = null;
 
     public Budget(@NonNull String name, @NonNull ArrayList<Budget_TimeBracket> brackets, @NonNull String due_date, Money amount_cap) {
@@ -48,26 +48,26 @@ public class Budget {
     public static ContentValues fillDatabaseRecord(Budget item) {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.BUDGET__NAME, item.getName());
-        values.put(DatabaseContract.BUDGET__DUE_DATE, item.getDueDate());
-        values.put(DatabaseContract.BUDGET__AMOUNT_CAP, item.getAmountCap());
+        if ( item.getDueDate() != null ) {
+            values.put(DatabaseContract.BUDGET__DUE_DATE, item.getDueDate());
+        }
+        if ( item.getAmountCap() != null ) {
+            values.put(DatabaseContract.BUDGET__AMOUNT_CAP, item.getAmountCap());
+        }
         return values;
     }
 
     public static String sqlDateToString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
-        return simpleDateFormat.format(date);
+        return new SimpleDateFormat(DATE_FORMAT, Locale.US).format(date);
     }
 
-    public boolean hasDueDate() { return (mDueDate != null); }
-    public boolean hasAmountCap() { return (mAmountCap != null); }
-    public String dueDateToString() { return sqlDateToString(mDueDate); }
-    public String getDueDate() { return sqlDateToString(mDueDate); }
-    public String getAmountCap() {
-        return mAmountCap.toString();
-    }
-    public String getName() { return mName; }
-    public void setName(String mName) { this.mName = mName; }
-    public ArrayList<Budget_TimeBracket> getTimeBrackets() {
-        return mTimeBrackets;
-    }
+    public boolean hasDueDate()         { return (mDueDate != null); }
+    public boolean hasAmountCap()       { return (mAmountCap != null); }
+    public String dueDateToString()     { return (mDueDate != null? sqlDateToString(mDueDate): null); }
+    public String getDueDate()          { return (mDueDate != null? sqlDateToString(mDueDate): null); }
+    public String getAmountCap()        { return (mAmountCap != null? mAmountCap.toString(): null); }
+    public String getName()             { return mName; }
+    public void setName(String mName)   { this.mName = mName; }
+    public ArrayList<Budget_TimeBracket> getTimeBrackets() { return mTimeBrackets; }
+    public void setID(long budgetId)    { mID = budgetId; }
 }
