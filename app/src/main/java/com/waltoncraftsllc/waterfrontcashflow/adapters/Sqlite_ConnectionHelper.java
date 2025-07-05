@@ -11,10 +11,8 @@ import androidx.annotation.Nullable;
 
 import com.waltoncraftsllc.waterfrontcashflow.tools.Budget;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Budget_TimeBracket;
-import com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract;
 import com.waltoncraftsllc.waterfrontcashflow.tools.ExpenseLog;
 import com.waltoncraftsllc.waterfrontcashflow.tools.ExpenseLog_Group;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 
 import java.util.ArrayList;
@@ -24,18 +22,18 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-    private Pair<Long, String>[] mDefaultPeriodicities = new Pair[] {
+    public static Pair<Long, String>[] mPeriodicities = new Pair[] {
             new Pair<Long, String>(52L, "Weekly (52/yr)"),
             new Pair<Long, String>(26L, "Biweekly (26/yr)"),
             new Pair<Long, String>(24L, "Semimonthly (24/yr)"),
             new Pair<Long, String>(12L, "Monthly (12/yr)"),
             new Pair<Long, String>(4L, "Quarterly (4/yr)"),
             new Pair<Long, String>(3L, "Triannually (3/yr)"),
-            new Pair<Long, String>(3L, "Semiannually (2/yr)"),
-            new Pair<Long, String>(3L, "Annually (1/yr)")
+            new Pair<Long, String>(2L, "Semiannually (2/yr)"),
+            new Pair<Long, String>(1L, "Annually (1/yr)")
     };
 
-    private Pair<Long, String>[] mDefaultTenders = new Pair[] {
+    public static Pair<Long, String>[] mTenders = new Pair[] {
             new Pair<Long, String>(0L, "CA-cash"),
             new Pair<Long, String>(0L, "CC-Credit card"),
             new Pair<Long, String>(0L, "CK-checking"),
@@ -49,7 +47,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             new Pair<Long, String>(0L, "VM-Venmo")
     };
 
-    private Pair<Long, String>[] mDefaultCategories = new Pair[] {
+    public static Pair<Long, String>[] mCategories = new Pair[] {
             new Pair<Long, String>(0L, "Cars/Insurance"),
             new Pair<Long, String>(0L, "Cars/Shop/Maintenance"),
             new Pair<Long, String>(0L, "Cars/Shop/Repairs"),
@@ -68,6 +66,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             new Pair<Long, String>(0L, "Home/General/Household"),
             new Pair<Long, String>(0L, "Home/General/Office"),
             new Pair<Long, String>(0L, "Home/General/Yard"),
+            new Pair<Long, String>(0L, "Charities/Church/Fast Offerings"),
+            new Pair<Long, String>(0L, "Charities/Church/Tithing"),
             new Pair<Long, String>(0L, "Consumables/Food"),
             new Pair<Long, String>(0L, "Consumables/Non-Food"),
             new Pair<Long, String>(0L, "Personal/Insurance/Dental"),
@@ -77,11 +77,13 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             new Pair<Long, String>(0L, "Personal/Insurance/Vision"),
             new Pair<Long, String>(0L, "Personal/Health/General"),
             new Pair<Long, String>(0L, "Provisions/Education"),
+            new Pair<Long, String>(0L, "Provisions/Mad Money"),
             new Pair<Long, String>(0L, "Provisions/Gifts/Family"),
             new Pair<Long, String>(0L, "Provisions/Gifts/Other"),
             new Pair<Long, String>(0L, "Subscription Services/Entertainment/Amazon channels"),
             new Pair<Long, String>(0L, "Subscription Services/Entertainment/Rentals"),
             new Pair<Long, String>(0L, "Services/USCCA"),
+            new Pair<Long, String>(0L, "Services/Other"),
             new Pair<Long, String>(0L, "Services/Amazon Prime"),
             new Pair<Long, String>(0L, "Services/Audible"),
             new Pair<Long, String>(0L, "Services/Accountants"),
@@ -94,7 +96,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param periodicity: #String# The text to search.
      * @return result:     #long# The database ID.
      */
-    public long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
+    public static long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
         long result = -1;
         for ( Pair<Long, String> pair : list ) {
             if ( pair.getValue().equals(periodicity) ) {
@@ -111,7 +113,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param period:  #String# The database ID to find.
      * @return result: #String# The Spinner-ready text.
      */
-    public String getSpinnerText(Pair<Long, String>[] list, long period) {
+    public static String getSpinnerText(Pair<Long, String>[] list, long period) {
         String result = "";
         for ( Pair<Long, String> pair : list ) {
             if ( pair.getKey() == period ) {
@@ -129,8 +131,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createCategoriesTable(SQLiteDatabase db) {
-        db.execSQL("create table " + DEFAULT_CATEGORIES__TABLE_DEFINITION);
-        for ( Pair<Long, String> category : mDefaultCategories ) {
+        db.execSQL(DEFAULT_CATEGORIES__DEFINE_TABLE);
+        for ( Pair<Long, String> category : mCategories) {
             ContentValues columns = new ContentValues();
             columns.put(DEFAULT_CATEGORIES__NAME, category.getValue());
             category.setKey(db.insert(DEFAULT_CATEGORIES__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
@@ -142,8 +144,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createTendersTable(SQLiteDatabase db) {
-        db.execSQL("create table " + DEFAULT_TENDER_LABELS__TABLE_DEFINITION);
-        for ( Pair<Long, String> tender : mDefaultTenders) {
+        db.execSQL(DEFAULT_TENDER_LABELS__DEFINE_TABLE);
+        for ( Pair<Long, String> tender : mTenders) {
             ContentValues columns = new ContentValues();
             columns.put(DEFAULT_TENDER_LABELS__NAME, tender.getValue());
             tender.setKey(db.insert(DEFAULT_TENDER_LABELS__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
@@ -156,8 +158,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createPeriodicitiesTable(SQLiteDatabase db) {
-        db.execSQL("create table " + DEFAULT_PERIODICITY_LABELS__TABLE_DEFINITION);
-        for ( Pair<Long, String> periodicity : mDefaultPeriodicities) {
+        db.execSQL(DEFAULT_PERIODICITY_LABELS__DEFINE_TABLE);
+        for ( Pair<Long, String> periodicity : mPeriodicities) {
             ContentValues columns = new ContentValues();
             columns.put(DEFAULT_PERIODICITY_LABELS__ID, periodicity.getKey());
             columns.put(DEFAULT_PERIODICITY_LABELS__NAME, periodicity.getValue());
@@ -172,10 +174,10 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
     //--- User data
-        db.execSQL("create table " + BUDGET_TIME_BRACKET__TABLE_DEFINITION);
-        db.execSQL("create table " + BUDGET__TABLE_DEFINITION);
-        db.execSQL("create table " + EXPENSE_LOG__TABLE_DEFINITION);
-        db.execSQL("create table " + EXPENSE_LOG_GROUP__TABLE_DEFINITION);
+        db.execSQL(BUDGET__DEFINE_TABLE);
+        db.execSQL(BUDGET_TIME_BRACKET__DEFINE_TABLE);
+        db.execSQL(EXPENSE_LOG__DEFINE_TABLE);
+        db.execSQL(EXPENSE_LOG_GROUP__DEFINE_TABLE);
 
     //--- Default labels
         createCategoriesTable(db);
@@ -192,13 +194,13 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //--- Purge database
-        db.execSQL("drop table if exists " + BUDGET_TIME_BRACKET__TABLE_DEFINITION);
-        db.execSQL("drop table if exists " + BUDGET__TABLE_DEFINITION);
-        db.execSQL("drop table if exists " + EXPENSE_LOG__TABLE_DEFINITION);
-        db.execSQL("drop table if exists " + EXPENSE_LOG_GROUP__TABLE_DEFINITION);
-        db.execSQL("drop table if exists " + DEFAULT_CATEGORIES__TABLE_NAME);
-        db.execSQL("drop table if exists " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME);
-        db.execSQL("drop table if exists " + DEFAULT_TENDER_LABELS__TABLE_NAME);
+        db.execSQL(BUDGET_TIME_BRACKET__DROP_TABLE);
+        db.execSQL(BUDGET__DROP_TABLE);
+        db.execSQL(EXPENSE_LOG__DROP_TABLE);
+        db.execSQL(EXPENSE_LOG_GROUP__DROP_TABLE);
+        db.execSQL(DEFAULT_CATEGORIES__DROP_TABLE);
+        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
+        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
 
         //--- Create tables again
         onCreate(db);
@@ -215,8 +217,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
     //--- Open Periodicity table
-        String query = "select * from " + DEFAULT_CATEGORIES__TABLE_NAME;
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(DEFAULT_CATEGORIES__QUERY_TABLE, null);
         if (cursor.moveToFirst()) {
 
         //--- Translate name to column number (a really good idea!)
@@ -245,7 +246,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         for ( CharSequence category : categories ) {
             pairs[index++] = new Pair<Long, String>(0L, category.toString());
         }
-        mDefaultCategories = pairs;
+        mCategories = pairs;
         createCategoriesTable(db);
         db.close();
     }
@@ -259,8 +260,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
     //--- Open Periodicity table
-        String query = "select * from " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME; // <-- grab all labels
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, null);
         if ( cursor.moveToFirst() ) {
 
         //--- Translate name to column number (a really good idea!)
@@ -283,7 +283,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      */
     public void setPeriodicities(ArrayList<CharSequence> periodicities) {
         SQLiteDatabase db = getReadableDatabase();
-        db.execSQL("drop table if exists " + DEFAULT_PERIODICITY_LABELS__TABLE_NAME);
+        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
         Pair<Long, String>[] pairs = new Pair[periodicities.size()];
         int index = 0;
         for ( CharSequence periodicity : periodicities ) {
@@ -291,7 +291,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             long frequency = Long.parseLong(periodicity_text.replaceAll("[^0-9]*", ""));
             pairs[index] = new Pair<Long, String>(frequency, periodicity_text);
         }
-        mDefaultPeriodicities = pairs;
+        mPeriodicities = pairs;
         createPeriodicitiesTable(db);
         db.close();
     }
@@ -305,8 +305,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
     //--- Open Tender table
-        String query = "select * from " + DEFAULT_TENDER_LABELS__TABLE_NAME; // <-- grabbing all labels
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(DEFAULT_TENDER_LABELS__QUERY_TABLE, null);
         if ( cursor.moveToFirst() ) {
 
         //--- Translate name to column number (a really good idea!)
@@ -331,13 +330,13 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      */
     public void setTenders(ArrayList<CharSequence> tenders) {
         SQLiteDatabase db = getReadableDatabase();
-        db.execSQL("drop table if exists " + DEFAULT_TENDER_LABELS__TABLE_NAME);
+        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
         Pair<Long, String>[] pairs = new Pair[tenders.size()];
         int index = 0;
         for ( CharSequence tender : tenders ) {
             pairs[index++] = new Pair<Long, String>(0L, tender.toString());
         }
-        mDefaultTenders = pairs;
+        mTenders = pairs;
         createTendersTable(db);
         db.close();
     }
@@ -346,66 +345,55 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     /**
      * ArrayList<Budget> getBudgetRecords() - Retrieve all budget records. These include "time bracketed" items which encapsulate changes in expected expenses.
      * @return budget_records: #ArrayList<Budget>#
+     *
+     * Basic Algorithm:
+     *      Get the Budget table's field offsets
+     *      Loop on Budget table
+     *          Get the Budget record's primary key
+     *          Loop on BudgetTimeBracket table
+     *              Get BudgetTimeBracket table's field offsets
+     *              Collect TimeBucket using Budget record's primary key
+     *              Store
+     *          End
+     *          Get rest of Budget record
+     *          Store
+     *      End
+     *      Return collection
      */
     public ArrayList<Budget> queryBudgetRecords() {
         ArrayList<Budget> budget_records = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
     //--- Open Budget table
-        String query = "select * from " + BUDGET__TABLE_NAME;
-        Cursor budget_cursor = db.rawQuery(query, null);
+        Cursor budget_cursor = db.rawQuery(BUDGET__QUERY_TABLE, null);
         if ( budget_cursor.moveToFirst() ) {
 
         //--- Translate name to column number (a really good idea!)
             int id_col_index = budget_cursor.getColumnIndex(BUDGET__ID);
-            int name_col_index = budget_cursor.getColumnIndex(BUDGET__NAME);
-            int due_date_col_index = budget_cursor.getColumnIndex(BUDGET__DUE_DATE);
-            int amount_cap_col_index = budget_cursor.getColumnIndex(BUDGET__AMOUNT_CAP);
 
         //--- iterate through all budget records
             do {
-
             //--- Get the budget record ID to get time brackets
                 ArrayList<Budget_TimeBracket> brackets = new ArrayList<>();
                 long id = budget_cursor.getLong(id_col_index);
-                query = "select * from " + BUDGET_TIME_BRACKET__TABLE_NAME + " where " + BUDGET_TIME_BRACKET__BUDGET_FK + "=?";
-                String[] where_args = new String[] { String.valueOf(id) };
-                Cursor bracket_cursor = db.rawQuery(query, where_args);
-            //--- If there are time brackets (there SHOULD be)...
+
+            //--- If there are time brackets (there SHOULD be at least one)...
+                Cursor bracket_cursor = db.rawQuery(BUDGET_TIME_BRACKET__QUERY_TABLE, new String[] { String.valueOf(id) });
                 if ( bracket_cursor.moveToFirst() ) {
-
-                //--- Translate name to column number (a really good idea!)
-                    int from_date_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__FROM_DATE);
-                    int to_date_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__TO_DATE);
-                    int amount_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__AMOUNT);
-                    int periodicity_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__PERIODICITY_FK);
-
                 //--- ... iterate.
                     do {
-                        String from_date = bracket_cursor.getString(from_date_col_index);
-                        String to_date = bracket_cursor.getString(to_date_col_index);
-                        String amount = bracket_cursor.getString(amount_col_index);
-                        String period = bracket_cursor.getString(periodicity_col_index);
-                        brackets.add(new Budget_TimeBracket(from_date, to_date, new Money(amount), period));
+                        brackets.add(new Budget_TimeBracket(bracket_cursor));
                     } while ( bracket_cursor.moveToNext() );
                 }
                 bracket_cursor.close();
 
-            //--- Get the rest of the Budget record fields and populate the struct.
-
-                String name = budget_cursor.getString(name_col_index);
-                String due_date = budget_cursor.getString(due_date_col_index);
-                String amount_cap = budget_cursor.getString(amount_cap_col_index);
-                Budget budget = new Budget(name, brackets, due_date, new Money(amount_cap));
-                budget.setID(id);
-
             //--- Add to list.
-                budget_records.add(budget);
+                budget_records.add(new Budget(budget_cursor, brackets));
             } while ( budget_cursor.moveToNext() );
         }
         budget_cursor.close();
 
-    //--- Close and return all of the Budget items
+    //--- Clean up
         db.close();
         return budget_records;
     }
@@ -417,28 +405,18 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      */
     public long insertBudgetRecord(Budget item) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
 
-    //--- Add budget record
-        values.put(DatabaseContract.BUDGET__NAME, item.getName());
-        values.put(DatabaseContract.BUDGET__DUE_DATE, item.getDueDate());
-        values.put(DatabaseContract.BUDGET__AMOUNT_CAP, item.getAmountCap());
-        long row_id = db.insert(BUDGET__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
+    //--- First, add budget record, getting ID
+        long budget_rec_id = db.insert(BUDGET__TABLE_NAME, null, Budget.fillDatabaseRecord(item)); // <-- Grab record ID for time brackets
 
-    //--- For all time brackets...
+    //--- For all time brackets, add records
         for ( Budget_TimeBracket bracket: item.getTimeBrackets() ) {
-            values.clear(); // <-- clear out data from budget record
-            values.put(BUDGET_TIME_BRACKET__BUDGET_FK, row_id);
-            values.put(BUDGET_TIME_BRACKET__FROM_DATE, bracket.getFromDate());
-            values.put(BUDGET_TIME_BRACKET__TO_DATE, bracket.getToDate());
-            values.put(BUDGET_TIME_BRACKET__AMOUNT, bracket.getAmount());
-            long periodicity = getSpinnerKey(mDefaultPeriodicities, bracket.getPeriodicity_str());
-            values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, periodicity);
-        //--- insert
-            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, values);
+            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
         }
+
+    //--- Clean up
         db.close();
-        return row_id;
+        return budget_rec_id;
     }
 
     /**
@@ -466,12 +444,57 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     /**
      * ArrayList<ExpenseLog> getExpenseRecords() - Get expense records. I imagine that this can ultimately be very huge. That's a problem.
      * @return results: #ArrayList<ExpenseLog>#
+     *
+     * Basic Algorithm:
+     *      Get the ExpenseLog table's field offsets
+     *      Loop on ExpenseLog table
+     *          Get the ExpenseLog record's primary key
+     *          Loop on ExpenseLogGroup table
+     *              Get ExpenseLogGroup table's field offsets
+     *              Collect ExpenseLogGroup using Budget record's primary key
+     *              Store
+     *          End
+     *          Get rest of ExpenseLog record
+     *          Store
+     *      End
+     *      Return collection
      */
     public ArrayList<ExpenseLog> queryExpenseLogRecords() {
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<ExpenseLog> results = new ArrayList<>();
-//TODO
-        return results;
+        ArrayList<ExpenseLog> expense_log_records = new ArrayList<>();
+
+        Cursor expense_log_cursor = db.rawQuery(EXPENSE_LOG__QUERY_TABLE, null);
+        if ( expense_log_cursor.moveToFirst() ) {
+
+        //--- Translate name to column number (a really good idea!)
+            int id_col_index = expense_log_cursor.getColumnIndex(EXPENSE_LOG__ID);
+
+        //--- iterate through all expense log records
+            do {
+
+            //--- Get the budget record ID to get time brackets
+                ArrayList<ExpenseLog_Group> group = new ArrayList<>();
+                long expense_log_id = expense_log_cursor.getLong(id_col_index);
+
+            //--- If there are time brackets (there SHOULD be), iterate
+                Cursor group_cursor = db.rawQuery(EXPENSE_LOG_GROUP__QUERY_TABLE, new String[] { String.valueOf(expense_log_id) });
+                if ( group_cursor.moveToFirst() ) {
+                    do {
+                        group.add(new ExpenseLog_Group(group_cursor));
+                    } while ( group_cursor.moveToNext() );
+                }
+
+            //--- Close cursor and add record to list.
+                group_cursor.close();
+                expense_log_records.add(new ExpenseLog(expense_log_cursor, group));
+
+            } while ( expense_log_cursor.moveToNext() );
+        }
+        expense_log_cursor.close();
+
+    //--- Clean up
+        db.close();
+        return expense_log_records;
     }
 
     /**
@@ -482,28 +505,17 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     public long insertExpenseLogRecord(ExpenseLog item) {
         long rec_id;
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
 
     //--- Add Expense record
-        values.put(DatabaseContract.EXPENSE_LOG__DATE, item.dateToString());
-        values.put(DatabaseContract.EXPENSE_LOG__TENDER_FK, item.getTenderString());
-        rec_id = db.insert(BUDGET__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
+        rec_id = db.insert(BUDGET__TABLE_NAME, null, ExpenseLog.fillDatabaseRecord(item)); // <-- Grab record ID for time brackets
 
-        //--- For all group items...
+    //--- For all group items, add records
         for ( ExpenseLog_Group group : item.getGroup() ) {
-            values.clear();
-
-            values.put(EXPENSE_LOG_GROUP__CATEGORY_FK, getSpinnerKey(mDefaultCategories, group.getCategory()));
-            values.put(EXPENSE_LOG_GROUP__DEBIT, group.getDebit());
-            values.put(EXPENSE_LOG_GROUP__TAX, group.getTax());
-            values.put(EXPENSE_LOG_GROUP__FOR_WHOM, group.getForWhom());
-            values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, getSpinnerKey(mDefaultPeriodicities, group.getCategory()));
-
-        //--- insert (ignore the returned key)
-            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, values);
+            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, ExpenseLog_Group.fillDatabaseRecord(group, rec_id));
         }
-        db.close();
 
+    //--- Clean up
+        db.close();
         return rec_id;
     }
 
@@ -526,5 +538,4 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     public void updateExpenseLogRecord(ExpenseLog item) {
 //TODO
     }
-
 }

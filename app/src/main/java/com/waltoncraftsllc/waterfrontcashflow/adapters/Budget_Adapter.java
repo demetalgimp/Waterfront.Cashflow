@@ -146,106 +146,106 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
 //    private BudgetTree tree;
 
     private void setupTestData() {
-        mBudgets.add(new Budget("./Cars/Insurance", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("600"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Cars/Shop/Maintenance/Ford F150", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Cars/Shop/Maintenance/Subaru Forester", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("125"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Cars/Shop/Repairs/Ford F150", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("500"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("500"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Cars/Shop/Repairs/Subaru Forester", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("150"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("150"), "Annually (1/yr)")))));
+        mBudgets.add(new Budget("./Cars/Insurance", new ArrayList<>(Collections.singletonList(
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("600"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Home/Mortgage/Regular", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("764"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("764"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Mortgage/Additional principal", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("184"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("184"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Mortgage/Taxes", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("1802"), "Annually (1/yr)"))), "2025-08-01", new Money("1802")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("1802"), "Annually (1/yr)"))), "2025-08-01", new Money("1802")));
         mBudgets.add(new Budget("./Home/Mortgage/Home Insurance", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("1132"), "Annually (1/yr)"))), "2025-08-01", new Money("1132")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("1132"), "Annually (1/yr)"))), "2025-08-01", new Money("1132")));
         mBudgets.add(new Budget("./Home/Utilities/Cellphone", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("45"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("45"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Utilities/Water", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("170"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("170"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Utilities/Electricity", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("117"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("117"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Utilities/Natural Gas", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("60"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("60"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Utilities/Fiber -- Utopia", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("30"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("30"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Utilities/Internet", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("54"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("54"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Home/Maintenance/Repairs/Professional", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Maintenance/Repairs/Self repairs", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("15"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("15"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Home/Maintenance/General/Household", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Maintenance/General/Office", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Home/Maintenance/General/Yard", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("35"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Consumables/Food", new ArrayList<>(Arrays.asList(
-                new Budget_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-04-01", "2025-07-31", new Money("275"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-08-01", "2025-10-31", new Money("275"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-11-01", "2025-12-31", new Money("275"), "Weekly (52/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-04-01", "2025-07-31", new Money("275"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-08-01", "2025-10-31", new Money("275"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-11-01", "2025-12-31", new Money("275"), "Weekly (52/yr)")))));
         mBudgets.add(new Budget("./Consumables/Non-Food", new ArrayList<>(Arrays.asList(
-                new Budget_TimeBracket("2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-04-01", "2025-12-31", new Money("50"), "Weekly (52/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-03-31", new Money("45"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-04-01", "2025-12-31", new Money("50"), "Weekly (52/yr)")))));
 
         mBudgets.add(new Budget("./Personal/Health/Dental", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("11"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("11"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Medical", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("9"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("9"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Prescriptions", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("16"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("16"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Copay", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Vision", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/General", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("0"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Hygiene", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Provisions/Education", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
 
         mBudgets.add(new Budget("./Provisions/Mad money/Father", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("20"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Provisions/Mad money/Mother", new ArrayList<>(Arrays.asList(
-                new Budget_TimeBracket("2025-01-01", "2025-05-17", new Money("50"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-05-18", "2025-12-31", new Money("0"), "Weekly (52/yr)"))
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-05-17", new Money("50"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-05-18", "2025-12-31", new Money("0"), "Weekly (52/yr)"))
         )));
 
         mBudgets.add(new Budget("./Provisions/Personal Gifts/Family", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Provisions/Personal Gifts/Other", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("200"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Subscription Services/Entertainment/Amazon channels", new ArrayList<>(Arrays.asList(
-                new Budget_TimeBracket("2025-01-01", "2025-03-30", new Money("0"), "Monthly (12/yr)"),
-                new Budget_TimeBracket("2025-04-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-03-30", new Money("0"), "Monthly (12/yr)"),
+                new Budget_TimeBracket(0L, "2025-04-01", "2025-12-31", new Money("10"), "Monthly (12/yr)")))));
         mBudgets.add(new Budget("./Subscription Services/Entertainment/Rentals", new ArrayList<>(Arrays.asList(
-                new Budget_TimeBracket("2025-01-01", "2025-07-17", new Money("3"), "Weekly (52/yr)"),
-                new Budget_TimeBracket("2025-07-18", "2025-12-31", new Money("3"), "Weekly (52/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-07-17", new Money("3"), "Weekly (52/yr)"),
+                new Budget_TimeBracket(0L, "2025-07-18", "2025-12-31", new Money("3"), "Weekly (52/yr)")))));
 
         mBudgets.add(new Budget("./Services/Google Drive", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("26"), "Annually (1/yr)")))));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("26"), "Annually (1/yr)")))));
         mBudgets.add(new Budget("./Services/Orem Rec Center", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("0"), "Annually (1/yr)"))), "2025-01-01", new Money("310")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("0"), "Annually (1/yr)"))), "2025-01-01", new Money("310")));
         mBudgets.add(new Budget("./Services/Amazon Prime", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("149"), "Annually (1/yr)"))), "2025-10-01", new Money("149")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("149"), "Annually (1/yr)"))), "2025-10-01", new Money("149")));
         mBudgets.add(new Budget("./Services/Audible", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("160"), "Annually (1/yr)"))), "2025-07-01", new Money("160")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("160"), "Annually (1/yr)"))), "2025-07-01", new Money("160")));
         mBudgets.add(new Budget("./Services/Accountants", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("335"), "Annually (1/yr)"))), "2025-05-01", new Money("330")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("335"), "Annually (1/yr)"))), "2025-05-01", new Money("330")));
         mBudgets.add(new Budget("./Services/Costco", new ArrayList<>(Collections.singletonList(
-                new Budget_TimeBracket("2025-01-01", "2025-12-31", new Money("130"), "Annually (1/yr)"))), "2025-03-01", new Money("130")));
+                new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("130"), "Annually (1/yr)"))), "2025-03-01", new Money("130")));
     }
 }

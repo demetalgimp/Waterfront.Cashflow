@@ -1,43 +1,86 @@
 package com.waltoncraftsllc.waterfrontcashflow.tools;
 
+import static com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper.getSpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper.mPeriodicities;
 import static com.waltoncraftsllc.waterfrontcashflow.tools.Budget.sqlDateToString;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__AMOUNT;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__BUDGET_FK;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__FROM_DATE;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
+import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__TO_DATE;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+
+import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
 
 import java.sql.Date;
 
 public class Budget_TimeBracket {
-        int mID;
+        long mBudget_FK;
         Date mFromDate;
         Date mToDate;
         Money mAmount;
         String mPeriodicity_str;
-        int mPerAnnum;
+        long mPeriodicity;
+
         Money proratedMonthly; // <-- generated
         Money proratedWeekly; // <-- generated
 
-    public Budget_TimeBracket(String from, String to, Money amount, String periodicity) {
+    public Budget_TimeBracket(long budget_fk, String from, String to, Money amount, String periodicity) {
+        this.mBudget_FK = budget_fk;
         this.mFromDate = Date.valueOf(from);
         this.mToDate = Date.valueOf(to);
         this.mAmount = amount;
         this.mPeriodicity_str = periodicity;
-        double week_scaler;
-        double month_scaler;
-        this.mPerAnnum = Integer.parseInt(periodicity.replaceAll("[^0-9]*", ""));
-//FIXME: out of date
-        switch ( periodicity ) {
-            case "Weekly (52/yr)":          week_scaler = 52.0/52; month_scaler = 52.0/12; break;
-            case "Biweekly (26/yr)":        week_scaler = 26.0/52; month_scaler = 26.0/12; break;
-            case "Semimonthly (24/yr)":     week_scaler = 13.0/52; month_scaler = 24.0/12; break;
-            case "Monthly (12/yr)":         week_scaler =  6.5/52; month_scaler = 12.0/12; break;
-            case "Quarterly (4/yr)":        week_scaler =  4.0/52; month_scaler =  3.0/12; break;
-            case "Triannually (3/yr)":      week_scaler =  3.0/52; month_scaler =  3.0/12; break;
-            case "Semiannually (2/yr)":     week_scaler =  2.0/52; month_scaler =  2.0/12; break;
-            case "Annually/yearly (1/yr)":
-            default:                        week_scaler =  1.0/52; month_scaler =  1.0/12; break;
+        this.mPeriodicity = Integer.parseInt(periodicity.replaceAll("[^0-9]*", ""));
+        calculateScalers();
+    }
+
+    public Budget_TimeBracket(Cursor bracket_cursor) {
+        //--- Translate name to column number (I can't do this ahead of time for optimization. Sorry.)
+        int budget_fk_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__BUDGET_FK);
+        int from_date_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__FROM_DATE);
+        int to_date_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__TO_DATE);
+        int amount_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__AMOUNT);
+        int periodicity_col_index = bracket_cursor.getColumnIndex(BUDGET_TIME_BRACKET__PERIODICITY_FK);
+        mBudget_FK = bracket_cursor.getLong(budget_fk_col_index);
+        mFromDate = Date.valueOf(bracket_cursor.getString(from_date_col_index));
+        mToDate = Date.valueOf(bracket_cursor.getString(to_date_col_index));
+        mAmount = new Money(bracket_cursor.getString(amount_col_index));
+        mPeriodicity = bracket_cursor.getLong(periodicity_col_index);  // <-- represents both the primary key and the actual annual frequency.
+        mPeriodicity_str = getSpinnerText(mPeriodicities, mPeriodicity);
+        calculateScalers();
+    }
+
+    private void calculateScalers() {
+        double week_scaler, month_scaler;
+        switch ( (int)mPeriodicity ) {
+            case 52: week_scaler = 52.0/52; month_scaler = 52.0/12; break;
+            case 26: week_scaler = 26.0/52; month_scaler = 26.0/12; break;
+            case 24: week_scaler = 13.0/52; month_scaler = 24.0/12; break;
+            case 12: week_scaler =  6.5/52; month_scaler = 12.0/12; break;
+            case 4:  week_scaler =  4.0/52; month_scaler =  4.0/12; break;
+            case 3:  week_scaler =  3.0/52; month_scaler =  3.0/12; break;
+            case 2:  week_scaler =  2.0/52; month_scaler =  2.0/12; break;
+            case 1:
+            default: week_scaler =  1.0/52; month_scaler =  1.0/12; break;
         }
-//---
         this.proratedMonthly = mAmount.multiply(month_scaler);
         this.proratedWeekly = mAmount.multiply(week_scaler);
     }
+
+    public static ContentValues fillDatabaseRecord(Budget_TimeBracket bracket, long budget_id) {
+        ContentValues values = new ContentValues();
+        values.put(BUDGET_TIME_BRACKET__BUDGET_FK, budget_id);
+        values.put(BUDGET_TIME_BRACKET__FROM_DATE, bracket.getFromDate());
+        values.put(BUDGET_TIME_BRACKET__TO_DATE, bracket.getToDate());
+        values.put(BUDGET_TIME_BRACKET__AMOUNT, bracket.getAmount());
+        long periodicity = Sqlite_ConnectionHelper.getSpinnerKey(mPeriodicities, bracket.getPeriodicity_str());
+        values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, periodicity);
+        return values;
+    }
+
     public String getFromDate() {
         return sqlDateToString(mFromDate);
     }
