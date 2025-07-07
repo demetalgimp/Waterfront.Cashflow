@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 //        tv.setText(stringFromJNI());
     }
 
-    /**
-     * A native method that is implemented by the 'waterfrontcashflow' native library,
-     * which is packaged with this application.
-     */
+//    /**
+//     * A native method that is implemented by the 'waterfrontcashflow' native library,
+//     * which is packaged with this application.
+//     */
 //    public native String stringFromJNI();
 }

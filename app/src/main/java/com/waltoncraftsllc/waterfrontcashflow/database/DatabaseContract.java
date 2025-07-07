@@ -164,7 +164,7 @@ public class DatabaseContract {
     public static String toString(Date date, String pattern) {
         return new SimpleDateFormat(pattern, Locale.US).format(date);
     }
-    public static Date toDate(String date_txt) {
-        return Date.valueOf(date_txt);
-    }
+//    public static Date toDate(String date_txt) {
+//        return Date.valueOf(date_txt);
+//    }
 }
