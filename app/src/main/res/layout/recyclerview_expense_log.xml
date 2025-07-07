@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/textView_date"
-        android:layout_width="45dp"
-        android:layout_height="30dp"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:gravity="center_vertical|end"
         android:background="@color/white"
+        android:gravity="center_vertical|end"
+        android:textSize="18sp"
         android:text="@string/_00_00"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,24 +59,17 @@
 
             <Spinner
                 android:id="@+id/spinner_category_1"
-                style="@style/Base"
-                android:layout_width="350dp"
+                style="@style/Category_Spinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_tender" />
 
             <TextView
                 android:id="@+id/textView_debit_1"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_0_000_00" />
+                style="@style/Four_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_tax_1"
-                style="@style/Base"
-                android:layout_width="65sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_000_00" />
+                style="@style/Three_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_for_whom_1"
@@ -95,22 +89,15 @@
 
             <Spinner
                 android:id="@+id/spinner_category_2"
-                style="@style/Base"
-                android:layout_width="350dp" />
+                style="@style/Category_Spinner" />
 
             <TextView
                 android:id="@+id/textView_debit_2"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_0_000_00" />
+                style="@style/Four_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_tax_2"
-                style="@style/Base"
-                android:layout_width="65sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_000_00" />
+                style="@style/Three_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_for_whom_2"
@@ -129,22 +116,15 @@
 
             <Spinner
                 android:id="@+id/spinner_category_3"
-                style="@style/Base"
-                android:layout_width="350dp" />
+                style="@style/Category_Spinner" />
 
             <TextView
                 android:id="@+id/textView_debit_3"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_0_000_00" />
+                style="@style/Four_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_tax_3"
-                style="@style/Base"
-                android:layout_width="65sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_000_00" />
+                style="@style/Three_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_for_whom_3"
@@ -163,22 +143,15 @@
 
             <Spinner
                 android:id="@+id/spinner_category_4"
-                style="@style/Base"
-                android:layout_width="350dp" />
+                style="@style/Category_Spinner" />
 
             <TextView
                 android:id="@+id/textView_debit_4"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_0_000_00" />
+                style="@style/Four_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_tax_4"
-                style="@style/Base"
-                android:layout_width="65sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_000_00" />
+                style="@style/Three_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_for_whom_4"
@@ -197,23 +170,15 @@
 
             <Spinner
                 android:id="@+id/spinner_category_5"
-                style="@style/Base"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content" />
+                style="@style/Category_Spinner" />
 
             <TextView
                 android:id="@+id/textView_debit_5"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_0_000_00" />
+                style="@style/Four_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_tax_5"
-                style="@style/Base"
-                android:layout_width="65sp"
-                android:layout_marginStart="5dp"
-                android:hint="@string/_000_00" />
+                style="@style/Three_Digit_Money" />
 
             <TextView
                 android:id="@+id/textView_for_whom_5"
@@ -239,7 +204,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
-        android:text="@string/receipt"
+        android:text="@string/have_receipt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
 
@@ -261,7 +226,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
-        android:text="@string/recurring"
+        android:text="@string/is_recurring"
         app:layout_constraintStart_toEndOf="@+id/checkBox_server"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
 

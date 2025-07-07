@@ -8,22 +8,11 @@
 
     <TextView
         android:id="@+id/textView_Name"
-        android:layout_width="515dp"
-        android:layout_height="wrap_content"
+        style="@style/Category_Spinner"
         android:text="@string/category_name"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView_BudgetItemTimeBracket"-->
-<!--        android:layout_width="395dp"-->
-<!--        android:layout_height="196dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.02"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView_Name" />-->
 
     <LinearLayout
         android:id="@+id/linearLayout_TimeBracket_Main"
@@ -44,11 +33,9 @@
 
             <TextView
                 android:id="@+id/textView_From_1"
-                style="@style/Base"
-                android:layout_width="45sp"
+                style="@style/Date"
                 android:layout_marginStart="16dp"
-                android:gravity="center_vertical|end"
-                android:text="@string/_00_00" />
+                android:gravity="center_vertical|end" />
 
             <TextView
                 android:id="@+id/textView10_1"
@@ -59,18 +46,13 @@
 
             <TextView
                 android:id="@+id/textView_To_1"
-                style="@style/Base"
-                android:layout_width="45sp"
-                android:layout_marginStart="4dp"
-                android:text="@string/_00_00" />
+                style="@style/Date"
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/textView_Amount_1"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:text="@string/_0_000_00" />
+                style="@style/Four_Digit_Money"
+                android:textAlignment="textEnd" />
 
             <Spinner
                 android:id="@+id/spinner_Periodicity_1"
@@ -100,11 +82,9 @@
 
             <TextView
                 android:id="@+id/textView_From_2"
-                style="@style/Base"
-                android:layout_width="45sp"
+                style="@style/Date"
                 android:layout_marginStart="16dp"
-                android:gravity="center_vertical|end"
-                android:text="@string/_00_00" />
+                android:gravity="center_vertical|end" />
 
             <TextView
                 android:id="@+id/textView10_2"
@@ -115,18 +95,13 @@
 
             <TextView
                 android:id="@+id/textView_To_2"
-                style="@style/Base"
-                android:layout_width="45sp"
-                android:layout_marginStart="4dp"
-                android:text="@string/_00_00" />
+                style="@style/Date"
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/textView_Amount_2"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:text="@string/_0_000_00" />
+                style="@style/Four_Digit_Money"
+                android:textAlignment="textEnd" />
 
             <Spinner
                 android:id="@+id/spinner_Periodicity_2"
@@ -156,11 +131,9 @@
 
             <TextView
                 android:id="@+id/textView_From_3"
-                style="@style/Base"
-                android:layout_width="45sp"
+                style="@style/Date"
                 android:layout_marginStart="16dp"
-                android:gravity="center_vertical|end"
-                android:text="@string/_00_00" />
+                android:gravity="center_vertical|end" />
 
             <TextView
                 android:id="@+id/textView10_3"
@@ -171,18 +144,13 @@
 
             <TextView
                 android:id="@+id/textView_To_3"
-                style="@style/Base"
-                android:layout_width="45sp"
-                android:layout_marginStart="4dp"
-                android:text="@string/_00_00" />
+                style="@style/Date"
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/textView_Amount_3"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:text="@string/_0_000_00" />
+                style="@style/Four_Digit_Money"
+                android:textAlignment="textEnd" />
 
             <Spinner
                 android:id="@+id/spinner_Periodicity_3"
@@ -212,11 +180,9 @@
 
             <TextView
                 android:id="@+id/textView_From_4"
-                style="@style/Base"
-                android:layout_width="45sp"
+                style="@style/Date"
                 android:layout_marginStart="16dp"
-                android:gravity="center_vertical|end"
-                android:text="@string/_00_00" />
+                android:gravity="center_vertical|end" />
 
             <TextView
                 android:id="@+id/textView10_4"
@@ -227,18 +193,13 @@
 
             <TextView
                 android:id="@+id/textView_To_4"
-                style="@style/Base"
-                android:layout_width="45sp"
-                android:layout_marginStart="4dp"
-                android:text="@string/_00_00" />
+                style="@style/Date"
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/textView_Amount_4"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:text="@string/_0_000_00" />
+                style="@style/Four_Digit_Money"
+                android:textAlignment="textEnd" />
 
             <Spinner
                 android:id="@+id/spinner_Periodicity_4"
@@ -268,11 +229,9 @@
 
             <TextView
                 android:id="@+id/textView_From_5"
-                style="@style/Base"
-                android:layout_width="45sp"
+                style="@style/Date"
                 android:layout_marginStart="16dp"
-                android:gravity="center_vertical|end"
-                android:text="@string/_00_00" />
+                android:gravity="center_vertical|end" />
 
             <TextView
                 android:id="@+id/textView10_5"
@@ -283,18 +242,13 @@
 
             <TextView
                 android:id="@+id/textView_To_5"
-                style="@style/Base"
-                android:layout_width="45sp"
-                android:layout_marginStart="4dp"
-                android:text="@string/_00_00" />
+                style="@style/Date"
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/textView_Amount_5"
-                style="@style/Base"
-                android:layout_width="75sp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:text="@string/_0_000_00" />
+                style="@style/Four_Digit_Money"
+                android:textAlignment="textEnd" />
 
             <Spinner
                 android:id="@+id/spinner_Periodicity_5"

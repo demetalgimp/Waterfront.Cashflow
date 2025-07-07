@@ -1,20 +1,18 @@
-package com.waltoncraftsllc.waterfrontcashflow.adapters;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.*;
+package com.waltoncraftsllc.waterfrontcashflow.database;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.*;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.waltoncraftsllc.waterfrontcashflow.tools.Budget;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Budget_TimeBracket;
-import com.waltoncraftsllc.waterfrontcashflow.tools.ExpenseLog;
-import com.waltoncraftsllc.waterfrontcashflow.tools.ExpenseLog_Group;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget_TimeBracket;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense_Group;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 
 import java.util.ArrayList;
@@ -37,8 +35,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         //--- User data
         db.execSQL(BUDGET__DEFINE_TABLE);
         db.execSQL(BUDGET_TIME_BRACKET__DEFINE_TABLE);
-        db.execSQL(EXPENSE_LOG__DEFINE_TABLE);
-        db.execSQL(EXPENSE_LOG_GROUP__DEFINE_TABLE);
+        db.execSQL(EXPENSE__DEFINE_TABLE);
+        db.execSQL(EXPENSE_GROUP__DEFINE_TABLE);
 
         //--- Default labels
         createCategoriesTable(db);
@@ -57,8 +55,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         //--- Purge database
         db.execSQL(BUDGET_TIME_BRACKET__DROP_TABLE);
         db.execSQL(BUDGET__DROP_TABLE);
-        db.execSQL(EXPENSE_LOG__DROP_TABLE);
-        db.execSQL(EXPENSE_LOG_GROUP__DROP_TABLE);
+        db.execSQL(EXPENSE__DROP_TABLE);
+        db.execSQL(EXPENSE_GROUP__DROP_TABLE);
         db.execSQL(DEFAULT_CATEGORIES__DROP_TABLE);
         db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
         db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
@@ -169,49 +167,20 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return result;
     }
 
-//====================================================================================================================================================
-
+//***************************************************************** CONSTANTS TABLES *****************************************************************
+//----------------------------------------------------------------- Categories Table -----------------------------------------------------------------
     /**
      * void createCategoriesTable(SQLiteDatabase db) - Create the "Categories" string table.
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createCategoriesTable(SQLiteDatabase db) {
-        db.execSQL(DEFAULT_CATEGORIES__DEFINE_TABLE);
+        db.execSQL(CATEGORIES__DEFINE_TABLE);
         for ( Pair<Long, String> category : mCategories) {
             ContentValues columns = new ContentValues();
-            columns.put(DEFAULT_CATEGORIES__NAME, category.getValue());
-            category.setKey(db.insert(DEFAULT_CATEGORIES__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
+            columns.put(CATEGORIES__NAME, category.getValue());
+            category.setKey(db.insert(CATEGORIES__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
         }
     }
-
-    /**
-     * void createTendersTable(SQLiteDatabase db) - Create the "Tenders" (or Legal Tenders) string table.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
-    private void createTendersTable(SQLiteDatabase db) {
-        db.execSQL(DEFAULT_TENDER_LABELS__DEFINE_TABLE);
-        for ( Pair<Long, String> tender : mTenders) {
-            ContentValues columns = new ContentValues();
-            columns.put(DEFAULT_TENDER_LABELS__NAME, tender.getValue());
-            tender.setKey(db.insert(DEFAULT_TENDER_LABELS__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
-        }
-    }
-
-    /**
-     * void createPeriodicitiesTable(SQLiteDatabase db) - Create the "Periodicities" string table.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
-    private void createPeriodicitiesTable(SQLiteDatabase db) {
-        db.execSQL(DEFAULT_PERIODICITY_LABELS__DEFINE_TABLE);
-        for ( Pair<Long, String> periodicity : mPeriodicities) {
-            ContentValues columns = new ContentValues();
-            columns.put(DEFAULT_PERIODICITY_LABELS__ID, periodicity.getKey());
-            columns.put(DEFAULT_PERIODICITY_LABELS__NAME, periodicity.getValue());
-            db.insert(DEFAULT_PERIODICITY_LABELS__TABLE_NAME, null, columns); // <-- no need to store ID as it's the key
-        }
-    }
-
-//====================================================================================================================================================
 
     /**
      * ArrayList<CharSequence> queryDefaultCategories() - Retrieve all categories from the database.
@@ -226,7 +195,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
 
         //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(DEFAULT_CATEGORIES__NAME);
+            int columnIndex = cursor.getColumnIndex(CATEGORIES__NAME);
 
         //--- iterate through all of the labels.
             do {
@@ -240,12 +209,12 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * void setCategories(ArrayList<CharSequence> categories) - The user can modify the categories, so that's why they are stored in the database.
+     * void replaceCategories(ArrayList<CharSequence> categories) - The user can modify the categories, so that's why they are stored in the database.
      * @param categories: #ArrayList<CharSequence># - The new set of customized catergories.
      */
-    public void setCategories(ArrayList<CharSequence> categories) {
+    public void replaceCategories(ArrayList<CharSequence> categories) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("drop table if exists " + DEFAULT_CATEGORIES__TABLE_NAME);
+        db.execSQL("drop table if exists " + CATEGORIES__TABLE_NAME);
         Pair<Long, String>[] pairs = new Pair[categories.size()];
         int index = 0;
         for ( CharSequence category : categories ) {
@@ -256,8 +225,23 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+//---------------------------------------------------------------- Periodicities Table ---------------------------------------------------------------
     /**
-     * ArrayList<CharSequence> getPeriodicities() - Get the periodicities from the database.
+     * void createPeriodicitiesTable(SQLiteDatabase db) - Create the "Periodicities" string table.
+     * @param db: #SQLiteDatabase# The SQLite database handle.
+     */
+    private void createPeriodicitiesTable(SQLiteDatabase db) {
+        db.execSQL(PERIODICITY_LABELS__DEFINE_TABLE);
+        for ( Pair<Long, String> periodicity : mPeriodicities) {
+            ContentValues columns = new ContentValues();
+            columns.put(PERIODICITY_LABELS__ID, periodicity.getKey());
+            columns.put(PERIODICITY_LABELS__NAME, periodicity.getValue());
+            db.insert(PERIODICITY_LABELS__TABLE_NAME, null, columns); // <-- no need to store ID as it's the key
+        }
+    }
+
+    /**
+     * ArrayList<CharSequence> queryPeriodicities() - Get the periodicities from the database.
      * @return periods - #ArrayList<CharSequence># - Periodicities.
      */
     public ArrayList<CharSequence> queryPeriodicities() {
@@ -269,7 +253,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         if ( cursor.moveToFirst() ) {
 
         //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(DEFAULT_PERIODICITY_LABELS__NAME);
+            int columnIndex = cursor.getColumnIndex(PERIODICITY_LABELS__NAME);
 
         //--- iterate through all of the labels.
             do {
@@ -283,11 +267,11 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * void setPeriodicities(ArrayList<CharSequence> periodicities) - The user can modify the periodicities, so that's why they are stored in the database.
+     * void replacePeriodicities(ArrayList<CharSequence> periodicities) - Replace periodicities
      * @param periodicities - #ArrayList<CharSequence>#
      */
-    public void setPeriodicities(ArrayList<CharSequence> periodicities) {
-        SQLiteDatabase db = getReadableDatabase();
+    public void replacePeriodicities(ArrayList<CharSequence> periodicities) {
+        SQLiteDatabase db = getWritableDatabase();
         db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
         Pair<Long, String>[] pairs = new Pair[periodicities.size()];
         int index = 0;
@@ -301,8 +285,22 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+//--------------------------------------------------------------------- Tenders Table ----------------------------------------------------------------
     /**
-     * ArrayList<CharSequence> getDefaultTenders() - Get the "tenders" (the methods of payment) strings.
+     * void createTendersTable(SQLiteDatabase db) - Create the "Tenders" (or Legal Tenders) string table.
+     * @param db: #SQLiteDatabase# The SQLite database handle.
+     */
+    private void createTendersTable(SQLiteDatabase db) {
+        db.execSQL(TENDER_LABELS__DEFINE_TABLE);
+        for ( Pair<Long, String> tender : mTenders) {
+            ContentValues columns = new ContentValues();
+            columns.put(TENDER_LABELS__NAME, tender.getValue());
+            tender.setKey(db.insert(TENDER_LABELS__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
+        }
+    }
+
+    /**
+     * ArrayList<CharSequence> queryTenders() - Get the "tenders" (the methods of payment) strings.
      * @return tenders: ArrayList<CharSequence>
      */
     public ArrayList<CharSequence> queryTenders() {
@@ -314,7 +312,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         if ( cursor.moveToFirst() ) {
 
         //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(DEFAULT_TENDER_LABELS__NAME);
+            int columnIndex = cursor.getColumnIndex(TENDER_LABELS__NAME);
 
         //--- iterate through all of the labels.
             do {
@@ -330,11 +328,11 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * void setTenders(ArrayList<CharSequence> tenders) - Revise the "tenders" (the methods of payment), so that's why they are stored in the database.
+     * void replaceTenders(ArrayList<CharSequence> tenders) - Replace (legal) tenders
      * @param tenders: #ArrayList<CharSequence>#
      */
-    public void setTenders(ArrayList<CharSequence> tenders) {
-        SQLiteDatabase db = getReadableDatabase();
+    public void replaceTenders(ArrayList<CharSequence> tenders) {
+        SQLiteDatabase db = getWritableDatabase();
         db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
         Pair<Long, String>[] pairs = new Pair[tenders.size()];
         int index = 0;
@@ -346,6 +344,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+//********************************************************************* USER DATA ********************************************************************
 //--- Budget Record -----------------------------------------------------------------------------------------------------------------------------
     /**
      * ArrayList<Budget> getBudgetRecords() - Retrieve all budget records. These include "time bracketed" items which encapsulate changes in expected expenses.
@@ -378,22 +377,22 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
         //--- iterate through all budget records
             do {
-            //--- Get the budget record ID to get time brackets
-                ArrayList<Budget_TimeBracket> brackets = new ArrayList<>();
+            //--- Get the budget record ID to get time bracket_array
+                ArrayList<Budget_TimeBracket> bracket_array = new ArrayList<>();
                 long id = budget_cursor.getLong(id_col_index);
 
-            //--- If there are time brackets (there SHOULD be at least one)...
+            //--- If there are time bracket_array (there SHOULD be at least one)...
                 Cursor bracket_cursor = db.rawQuery(BUDGET_TIME_BRACKET__QUERY_TABLE, new String[] { String.valueOf(id) });
                 if ( bracket_cursor.moveToFirst() ) {
                 //--- ... iterate.
                     do {
-                        brackets.add(new Budget_TimeBracket(bracket_cursor));
+                        bracket_array.add(new Budget_TimeBracket(bracket_cursor));
                     } while ( bracket_cursor.moveToNext() );
                 }
                 bracket_cursor.close();
 
             //--- Add to list.
-                budget_records.add(new Budget(budget_cursor, brackets));
+                budget_records.add(new Budget(budget_cursor, bracket_array));
             } while ( budget_cursor.moveToNext() );
         }
         budget_cursor.close();
@@ -404,19 +403,16 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * long insertBudgetRecord(Budget item) - Add a new budget item to the database.
-     * @param item: #Budget#
-     * @return row_id: #long# The row ID of the budget item with the associated "time brackets."
+     * long insertBudgetRecord(Budget budget) - Add a new budget budget to the database.
+     * @param budget: #Budget#
+     * @return row_id: #long# The row ID of the budget budget with the associated "time brackets."
      */
-    public long insertBudgetRecord(Budget item) {
+    public long insertBudgetRecord(Budget budget) {
         SQLiteDatabase db = getWritableDatabase();
 
-    //--- First, add budget record, getting ID
-//        ContentValues values = Budget.fillDatabaseRecord(item);
-        long budget_rec_id = db.insert(BUDGET__TABLE_NAME, null, Budget.fillDatabaseRecord(item)); // <-- Grab record ID for time brackets
-
-    //--- For all time brackets, add records
-        for ( Budget_TimeBracket bracket: item.getTimeBrackets() ) {
+    //--- First, add budget record, getting ID; then, for all time brackets, add records
+        long budget_rec_id = db.insert(BUDGET__TABLE_NAME, null, Budget.fillDatabaseRecord(budget)); // <-- Grab record ID for time brackets
+        for ( Budget_TimeBracket bracket: budget.getTimeBrackets() ) {
             long id = db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
         }
 
@@ -430,11 +426,11 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param budget_id: #long# The database ID to delete.
      */
     public void deleteBudgetRecord(long budget_id) {
+        SQLiteDatabase db = getWritableDatabase();
 
     //--- Delete the time brackets first...
         String where_clause = BUDGET_TIME_BRACKET__BUDGET_FK + "=?";
         String[] where_args = new String[] { String.valueOf(budget_id) };
-        SQLiteDatabase db = getWritableDatabase();
         db.delete(BUDGET_TIME_BRACKET__TABLE_NAME, where_clause, where_args);
 
     //--- ... then the budget.
@@ -448,7 +444,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 //--- ExpenseLog Record ----------------------------------------------------------------------------------------------------------------------------
     /**
-     * ArrayList<ExpenseLog> getExpenseRecords() - Get expense records. I imagine that this can ultimately be very huge. That's a problem.
+     * ArrayList<ExpenseLog> queryExpenseRecords() - Get expense records. I imagine that this can ultimately be very huge. That's a problem.
      * @return results: #ArrayList<ExpenseLog>#
      *
      * Basic Algorithm:
@@ -465,34 +461,29 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      *      End
      *      Return collection
      */
-    public ArrayList<ExpenseLog> queryExpenseLogRecords() {
+    public ArrayList<Expense> queryExpenseRecords() {
+        ArrayList<Expense> expense_records = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<ExpenseLog> expense_log_records = new ArrayList<>();
 
-        Cursor expense_log_cursor = db.rawQuery(EXPENSE_LOG__QUERY_TABLE, null);
+        Cursor expense_log_cursor = db.rawQuery(EXPENSE__QUERY_TABLE, null);
         if ( expense_log_cursor.moveToFirst() ) {
 
-        //--- Translate name to column number (a really good idea!)
-            int id_col_index = expense_log_cursor.getColumnIndex(EXPENSE_LOG__ID);
-
         //--- iterate through all expense log records
+            int id_col_index = expense_log_cursor.getColumnIndex(EXPENSE__ID);  //<-- Translate name to column number (a really good idea!)
             do {
-
-            //--- Get the budget record ID to get time brackets
-                ArrayList<ExpenseLog_Group> group = new ArrayList<>();
-                long expense_log_id = expense_log_cursor.getLong(id_col_index);
-
             //--- If there are time brackets (there SHOULD be), iterate
-                Cursor group_cursor = db.rawQuery(EXPENSE_LOG_GROUP__QUERY_TABLE, new String[] { String.valueOf(expense_log_id) });
+                ArrayList<Expense_Group> group_array = new ArrayList<>();
+                long expense_id = expense_log_cursor.getLong(id_col_index);  // <-- Get the expense log record ID to get time brackets
+                Cursor group_cursor = db.rawQuery(EXPENSE_GROUP__QUERY_TABLE, new String[] { String.valueOf(expense_id) });
                 if ( group_cursor.moveToFirst() ) {
                     do {
-                        group.add(new ExpenseLog_Group(group_cursor));
+                        group_array.add(new Expense_Group(group_cursor));
                     } while ( group_cursor.moveToNext() );
                 }
 
             //--- Close cursor and add record to list.
                 group_cursor.close();
-                expense_log_records.add(new ExpenseLog(expense_log_cursor, group));
+                expense_records.add(new Expense(expense_log_cursor, group_array));
 
             } while ( expense_log_cursor.moveToNext() );
         }
@@ -500,33 +491,25 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
     //--- Clean up
         db.close();
-        return expense_log_records;
+        return expense_records;
     }
 
     /**
-     * long insertExpenseLogRecord(ExpenseLog item) - Add a new expense record with all grouped expense categories.
-     * @param item: #ExpenseLog# - The record to add.
+     * long insertExpenseLogRecord(ExpenseLog expense) - Add a new expense record with all grouped expense categories.
+     * @param expense: #ExpenseLog# - The record to add.
      * @return rec_id: #long# - The database ID for the new record.
      */
-    public long insertExpenseLogRecord(ExpenseLog item) {
+    public long insertExpenseLogRecord(Expense expense) {
         long rec_id = -1;
         SQLiteDatabase db = getWritableDatabase();
 
     //--- Add Expense record
-        try {
-            ContentValues values = ExpenseLog.fillDatabaseRecord(item);
-            rec_id = db.insert(EXPENSE_LOG_GROUP__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
+        ContentValues values = Expense.fillDatabaseRecord(expense);
+        rec_id = db.insert(EXPENSE_GROUP__TABLE_NAME, null, values); // <-- Grab record ID for time brackets
 
-            //--- For all group items, add records
-            for (ExpenseLog_Group group : item.getGroup()) {
-                try {
-                    db.insert(EXPENSE_LOG_GROUP__TABLE_NAME, null, ExpenseLog_Group.fillDatabaseRecord(group, rec_id));
-                } catch (SQLiteException e) {
-                    Log.e("DatabaseError", "Error inserting data: " + e.getMessage());
-                }
-            }
-        } catch (SQLiteException e) {
-            Log.e("DatabaseError", "Error inserting data: " + e.getMessage());
+    //--- For all group items, add records
+        for (Expense_Group group : expense.getGroup()) {
+            db.insert(EXPENSE_GROUP__TABLE_NAME, null, Expense_Group.fillDatabaseRecord(group, rec_id));
         }
 
     //--- Clean up
@@ -540,17 +523,17 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      */
     public void deleteExpenseLogRecord(long expense_id) {
         //--- Delete the time groups first...
-        String where_clause = EXPENSE_LOG_GROUP__ID + "=?";
+        String where_clause = EXPENSE_GROUP__ID + "=?";
         String[] where_args = new String[] { String.valueOf(expense_id) };
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(EXPENSE_LOG_GROUP__TABLE_NAME, where_clause, where_args);
+        db.delete(EXPENSE_GROUP__TABLE_NAME, where_clause, where_args);
 
         //--- ... then the expense log.
-        where_clause = EXPENSE_LOG__ID + "=?";
-        db.delete(EXPENSE_LOG__TABLE_NAME, where_clause, where_args);
+        where_clause = EXPENSE__ID + "=?";
+        db.delete(EXPENSE__TABLE_NAME, where_clause, where_args);
         db.close();
     }
-    public void updateExpenseLogRecord(ExpenseLog item) {
+    public void updateExpenseLogRecord(Expense item) {
 //TODO
     }
 }

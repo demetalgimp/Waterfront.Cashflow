@@ -1,22 +1,23 @@
-package com.waltoncraftsllc.waterfrontcashflow.tools;
+package com.waltoncraftsllc.waterfrontcashflow.contaIners;
 
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET__AMOUNT_CAP;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET__DUE_DATE;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET__ID;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET__NAME;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET__AMOUNT_CAP;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET__DUE_DATE;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET__ID;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET__NAME;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.DATABASE_DATE_PATTERN;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
+import com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract;
+import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
+
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Budget {
-    private static final String DATE_FORMAT = "yyyy/MM/dd";
     long mID;
     String mName;
     ArrayList<Budget_TimeBracket> mTimeBrackets;
@@ -49,25 +50,20 @@ public class Budget {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.BUDGET__NAME, item.getName());
         if ( item.getDueDate() != null ) {
-            values.put(DatabaseContract.BUDGET__DUE_DATE, item.getDueDate());
+            values.put(DatabaseContract.BUDGET__DUE_DATE, DatabaseContract.toString(item.getDueDate(), DATABASE_DATE_PATTERN));
         }
         if ( item.getAmountCap() != null ) {
-            values.put(DatabaseContract.BUDGET__AMOUNT_CAP, item.getAmountCap());
+            values.put(DatabaseContract.BUDGET__AMOUNT_CAP, item.getAmountCap().toString());
         }
         return values;
     }
 
-    public static String sqlDateToString(Date date) {
-        return new SimpleDateFormat(DATE_FORMAT, Locale.US).format(date);
-    }
-
-    public boolean hasDueDate()         { return (mDueDate != null); }
-    public boolean hasAmountCap()       { return (mAmountCap != null); }
-    public String dueDateToString()     { return (mDueDate != null? sqlDateToString(mDueDate): null); }
-    public String getDueDate()          { return (mDueDate != null? sqlDateToString(mDueDate): null); }
-    public String getAmountCap()        { return (mAmountCap != null? mAmountCap.toString(): null); }
-    public String getName()             { return mName; }
-    public void setName(String mName)   { this.mName = mName; }
+    public boolean hasDueDate()          { return (mDueDate != null); }
+    public boolean hasAmountCap()        { return (mAmountCap != null); }
+    public Date    getDueDate()          { return mDueDate; }
+    public Money   getAmountCap()        { return mAmountCap; }
+    public String  getName()             { return mName; }
+    public void    setName(String mName) { this.mName = mName; }
     public ArrayList<Budget_TimeBracket> getTimeBrackets() { return mTimeBrackets; }
-    public void setID(long budgetId)    { mID = budgetId; }
+    public void    setID(long budgetId)  { mID = budgetId; }
 }

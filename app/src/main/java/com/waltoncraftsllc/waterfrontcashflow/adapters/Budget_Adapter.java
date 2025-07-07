@@ -1,6 +1,7 @@
 package com.waltoncraftsllc.waterfrontcashflow.adapters;
 
 import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.mCategoryPeriodicity_ArrayAdapter;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.ANDROID_UI_DATE_PATTERN;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Budget;
-import com.waltoncraftsllc.waterfrontcashflow.tools.Budget_TimeBracket;
+import com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget;
+import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget_TimeBracket;
+import com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
 
 import java.util.ArrayList;
@@ -39,9 +42,9 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
             mTextView_Weekly = weekly;
         }
         public void populate(Budget_TimeBracket item) {
-            mTextView_FromDate.setText(item.getFromDate());
-            mTextView_ToDate.setText(item.getToDate());
-            mTextView_Amount.setText(String.valueOf(item.getAmount()));
+            mTextView_FromDate.setText(DatabaseContract.toString(item.getFromDate(), ANDROID_UI_DATE_PATTERN));
+            mTextView_ToDate.setText(DatabaseContract.toString(item.getToDate(), ANDROID_UI_DATE_PATTERN));
+            mTextView_Amount.setText(item.getAmount().toString());
             mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
             int index = mCategoryPeriodicity_ArrayAdapter.getPosition(item.getPeriodicity_str());
             mSpinner_Periodicity.setSelection(index);
@@ -134,8 +137,8 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
 
         mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        holder.mTextView_DueDate.setText( (budget.hasDueDate()? budget.dueDateToString(): "") );
-        holder.mTextView_AmountCap.setText( (budget.hasAmountCap()? budget.getAmountCap(): "") );
+        holder.mTextView_DueDate.setText( (budget.hasDueDate()? DatabaseContract.toString(budget.getDueDate(), ANDROID_UI_DATE_PATTERN): "") );
+        holder.mTextView_AmountCap.setText( (budget.hasAmountCap()? budget.getAmountCap().toString(): "") );
     }
 
     @Override

@@ -9,4 +9,21 @@
         <item name="android:layout_width">100sp</item>
         <item name="android:layout_marginStart">8dp</item>
     </style>
+    <style name="Category_Spinner" parent="Base">
+        <item name="android:layout_width">500dp</item>
+    </style>
+    <style name="Date" parent="Base">
+        <item name="android:layout_width">45sp</item>
+        <item name="android:text">@string/_00_00</item>
+    </style>
+    <style name="Four_Digit_Money" parent="Base">
+        <item name="android:layout_width">75sp</item>
+        <item name="android:text">@string/_0_000_00</item>
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
+    <style name="Three_Digit_Money" parent="Base">
+        <item name="android:layout_width">65sp</item>
+        <item name="android:text">@string/_000_00</item>
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
 </resources>

@@ -4,9 +4,9 @@
     <string name="vendor">vendor</string>
     <string name="_0_000_00">±$0,000.00</string>
     <string name="_000_00">±$000.00</string>
-    <string name="receipt">Receipt?</string>
+    <string name="have_receipt">Have receipt?</string>
     <string name="on_statement">On statement?</string>
-    <string name="recurring">Recurring?</string>
+    <string name="is_recurring">Is recurring?</string>
     <string name="_0_000_mo">$0,000/mo</string>
     <string name="_000_wk">$000/wk</string>
     <string name="hyphen">-</string>

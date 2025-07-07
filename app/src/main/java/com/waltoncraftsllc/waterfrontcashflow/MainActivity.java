@@ -1,7 +1,7 @@
 package com.waltoncraftsllc.waterfrontcashflow;
 
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.DATABASE_NAME;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.DATABASE_VERSION;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.DATABASE_NAME;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.DATABASE_VERSION;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,10 +10,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.waltoncraftsllc.waterfrontcashflow.adapters.Budget_Adapter;
-import com.waltoncraftsllc.waterfrontcashflow.adapters.ExpenseLog_Adapter;
-import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
+import com.waltoncraftsllc.waterfrontcashflow.adapters.Expense_Adapter;
+import com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper;
 import com.waltoncraftsllc.waterfrontcashflow.databinding.ActivityMainBinding;
-import com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract;
 
 import java.util.ArrayList;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerViewMainActivity.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMainActivity.setAdapter(new Budget_Adapter());
         binding.buttonBudgetPlanner.setOnClickListener((view) -> binding.recyclerViewMainActivity.setAdapter(new Budget_Adapter()));
-        binding.buttonExpenseLog.setOnClickListener((view) -> binding.recyclerViewMainActivity.setAdapter(new ExpenseLog_Adapter()));
+        binding.buttonExpense.setOnClickListener((view) -> binding.recyclerViewMainActivity.setAdapter(new Expense_Adapter()));
 
         // Example of a call to a native method
 //        TextView tv = binding.sampleText;
@@ -63,5 +62,5 @@ public class MainActivity extends AppCompatActivity {
      * A native method that is implemented by the 'waterfrontcashflow' native library,
      * which is packaged with this application.
      */
-    public native String stringFromJNI();
+//    public native String stringFromJNI();
 }

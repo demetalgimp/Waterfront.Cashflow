@@ -1,18 +1,19 @@
-package com.waltoncraftsllc.waterfrontcashflow.tools;
+package com.waltoncraftsllc.waterfrontcashflow.contaIners;
 
-import static com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper.getSpinnerText;
-import static com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper.mPeriodicities;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.Budget.sqlDateToString;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__AMOUNT;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__BUDGET_FK;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__FROM_DATE;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
-import static com.waltoncraftsllc.waterfrontcashflow.tools.DatabaseContract.BUDGET_TIME_BRACKET__TO_DATE;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mPeriodicities;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__AMOUNT;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__BUDGET_FK;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__FROM_DATE;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
+import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__TO_DATE;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.waltoncraftsllc.waterfrontcashflow.adapters.Sqlite_ConnectionHelper;
+import com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract;
+import com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper;
+import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
 
 import java.sql.Date;
 
@@ -73,22 +74,25 @@ public class Budget_TimeBracket {
     public static ContentValues fillDatabaseRecord(Budget_TimeBracket bracket, long budget_id) {
         ContentValues values = new ContentValues();
         values.put(BUDGET_TIME_BRACKET__BUDGET_FK, budget_id);
-        values.put(BUDGET_TIME_BRACKET__FROM_DATE, bracket.getFromDate());
-        values.put(BUDGET_TIME_BRACKET__TO_DATE, bracket.getToDate());
-        values.put(BUDGET_TIME_BRACKET__AMOUNT, bracket.getAmount());
+        values.put(BUDGET_TIME_BRACKET__FROM_DATE, DatabaseContract.toString(bracket.mFromDate, "yyyy-MM-dd"));
+        values.put(BUDGET_TIME_BRACKET__TO_DATE, DatabaseContract.toString(bracket.mToDate, "yyyy-MM-dd"));
+        values.put(BUDGET_TIME_BRACKET__AMOUNT, bracket.getAmount().toString());
         long periodicity = Sqlite_ConnectionHelper.getSpinnerKey(mPeriodicities, bracket.getPeriodicity_str());
         values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, periodicity);
         return values;
     }
 
-    public String getFromDate() {
-        return sqlDateToString(mFromDate);
+    public Date getToDate() {
+        return mToDate;
     }
-    public String getToDate() {
-        return sqlDateToString(mToDate);
+    public Date getFromDate() {
+        return mToDate;
     }
-    public String getAmount() {
-        return mAmount.toString();
+//    public String getAmount() {
+//        return mAmount.toString();
+//    }
+    public Money getAmount() {
+        return mAmount;
     }
     public String getPeriodicity_str() {
         return mPeriodicity_str;
