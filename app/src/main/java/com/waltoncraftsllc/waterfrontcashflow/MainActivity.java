@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         db_helper = new Sqlite_ConnectionHelper(this.getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
         ArrayList<CharSequence> categories = db_helper.queryCategories();
         ArrayList<CharSequence> periodicities = db_helper.queryPeriodicities();
-        ArrayList<CharSequence> tenders = db_helper.queryTenders();
+        ArrayList<CharSequence> tenders = db_helper.queryLegalTenders();
 
         mCategoryPeriodicity_ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, periodicities);
         mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

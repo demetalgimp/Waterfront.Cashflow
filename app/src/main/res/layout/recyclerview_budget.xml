@@ -5,6 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/textView_budget_record_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.987" />
 
     <TextView
         android:id="@+id/textView_Name"
@@ -30,6 +41,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/light_teal_1">
+
+            <TextView
+                android:id="@+id/textView_time_bracket_record_id_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_TimeBracket_1"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_TimeBracket_1"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_1"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_1" />
 
             <TextView
                 android:id="@+id/textView_From_1"
@@ -81,6 +102,17 @@
             android:background="@color/light_teal_0">
 
             <TextView
+                android:id="@+id/textView_time_bracket_record_id_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_TimeBracket_2"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_TimeBracket_2"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_2"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_2" />
+
+
+            <TextView
                 android:id="@+id/textView_From_2"
                 style="@style/Date"
                 android:layout_marginStart="16dp"
@@ -128,6 +160,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/light_teal_1">
+
+            <TextView
+                android:id="@+id/textView_time_bracket_record_id_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_TimeBracket_3"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_TimeBracket_3"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_3"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_3" />
 
             <TextView
                 android:id="@+id/textView_From_3"
@@ -179,6 +221,16 @@
             android:background="@color/light_teal_0">
 
             <TextView
+                android:id="@+id/textView_time_bracket_record_id_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_TimeBracket_4"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_TimeBracket_4"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_4"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_4" />
+
+            <TextView
                 android:id="@+id/textView_From_4"
                 style="@style/Date"
                 android:layout_marginStart="16dp"
@@ -226,6 +278,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/light_teal_1">
+
+            <TextView
+                android:id="@+id/textView_time_bracket_record_id_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_TimeBracket_5"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_TimeBracket_5"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_5"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_5" />
 
             <TextView
                 android:id="@+id/textView_From_5"

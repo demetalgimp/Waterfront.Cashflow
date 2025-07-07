@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout_expense_log"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView_expense_record_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87" />
 
     <TextView
         android:id="@+id/textView_date"
@@ -57,6 +70,16 @@
             android:background="@color/light_teal_1"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/textView_expense_group_record_id_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_group_1"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_group_1"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_group_1"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_group_1" />
+
             <Spinner
                 android:id="@+id/spinner_category_1"
                 style="@style/Category_Spinner"
@@ -87,6 +110,16 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
+            <TextView
+                android:id="@+id/textView_expense_group_record_id_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_group_2"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_group_2"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_group_2"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_group_2" />
+
             <Spinner
                 android:id="@+id/spinner_category_2"
                 style="@style/Category_Spinner" />
@@ -113,6 +146,16 @@
             android:background="@color/light_teal_1"
             android:orientation="horizontal"
             android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textView_expense_group_record_id_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_group_3"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_group_3"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_group_3"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_group_3" />
 
             <Spinner
                 android:id="@+id/spinner_category_3"
@@ -141,6 +184,16 @@
             android:orientation="horizontal"
             android:visibility="visible">
 
+            <TextView
+                android:id="@+id/textView_expense_group_record_id_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_group_4"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_group_4"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_group_4"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_group_4" />
+
             <Spinner
                 android:id="@+id/spinner_category_4"
                 style="@style/Category_Spinner" />
@@ -167,6 +220,16 @@
             android:background="@color/light_teal_1"
             android:orientation="horizontal"
             android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textView_expense_group_record_id_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout_group_5"
+                app:layout_constraintEnd_toEndOf="@id/linearLayout_group_5"
+                app:layout_constraintStart_toStartOf="@id/linearLayout_group_5"
+                app:layout_constraintTop_toTopOf="@id/linearLayout_group_5" />
 
             <Spinner
                 android:id="@+id/spinner_category_5"
@@ -239,7 +302,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_is_recurring" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

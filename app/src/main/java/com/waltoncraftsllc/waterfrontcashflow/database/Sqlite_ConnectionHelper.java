@@ -40,7 +40,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
         //--- Default labels
         createCategoriesTable(db);
-        createTendersTable(db);
+        createLegalTendersTable(db);
         createPeriodicitiesTable(db);
     }
 
@@ -53,15 +53,20 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //--- Purge database
-        db.execSQL(BUDGET_TIME_BRACKET__DROP_TABLE);
-        db.execSQL(BUDGET__DROP_TABLE);
-        db.execSQL(EXPENSE__DROP_TABLE);
-        db.execSQL(EXPENSE_GROUP__DROP_TABLE);
-        db.execSQL(DEFAULT_CATEGORIES__DROP_TABLE);
-        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
-        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+        if ( cursor.moveToFirst() ) {
+            String table_name;
+            do {
+                table_name = cursor.getString(0);
+                if ( !(table_name.equals("android_metadata")  ||  table_name.equals("sqlite_sequence")) ) {
+                    db.rawQuery("DROP TABLE " + table_name, null);
+                }
+            } while ( cursor.moveToNext() );
+        }
 
         //--- Create tables again
+        db.close();
+        db = getWritableDatabase();
         onCreate(db);
     }
 
@@ -169,17 +174,43 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 //***************************************************************** CONSTANTS TABLES *****************************************************************
 //----------------------------------------------------------------- Categories Table -----------------------------------------------------------------
+    private void createLabelsTable(SQLiteDatabase db, String define_table_sql, Pair<Long, String>[] pairs, String table_name, String key_name, String value_name) {
+        db.execSQL(define_table_sql);
+        for ( Pair<Long, String> category : pairs) {
+            ContentValues columns = new ContentValues();
+            columns.put(key_name, category.getKey());
+            columns.put(value_name, category.getValue());
+            category.setKey(db.insert(table_name, null, columns)); // <-- this is temporatory, i.e., not stored in DB
+        }
+    }
+    public ArrayList<CharSequence> queryLabelsTable(String query_string, String key_name, String value_name) {
+        ArrayList<CharSequence> labels = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        //--- Open Periodicity table
+        Cursor cursor = db.rawQuery(query_string, null);
+        if (cursor.moveToFirst()) {
+
+            //--- Translate name to column number (a really good idea!)
+            int key_index = cursor.getColumnIndex(key_name);
+            int value_index = cursor.getColumnIndex(value_name);
+
+            //--- iterate through all of the labels.
+            do {
+                labels.add(cursor.getString(value_index));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return labels;
+    }
     /**
      * void createCategoriesTable(SQLiteDatabase db) - Create the "Categories" string table.
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createCategoriesTable(SQLiteDatabase db) {
-        db.execSQL(CATEGORIES__DEFINE_TABLE);
-        for ( Pair<Long, String> category : mCategories) {
-            ContentValues columns = new ContentValues();
-            columns.put(CATEGORIES__NAME, category.getValue());
-            category.setKey(db.insert(CATEGORIES__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
-        }
+        createLabelsTable(db, CATEGORIES__DEFINE_TABLE, mCategories, CATEGORIES__TABLE_NAME, CATEGORIES__ID, CATEGORIES__NAME);
     }
 
     /**
@@ -187,24 +218,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return categories #ArrayList<CharSequence>#
      */
     public ArrayList<CharSequence> queryCategories() {
-        ArrayList<CharSequence> categories = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
-
-    //--- Open Periodicity table
-        Cursor cursor = db.rawQuery(DEFAULT_CATEGORIES__QUERY_TABLE, null);
-        if (cursor.moveToFirst()) {
-
-        //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(CATEGORIES__NAME);
-
-        //--- iterate through all of the labels.
-            do {
-                categories.add(cursor.getString(columnIndex));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-
+        ArrayList<CharSequence> categories = queryLabelsTable(CATEGORIES__QUERY_TABLE, CATEGORIES__ID, CATEGORIES__NAME);
         return categories;
     }
 
@@ -216,9 +230,9 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("drop table if exists " + CATEGORIES__TABLE_NAME);
         Pair<Long, String>[] pairs = new Pair[categories.size()];
-        int index = 0;
+        long index = 0;
         for ( CharSequence category : categories ) {
-            pairs[index++] = new Pair<Long, String>(0L, category.toString());
+            pairs[(int)index] = new Pair<Long, String>(index++, category.toString());
         }
         mCategories = pairs;
         createCategoriesTable(db);
@@ -231,13 +245,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createPeriodicitiesTable(SQLiteDatabase db) {
-        db.execSQL(PERIODICITY_LABELS__DEFINE_TABLE);
-        for ( Pair<Long, String> periodicity : mPeriodicities) {
-            ContentValues columns = new ContentValues();
-            columns.put(PERIODICITY_LABELS__ID, periodicity.getKey());
-            columns.put(PERIODICITY_LABELS__NAME, periodicity.getValue());
-            db.insert(PERIODICITY_LABELS__TABLE_NAME, null, columns); // <-- no need to store ID as it's the key
-        }
+        createLabelsTable(db, PERIODICITY_LABELS__DEFINE_TABLE, mPeriodicities, PERIODICITY_LABELS__TABLE_NAME, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
     }
 
     /**
@@ -245,24 +253,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return periods - #ArrayList<CharSequence># - Periodicities.
      */
     public ArrayList<CharSequence> queryPeriodicities() {
-        ArrayList<CharSequence> periods = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
-
-    //--- Open Periodicity table
-        Cursor cursor = db.rawQuery(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, null);
-        if ( cursor.moveToFirst() ) {
-
-        //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(PERIODICITY_LABELS__NAME);
-
-        //--- iterate through all of the labels.
-            do {
-                periods.add(cursor.getString(columnIndex));
-            } while ( cursor.moveToNext() );
-        }
-        cursor.close();
-        db.close();
-
+        ArrayList<CharSequence> periods = queryLabelsTable(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
         return periods;
     }
 
@@ -290,40 +281,16 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * void createTendersTable(SQLiteDatabase db) - Create the "Tenders" (or Legal Tenders) string table.
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
-    private void createTendersTable(SQLiteDatabase db) {
-        db.execSQL(TENDER_LABELS__DEFINE_TABLE);
-        for ( Pair<Long, String> tender : mTenders) {
-            ContentValues columns = new ContentValues();
-            columns.put(TENDER_LABELS__NAME, tender.getValue());
-            tender.setKey(db.insert(TENDER_LABELS__TABLE_NAME, null, columns)); // <-- this is temporatory, i.e., not stored in DB
-        }
+    private void createLegalTendersTable(SQLiteDatabase db) {
+        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
     }
 
     /**
      * ArrayList<CharSequence> queryTenders() - Get the "tenders" (the methods of payment) strings.
      * @return tenders: ArrayList<CharSequence>
      */
-    public ArrayList<CharSequence> queryTenders() {
-        ArrayList<CharSequence> tenders = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
-
-    //--- Open Tender table
-        Cursor cursor = db.rawQuery(DEFAULT_TENDER_LABELS__QUERY_TABLE, null);
-        if ( cursor.moveToFirst() ) {
-
-        //--- Translate name to column number (a really good idea!)
-            int columnIndex = cursor.getColumnIndex(TENDER_LABELS__NAME);
-
-        //--- iterate through all of the labels.
-            do {
-                String tender = cursor.getString(columnIndex);
-                tenders.add(tender);
-            } while ( cursor.moveToNext() );
-        }
-        cursor.close();
-
-    //--- Close database link and return labels.
-        db.close();
+    public ArrayList<CharSequence> queryLegalTenders() {
+        ArrayList<CharSequence> tenders = queryLabelsTable(LEGAL_TENDER_LABELS__QUERY_TABLE, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);
         return tenders;
     }
 
@@ -331,16 +298,16 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * void replaceTenders(ArrayList<CharSequence> tenders) - Replace (legal) tenders
      * @param tenders: #ArrayList<CharSequence>#
      */
-    public void replaceTenders(ArrayList<CharSequence> tenders) {
+    public void replaceLegalTenders(ArrayList<CharSequence> tenders) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(DEFAULT_TENDER_LABELS__DROP_TABLE);
+        db.execSQL(LEGAL_TENDER_LABELS__DROP_TABLE);
         Pair<Long, String>[] pairs = new Pair[tenders.size()];
         int index = 0;
         for ( CharSequence tender : tenders ) {
             pairs[index++] = new Pair<Long, String>(0L, tender.toString());
         }
         mTenders = pairs;
-        createTendersTable(db);
+        createLegalTendersTable(db);
         db.close();
     }
 
