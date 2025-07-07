@@ -63,6 +63,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
                 }
             } while ( cursor.moveToNext() );
         }
+        cursor.close();
 
         //--- Create tables again
         db.close();
