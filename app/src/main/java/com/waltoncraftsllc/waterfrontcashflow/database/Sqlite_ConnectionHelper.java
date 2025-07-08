@@ -82,61 +82,61 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             new Pair<Long, String>(1L, "Annually (1/yr)")
     };
 
-    public static Pair<Long, String>[] mTenders = new Pair[] {
+    public static Pair<Long, String>[] mLegalTenders = new Pair[] {
             new Pair<Long, String>(0L, "CA-cash"),
-            new Pair<Long, String>(0L, "CC-Credit card"),
-            new Pair<Long, String>(0L, "CK-checking"),
-            new Pair<Long, String>(0L, "DB-disbursement"),
-            new Pair<Long, String>(0L, "DC-debit card"),
-            new Pair<Long, String>(0L, "FA-Flexible Spending Account"),
-            new Pair<Long, String>(0L, "GC-gift card"),
-            new Pair<Long, String>(0L, "PP-Paypal"),
-            new Pair<Long, String>(0L, "RE-reimbursement"),
-            new Pair<Long, String>(0L, "TR-transfer"),
-            new Pair<Long, String>(0L, "VM-Venmo")
+            new Pair<Long, String>(1L, "CC-Credit card"),
+            new Pair<Long, String>(2L, "CK-checking"),
+            new Pair<Long, String>(3L, "DB-disbursement"),
+            new Pair<Long, String>(4L, "DC-debit card"),
+            new Pair<Long, String>(5L, "FA-Flexible Spending Account"),
+            new Pair<Long, String>(6L, "GC-gift card"),
+            new Pair<Long, String>(7L, "PP-Paypal"),
+            new Pair<Long, String>(8L, "RE-reimbursement"),
+            new Pair<Long, String>(9L, "TR-transfer"),
+            new Pair<Long, String>(10L, "VM-Venmo")
     };
 
     public static Pair<Long, String>[] mCategories = new Pair[] {
             new Pair<Long, String>(0L, "Cars/Insurance"),
-            new Pair<Long, String>(0L, "Cars/Shop/Maintenance"),
-            new Pair<Long, String>(0L, "Cars/Shop/Repairs"),
-            new Pair<Long, String>(0L, "Cars/Fuel"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Regular"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Additional principal"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Taxes"),
-            new Pair<Long, String>(0L, "Home/Mortgage/Home insurance"),
-            new Pair<Long, String>(0L, "Home/Utilities/Cellphone"),
-            new Pair<Long, String>(0L, "Home/Utilities/City"),
-            new Pair<Long, String>(0L, "Home/Utilities/Electricity"),
-            new Pair<Long, String>(0L, "Home/Utilities/Gas"),
-            new Pair<Long, String>(0L, "Home/Utilities/Internet"),
-            new Pair<Long, String>(0L, "Home/Repairs/Professional"),
-            new Pair<Long, String>(0L, "Home/Repairs/Self repairs"),
-            new Pair<Long, String>(0L, "Home/General/Household"),
-            new Pair<Long, String>(0L, "Home/General/Office"),
-            new Pair<Long, String>(0L, "Home/General/Yard"),
-            new Pair<Long, String>(0L, "Charities/Church/Fast Offerings"),
-            new Pair<Long, String>(0L, "Charities/Church/Tithing"),
-            new Pair<Long, String>(0L, "Consumables/Food"),
-            new Pair<Long, String>(0L, "Consumables/Non-Food"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Dental"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Medical"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Prescriptions"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Copay"),
-            new Pair<Long, String>(0L, "Personal/Insurance/Vision"),
-            new Pair<Long, String>(0L, "Personal/Health/General"),
-            new Pair<Long, String>(0L, "Provisions/Education"),
-            new Pair<Long, String>(0L, "Provisions/Mad Money"),
-            new Pair<Long, String>(0L, "Provisions/Gifts/Family"),
-            new Pair<Long, String>(0L, "Provisions/Gifts/Other"),
-            new Pair<Long, String>(0L, "Subscription Services/Entertainment/Amazon channels"),
-            new Pair<Long, String>(0L, "Subscription Services/Entertainment/Rentals"),
-            new Pair<Long, String>(0L, "Services/USCCA"),
-            new Pair<Long, String>(0L, "Services/Other"),
-            new Pair<Long, String>(0L, "Services/Amazon Prime"),
-            new Pair<Long, String>(0L, "Services/Audible"),
-            new Pair<Long, String>(0L, "Services/Accountants"),
-            new Pair<Long, String>(0L, "Services/Costco")
+            new Pair<Long, String>(1L, "Cars/Shop/Maintenance"),
+            new Pair<Long, String>(2L, "Cars/Shop/Repairs"),
+            new Pair<Long, String>(3L, "Cars/Fuel"),
+            new Pair<Long, String>(4L, "Home/Mortgage/Regular"),
+            new Pair<Long, String>(5L, "Home/Mortgage/Additional principal"),
+            new Pair<Long, String>(6L, "Home/Mortgage/Taxes"),
+            new Pair<Long, String>(7L, "Home/Mortgage/Home insurance"),
+            new Pair<Long, String>(8L, "Home/Utilities/Cellphone"),
+            new Pair<Long, String>(9L, "Home/Utilities/City"),
+            new Pair<Long, String>(10L, "Home/Utilities/Electricity"),
+            new Pair<Long, String>(11L, "Home/Utilities/Gas"),
+            new Pair<Long, String>(12L, "Home/Utilities/Internet"),
+            new Pair<Long, String>(13L, "Home/Repairs/Professional"),
+            new Pair<Long, String>(14L, "Home/Repairs/Self repairs"),
+            new Pair<Long, String>(15L, "Home/General/Household"),
+            new Pair<Long, String>(16L, "Home/General/Office"),
+            new Pair<Long, String>(17L, "Home/General/Yard"),
+            new Pair<Long, String>(18L, "Charities/Church/Fast Offerings"),
+            new Pair<Long, String>(19L, "Charities/Church/Tithing"),
+            new Pair<Long, String>(20L, "Consumables/Food"),
+            new Pair<Long, String>(21L, "Consumables/Non-Food"),
+            new Pair<Long, String>(22L, "Personal/Insurance/Dental"),
+            new Pair<Long, String>(23L, "Personal/Insurance/Medical"),
+            new Pair<Long, String>(24L, "Personal/Insurance/Prescriptions"),
+            new Pair<Long, String>(25L, "Personal/Insurance/Copay"),
+            new Pair<Long, String>(26L, "Personal/Insurance/Vision"),
+            new Pair<Long, String>(27L, "Personal/Health/General"),
+            new Pair<Long, String>(28L, "Provisions/Education"),
+            new Pair<Long, String>(29L, "Provisions/Mad Money"),
+            new Pair<Long, String>(30L, "Provisions/Gifts/Family"),
+            new Pair<Long, String>(31L, "Provisions/Gifts/Other"),
+            new Pair<Long, String>(32L, "Subscription Services/Entertainment/Amazon channels"),
+            new Pair<Long, String>(33L, "Subscription Services/Entertainment/Rentals"),
+            new Pair<Long, String>(34L, "Services/USCCA"),
+            new Pair<Long, String>(35L, "Services/Other"),
+            new Pair<Long, String>(36L, "Services/Amazon Prime"),
+            new Pair<Long, String>(37L, "Services/Audible"),
+            new Pair<Long, String>(38L, "Services/Accountants"),
+            new Pair<Long, String>(39L, "Services/Costco")
     };
 
     /**
@@ -145,7 +145,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param periodicity: #String# The text to search.
      * @return result:     #long# The database ID.
      */
-    public static long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
+    private static long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
         long result = -1;
         for ( Pair<Long, String> pair : list ) {
             if ( pair.getValue().equals(periodicity) ) {
@@ -155,6 +155,15 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+    public static long getCategorySpinnerKey(String category) {
+        return getSpinnerKey(mCategories, category);
+    }
+    public static long getPeriodicitySpinnerKey(String periodicity) {
+        return getSpinnerKey(mPeriodicities, periodicity);
+    }
+    public static long getLegalTenderSpinnerKey(String periodicity) {
+        return getSpinnerKey(mLegalTenders, periodicity);
+    }
 
     /**
      * String getSpinnerText(Pair<Long, String>[] list, long period) - Convert database ID into spinner-ready text.
@@ -162,7 +171,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param period:  #String# The database ID to find.
      * @return result: #String# The Spinner-ready text.
      */
-    public static String getSpinnerText(Pair<Long, String>[] list, long period) {
+    private static String getSpinnerText(Pair<Long, String>[] list, long period) {
         String result = "";
         for ( Pair<Long, String> pair : list ) {
             if ( pair.getKey() == period ) {
@@ -171,6 +180,15 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
             }
         }
         return result;
+    }
+    public static String getCategorySpinnerText(long id) {
+        return getSpinnerText(mCategories, id);
+    }
+    public static String getPeriodicitySpinnerText(long id) {
+        return getSpinnerText(mPeriodicities, id);
+    }
+    public static String getLegalTenderSpinnerText(long id) {
+        return getSpinnerText(mPeriodicities, id);
     }
 
 //***************************************************************** CONSTANTS TABLES *****************************************************************
@@ -219,8 +237,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return categories #ArrayList<CharSequence>#
      */
     public ArrayList<CharSequence> queryCategories() {
-        ArrayList<CharSequence> categories = queryLabelsTable(CATEGORIES__QUERY_TABLE, CATEGORIES__ID, CATEGORIES__NAME);
-        return categories;
+        return queryLabelsTable(CATEGORIES__QUERY_TABLE, CATEGORIES__ID, CATEGORIES__NAME);
     }
 
     /**
@@ -254,8 +271,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return periods - #ArrayList<CharSequence># - Periodicities.
      */
     public ArrayList<CharSequence> queryPeriodicities() {
-        ArrayList<CharSequence> periods = queryLabelsTable(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
-        return periods;
+        return queryLabelsTable(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
     }
 
     /**
@@ -283,7 +299,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
     private void createLegalTendersTable(SQLiteDatabase db) {
-        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
+        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mLegalTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
     }
 
     /**
@@ -291,8 +307,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return tenders: ArrayList<CharSequence>
      */
     public ArrayList<CharSequence> queryLegalTenders() {
-        ArrayList<CharSequence> tenders = queryLabelsTable(LEGAL_TENDER_LABELS__QUERY_TABLE, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);
-        return tenders;
+        return queryLabelsTable(LEGAL_TENDER_LABELS__QUERY_TABLE, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);
     }
 
     /**
@@ -307,7 +322,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         for ( CharSequence tender : tenders ) {
             pairs[index++] = new Pair<Long, String>(0L, tender.toString());
         }
-        mTenders = pairs;
+        mLegalTenders = pairs;
         createLegalTendersTable(db);
         db.close();
     }

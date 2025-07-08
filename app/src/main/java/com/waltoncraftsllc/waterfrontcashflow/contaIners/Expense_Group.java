@@ -1,9 +1,8 @@
 package com.waltoncraftsllc.waterfrontcashflow.contaIners;
 
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerKey;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerText;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mCategories;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mPeriodicities;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getCategorySpinnerKey;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getCategorySpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerKey;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.EXPENSE_GROUP__CATEGORY_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.EXPENSE_GROUP__DEBIT;
@@ -38,7 +37,7 @@ public class Expense_Group {
         int tax_col_index = group_cursor.getColumnIndex(EXPENSE_GROUP__TAX);
         int for_whom_col_index = group_cursor.getColumnIndex(EXPENSE_GROUP__FOR_WHOM);
         mExpense_ID =group_cursor.getLong(expense_id);
-        mCategory = getSpinnerText(mCategories, group_cursor.getLong(category_col_index));
+        mCategory = getCategorySpinnerText(group_cursor.getLong(category_col_index));
         mDebit = new Money(group_cursor.getString(debit_col_index));
         mTax = new Money(group_cursor.getString(tax_col_index));
         mForWhom = group_cursor.getString(for_whom_col_index);
@@ -48,11 +47,11 @@ public class Expense_Group {
     public static ContentValues fillDatabaseRecord(Expense_Group group, long expense_id) {
         ContentValues values = new ContentValues();
         values.put(EXPENSE_GROUP__EXPENSE__FK, expense_id);
-        values.put(EXPENSE_GROUP__CATEGORY_FK, getSpinnerKey(mCategories, group.getCategory()));
+        values.put(EXPENSE_GROUP__CATEGORY_FK, getCategorySpinnerKey(group.getCategory()));
         values.put(EXPENSE_GROUP__DEBIT, group.getDebit());
         values.put(EXPENSE_GROUP__TAX, group.getTax());
         values.put(EXPENSE_GROUP__FOR_WHOM, group.getForWhom());
-        values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, getSpinnerKey(mPeriodicities, group.getCategory()));
+        values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, getPeriodicitySpinnerKey(group.getCategory()));
         return values;
     }
 

@@ -1,12 +1,11 @@
 package com.waltoncraftsllc.waterfrontcashflow.contaIners;
 
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerText;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mPeriodicities;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__AMOUNT;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__BUDGET_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__FROM_DATE;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__TO_DATE;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerText;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -50,7 +49,7 @@ public class Budget_TimeBracket {
         mToDate = Date.valueOf(bracket_cursor.getString(to_date_col_index));
         mAmount = new Money(bracket_cursor.getString(amount_col_index));
         mPeriodicity = bracket_cursor.getLong(periodicity_col_index);  // <-- represents both the primary key and the actual annual frequency.
-        mPeriodicity_str = getSpinnerText(mPeriodicities, mPeriodicity);
+        mPeriodicity_str = getPeriodicitySpinnerText(mPeriodicity);
         calculateScalers();
     }
 
@@ -77,7 +76,7 @@ public class Budget_TimeBracket {
         values.put(BUDGET_TIME_BRACKET__FROM_DATE, DatabaseContract.toString(bracket.mFromDate, "yyyy-MM-dd"));
         values.put(BUDGET_TIME_BRACKET__TO_DATE, DatabaseContract.toString(bracket.mToDate, "yyyy-MM-dd"));
         values.put(BUDGET_TIME_BRACKET__AMOUNT, bracket.getAmount().toString());
-        long periodicity = Sqlite_ConnectionHelper.getSpinnerKey(mPeriodicities, bracket.getPeriodicity_str());
+        long periodicity = Sqlite_ConnectionHelper.getPeriodicitySpinnerKey(bracket.getPeriodicity_str());
         values.put(BUDGET_TIME_BRACKET__PERIODICITY_FK, periodicity);
         return values;
     }
@@ -88,9 +87,6 @@ public class Budget_TimeBracket {
     public Date getFromDate() {
         return mToDate;
     }
-//    public String getAmount() {
-//        return mAmount.toString();
-//    }
     public Money getAmount() {
         return mAmount;
     }

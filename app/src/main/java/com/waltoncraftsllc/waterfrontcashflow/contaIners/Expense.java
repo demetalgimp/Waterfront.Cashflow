@@ -1,9 +1,8 @@
 package com.waltoncraftsllc.waterfrontcashflow.contaIners;
 
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerKey;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getSpinnerText;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mPeriodicities;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.mTenders;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getLegalTenderSpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerKey;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerText;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.ANDROID_UI_DATE_PATTERN;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.CHECK_MARK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.EXPENSE__DATE;
@@ -54,10 +53,10 @@ public class Expense {
         int server_col_index = expense_cursor.getColumnIndex(EXPENSE__ON_SERVER);
         mID = expense_cursor.getLong(id_col_index);
         mDate = Date.valueOf(expense_cursor.getString(date_col_index));
-        mTenderString = getSpinnerText(mTenders, expense_cursor.getLong(tender_col_index));
+        mTenderString = getLegalTenderSpinnerText(expense_cursor.getLong(tender_col_index));
         mVendor = expense_cursor.getString(vendor_col_index);
         mGroup = group;
-        mRecurring = getSpinnerText(mPeriodicities, expense_cursor.getLong(recurring_col_index));
+        mRecurring = getPeriodicitySpinnerText(expense_cursor.getLong(recurring_col_index));
         mReceipt = (expense_cursor.getString(receipt_col_index).equals(CHECK_MARK));
         mServer = (expense_cursor.getString(server_col_index).equals(CHECK_MARK));
     }
@@ -68,7 +67,7 @@ public class Expense {
         values.put(DatabaseContract.EXPENSE__TENDER_FK, item.getTenderString());
         values.put(EXPENSE__VENDOR, item.getVendor());
     //NOTE: no group here required b/c Expense_Group points to this.
-        values.put(EXPENSE__RECURRING_FK, getSpinnerKey(mPeriodicities, item.mRecurring));
+        values.put(EXPENSE__RECURRING_FK, getPeriodicitySpinnerKey(item.mRecurring));
         values.put(EXPENSE__RECEIPT, item.mReceipt);
         values.put(EXPENSE__ON_SERVER, item.mServer);
         return values;
