@@ -1,5 +1,3 @@
-
-
 <resources>
     <style name="Base" parent="">
         <item name="android:textSize">14sp</item>
@@ -25,5 +23,18 @@
         <item name="android:layout_width">65sp</item>
         <item name="android:text">@string/_000_00</item>
         <item name="android:layout_marginStart">5dp</item>
+    </style>
+    <style name="Calendar_Day" parent="">
+        <item name="android:layout_width">57dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/inset_border</item>
+    </style>
+    <style name="Calendar_Day_Header" parent="Calendar_Day">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFF00</item>
     </style>
 </resources>

@@ -115,9 +115,9 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewHo
         holder.mSpinner_Tender.setSelection(index);
         holder.mTextView_Vendor.setText(expense.getVendor());
 
-        //--- Fill the table of Groups
+    //--- Fill the table of Groups
         for (int i = 0; i < holder.mExpenseLogGroups.size(); i++ ) {
-            //--- Ensure that the number of rows match
+        //--- Ensure that the number of rows match
             if ( i < expense.getGroup().size() ) {
                 holder.mExpenseLogGroups.get(i).setVisible(View.VISIBLE);
                 holder.mExpenseLogGroups.get(i).populate(expense.getGroup().get(i));

@@ -48,7 +48,6 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
             mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
             int index = mCategoryPeriodicity_ArrayAdapter.getPosition(item.getPeriodicity_str());
             mSpinner_Periodicity.setSelection(index);
-//            Locale locale = new Locale("English", "United States");
             mTextView_Monthly.setText(item.getProratedMonthly());
             mTextView_Weekly.setText(item.getProratedWeekly());
         }
