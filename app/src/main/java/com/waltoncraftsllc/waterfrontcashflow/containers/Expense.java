@@ -1,8 +1,8 @@
-package com.waltoncraftsllc.waterfrontcashflow.contaIners;
+package com.waltoncraftsllc.waterfrontcashflow.containers;
 
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getLegalTenderSpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.findLegalTenderSpinnerText;
 import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerKey;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.findPeriodicitySpinnerText;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.ANDROID_UI_DATE_PATTERN;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.CHECK_MARK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.EXPENSE__DATE;
@@ -53,49 +53,33 @@ public class Expense {
         int server_col_index = expense_cursor.getColumnIndex(EXPENSE__ON_SERVER);
         mID = expense_cursor.getLong(id_col_index);
         mDate = Date.valueOf(expense_cursor.getString(date_col_index));
-        mTenderString = getLegalTenderSpinnerText(expense_cursor.getLong(tender_col_index));
+        mTenderString = findLegalTenderSpinnerText(expense_cursor.getLong(tender_col_index));
         mVendor = expense_cursor.getString(vendor_col_index);
         mGroup = group;
-        mRecurring = getPeriodicitySpinnerText(expense_cursor.getLong(recurring_col_index));
+        mRecurring = findPeriodicitySpinnerText(expense_cursor.getLong(recurring_col_index));
         mReceipt = (expense_cursor.getString(receipt_col_index).equals(CHECK_MARK));
         mServer = (expense_cursor.getString(server_col_index).equals(CHECK_MARK));
     }
 
     public static ContentValues fillDatabaseRecord(Expense item) {
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.EXPENSE__DATE, DatabaseContract.toString(item.getDate(), ANDROID_UI_DATE_PATTERN));
-        values.put(DatabaseContract.EXPENSE__TENDER_FK, item.getTenderString());
+        values.put(EXPENSE__DATE, DatabaseContract.toString(item.getDate(), ANDROID_UI_DATE_PATTERN));
+//        values.put(EXPENSE__TENDER_FK, findLegalTenderSpinnerText(item.getTenderString()));
+        values.put(EXPENSE__TENDER_FK, item.getTenderString());
         values.put(EXPENSE__VENDOR, item.getVendor());
-    //NOTE: no group here required b/c Expense_Group points to this.
+//        values.put(EXPENSE__RECURRING_FK, findLegalTenderSpinnerText(item.getTenderString()));
         values.put(EXPENSE__RECURRING_FK, getPeriodicitySpinnerKey(item.mRecurring));
         values.put(EXPENSE__RECEIPT, item.mReceipt);
         values.put(EXPENSE__ON_SERVER, item.mServer);
         return values;
     }
 
-    public Date getDate() {
-        return mDate;
-    }
-
-    public String getTenderString() {
-        return mTenderString;
-    }
-    public String getVendor() {
-        return mVendor;
-    }
-    public ArrayList<Expense_Group> getGroup() {
-        return mGroup;
-    }
-    public String getRecurring() {
-        return mRecurring;
-    }
-    public boolean hasReceipt() {
-        return mReceipt;
-    }
-    public boolean hasServer() {
-        return mServer;
-    }
-    public boolean isRecurring() {
-        return mIsRecurring;
-    }
+    public Date getDate()                       { return mDate; }
+    public String getTenderString()             { return mTenderString; }
+    public String getVendor()                   { return mVendor; }
+    public ArrayList<Expense_Group> getGroup()  { return mGroup; }
+    public String getRecurring()                { return mRecurring; }
+    public boolean hasReceipt()                 { return mReceipt; }
+    public boolean hasServer()                  { return mServer; }
+    public boolean isRecurring()                { return mIsRecurring; }
 }

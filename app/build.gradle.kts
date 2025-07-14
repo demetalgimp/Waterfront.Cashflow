@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.waltoncraftsllc.waterfrontcashflow"
         minSdk = 27
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 

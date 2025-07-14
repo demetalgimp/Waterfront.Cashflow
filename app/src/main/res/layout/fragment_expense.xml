@@ -5,314 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/teal_200"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="5dp"
     tools:context=".fragments.ExpenseFragment">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="Hello"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.0" />-->
-
-    <TextView
-        android:id="@+id/textView_expense_record_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C0000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/textView_date"
-        android:layout_width="55dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/teal_200"
-        android:gravity="center_vertical|end"
-        android:textSize="18sp"
-        android:text="@string/_00_00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner_tender"
-        android:layout_width="310dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toEndOf="@+id/textView_date"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/textView_vendor"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/teal_200"
-        android:textSize="18sp"
-        android:hint="@string/vendor"
-        app:layout_constraintStart_toEndOf="@+id/spinner_tender"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout_groups"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/inset_border"
-        android:orientation="vertical"
+        android:background="@color/teal_700"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_vendor">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_group_1"
+        <TextView
+            android:id="@+id/textView_expense_record_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/light_teal_1"
-            android:orientation="horizontal">
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="5dp"
+            android:text="#exp_id"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView_expense_group_add_button_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:text="  +  "
-                android:textSize="20sp"
-                android:background="#005F00"
-                android:textColor="#FFFFFF" />
+        <EditText
+            android:id="@+id/textView_date"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:hint="@string/_00_00"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_expense_record_id"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner_category_1"
-                style="@style/Category_Spinner"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_tender" />
+        <Spinner
+            android:id="@+id/spinner_tender"
+            android:layout_width="310dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/textView_date"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/textView_debit_1"
-                style="@style/Four_Digit_Money"
-                android:layout_width="wrap_content"/>
+        <EditText
+            android:id="@+id/textView_vendor"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/teal_200"
+            android:textSize="18sp"
+            android:hint="@string/vendor"
+            app:layout_constraintStart_toEndOf="@+id/spinner_tender"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/textView_tax_1"
-                style="@style/Three_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_for_whom_1"
-                style="@style/Base"
-                android:layout_width="200dp"
-                android:layout_marginStart="5dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_group_2"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView_ExpenseGroupListFragment"
+            android:name="com.waltoncraftsllc.waterfrontcashflow.fragments.ExpenseGroupListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/light_teal_0"
-            android:orientation="horizontal"
-            android:visibility="visible">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView_expense_group_add_button_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:text="  +  "
-                android:textSize="20sp"
-                android:background="#005F00"
-                android:textColor="#FFFFFF" />
+        <Spinner
+            android:id="@+id/spinner_recurring"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_is_recurring"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_ExpenseGroupListFragment" />
 
-            <Spinner
-                android:id="@+id/spinner_category_2"
-                style="@style/Category_Spinner" />
+        <CheckBox
+            android:id="@+id/checkBox_receipt"
+            style="@style/Fragment_Expense"
+            android:layout_marginStart="16dp"
+            android:text="@string/have_receipt"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_ExpenseGroupListFragment"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/textView_debit_2"
-                style="@style/Four_Digit_Money"
-                android:layout_width="wrap_content" />
+        <CheckBox
+            android:id="@+id/checkBox_server"
+            style="@style/Fragment_Expense"
+            android:text="@string/on_statement"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_ExpenseGroupListFragment"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_receipt" />
 
-            <EditText
-                android:id="@+id/textView_tax_2"
-                style="@style/Three_Digit_Money"
-                android:layout_width="wrap_content" />
+        <CheckBox
+            android:id="@+id/checkBox_is_recurring"
+            style="@style/Fragment_Expense"
+            android:text="@string/is_recurring"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_ExpenseGroupListFragment"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_server" />
 
-            <EditText
-                android:id="@+id/textView_for_whom_2"
-                style="@style/Base"
-                android:layout_width="200dp"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_group_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_teal_1"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/textView_expense_group_add_button_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:text="  +  "
-                android:textSize="20sp"
-                android:background="#005F00"
-                android:textColor="#FFFFFF" />
-
-            <Spinner
-                android:id="@+id/spinner_category_3"
-                style="@style/Category_Spinner" />
-
-            <EditText
-                android:id="@+id/textView_debit_3"
-                style="@style/Four_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_tax_3"
-                style="@style/Three_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_for_whom_3"
-                style="@style/Base"
-                android:layout_width="200dp"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_group_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_teal_0"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/textView_expense_group_add_button_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:text="  +  "
-                android:textSize="20sp"
-                android:background="#005F00"
-                android:textColor="#FFFFFF" />
-
-            <Spinner
-                android:id="@+id/spinner_category_4"
-                style="@style/Category_Spinner" />
-
-            <EditText
-                android:id="@+id/textView_debit_4"
-                style="@style/Four_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_tax_4"
-                style="@style/Three_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_for_whom_4"
-                style="@style/Base"
-                android:layout_width="200dp"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_group_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_teal_1"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/textView_expense_group_add_button_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:text="  +  "
-                android:textSize="20sp"
-                android:background="#005F00"
-                android:textColor="#FFFFFF" />
-            
-            <Spinner
-                android:id="@+id/spinner_category_5"
-                style="@style/Category_Spinner" />
-
-            <EditText
-                android:id="@+id/textView_debit_5"
-                style="@style/Four_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_tax_5"
-                style="@style/Three_Digit_Money"
-                android:layout_width="wrap_content" />
-
-            <EditText
-                android:id="@+id/textView_for_whom_5"
-                style="@style/Base"
-                android:layout_width="200dp"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinner_recurring"
-        android:layout_width="230dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/checkBox_is_recurring"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
-
-    <CheckBox
-        android:id="@+id/checkBox_receipt"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/teal_200"
-        android:text="@string/have_receipt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
-
-    <CheckBox
-        android:id="@+id/checkBox_server"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/teal_200"
-        android:text="@string/on_statement"
-        app:layout_constraintStart_toEndOf="@+id/checkBox_receipt"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
-
-    <CheckBox
-        android:id="@+id/checkBox_is_recurring"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/teal_200"
-        android:text="@string/is_recurring"
-        app:layout_constraintStart_toEndOf="@+id/checkBox_server"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_groups" />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

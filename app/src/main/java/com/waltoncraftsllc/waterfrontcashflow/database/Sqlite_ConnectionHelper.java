@@ -9,27 +9,83 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget_TimeBracket;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense_Group;
+import com.waltoncraftsllc.waterfrontcashflow.MainActivity;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Budget;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Budget_TimeBracket;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Expense;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Expense_Group;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     private static Sqlite_ConnectionHelper instance;
+    public static Pair<Long, String>[] mCategories = new Pair[] {
+            new Pair<Long, String>(0L, "Cars/Insurance"),                   new Pair<Long, String>(1L, "Cars/Shop/Maintenance"),
+            new Pair<Long, String>(2L, "Cars/Shop/Repairs"),                new Pair<Long, String>(3L, "Cars/Fuel"),
+            new Pair<Long, String>(4L, "Home/Mortgage/Regular"),            new Pair<Long, String>(5L, "Home/Mortgage/Additional principal"),
+            new Pair<Long, String>(6L, "Home/Mortgage/Taxes"),              new Pair<Long, String>(7L, "Home/Mortgage/Home insurance"),
+            new Pair<Long, String>(8L, "Home/Utilities/Cellphone"),         new Pair<Long, String>(9L, "Home/Utilities/City"),
+            new Pair<Long, String>(10L, "Home/Utilities/Electricity"),      new Pair<Long, String>(11L, "Home/Utilities/Gas"),
+            new Pair<Long, String>(12L, "Home/Utilities/Internet"),         new Pair<Long, String>(13L, "Home/Repairs/Professional"),
+            new Pair<Long, String>(14L, "Home/Repairs/Self repairs"),       new Pair<Long, String>(15L, "Home/General/Household"),
+            new Pair<Long, String>(16L, "Home/General/Office"),             new Pair<Long, String>(17L, "Home/General/Yard"),
+            new Pair<Long, String>(18L, "Charities/Church/Fast Offerings"), new Pair<Long, String>(19L, "Charities/Church/Tithing"),
+            new Pair<Long, String>(20L, "Consumables/Food"),                new Pair<Long, String>(21L, "Consumables/Non-Food"),
+            new Pair<Long, String>(22L, "Personal/Insurance/Dental"),       new Pair<Long, String>(23L, "Personal/Insurance/Medical"),
+            new Pair<Long, String>(24L, "Personal/Insurance/Prescriptions"),new Pair<Long, String>(25L, "Personal/Insurance/Copay"),
+            new Pair<Long, String>(26L, "Personal/Insurance/Vision"),       new Pair<Long, String>(27L, "Personal/Health/General"),
+            new Pair<Long, String>(28L, "Provisions/Education"),            new Pair<Long, String>(29L, "Provisions/Mad Money"),
+            new Pair<Long, String>(30L, "Provisions/Gifts/Family"),         new Pair<Long, String>(31L, "Provisions/Gifts/Other"),
+            new Pair<Long, String>(32L, "Subscription Services/Entertainment/Amazon channels"),
+            new Pair<Long, String>(33L, "Subscription Services/Entertainment/Rentals"),
+            new Pair<Long, String>(34L, "Services/USCCA"),                  new Pair<Long, String>(35L, "Services/Other"),
+            new Pair<Long, String>(36L, "Services/Amazon Prime"),           new Pair<Long, String>(37L, "Services/Audible"),
+            new Pair<Long, String>(38L, "Services/Accountants"),            new Pair<Long, String>(39L, "Services/Costco")
+    };
+    public static Pair<Long, String>[] mPeriodicities = new Pair[] {
+            new Pair<Long, String>(52L, "Weekly (52/yr)"),      new Pair<Long, String>(26L, "Biweekly (26/yr)"),
+            new Pair<Long, String>(24L, "Semimonthly (24/yr)"), new Pair<Long, String>(12L, "Monthly (12/yr)"),
+            new Pair<Long, String>(4L, "Quarterly (4/yr)"),     new Pair<Long, String>(3L, "Triannually (3/yr)"),
+            new Pair<Long, String>(2L, "Semiannually (2/yr)"),  new Pair<Long, String>(1L, "Annually (1/yr)")
+    };
+    public static Pair<Long, String>[] mLegalTenders = new Pair[] {
+            new Pair<Long, String>(0L, "CA-cash"),              new Pair<Long, String>(1L, "CC-Credit card"),
+            new Pair<Long, String>(2L, "CK-checking"),          new Pair<Long, String>(3L, "DB-disbursement"),
+            new Pair<Long, String>(4L, "DC-debit card"),        new Pair<Long, String>(5L, "FA-Flexible Spending Account"),
+            new Pair<Long, String>(6L, "GC-gift card"),         new Pair<Long, String>(7L, "PP-Paypal"),
+            new Pair<Long, String>(8L, "RE-reimbursement"),     new Pair<Long, String>(9L, "TR-transfer"),
+            new Pair<Long, String>(10L, "VM-Venmo")
+    };
 
+/** public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version)
+ *
+ * @param context
+ * @param name
+ * @param factory
+ * @param version
+ */
     public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         instance = this;
     }
-    public static Sqlite_ConnectionHelper getInstance() { return instance; }
 
-    /**
-     * void onCreate(SQLiteDatabase db) - do any initialization upon first creating new database.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
+/** public static Sqlite_ConnectionHelper getInstance()
+ * Get singleton instance
+ * @return Sqlite_ConnectionHelper
+ */
+    public static Sqlite_ConnectionHelper getInstance() {
+        if ( instance == null ) {
+            instance = new Sqlite_ConnectionHelper(MainActivity.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
+        }
+        return instance;
+    }
+
+/** void onCreate(SQLiteDatabase db)
+ * Do any initialization upon first creating new database.
+ * @param db: #SQLiteDatabase# The SQLite database handle.
+ */
     @Override
     public void onCreate(SQLiteDatabase db) {
         //--- User data
@@ -39,17 +95,17 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.execSQL(EXPENSE_GROUP__DEFINE_TABLE);
 
         //--- Default labels
-        createCategoriesTable(db);
-        createLegalTendersTable(db);
-        createPeriodicitiesTable(db);
+//        createCategoriesTable(db);
+//        createLegalTendersTable(db);
+//        createPeriodicitiesTable(db);
     }
 
-    /**
-     * void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) - do any revisions on the database as needed.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     * @param oldVersion: #int# The old database version.
-     * @param newVersion: #int# The new database version.
-     */
+/** void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+ * Do any revisions on the database as needed.
+ * @param db: #SQLiteDatabase# The SQLite database handle.
+ * @param oldVersion: #int# The old database version.
+ * @param newVersion: #int# The new database version.
+ */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //--- Purge database
@@ -71,267 +127,220 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public static Pair<Long, String>[] mPeriodicities = new Pair[] {
-            new Pair<Long, String>(52L, "Weekly (52/yr)"),
-            new Pair<Long, String>(26L, "Biweekly (26/yr)"),
-            new Pair<Long, String>(24L, "Semimonthly (24/yr)"),
-            new Pair<Long, String>(12L, "Monthly (12/yr)"),
-            new Pair<Long, String>(4L, "Quarterly (4/yr)"),
-            new Pair<Long, String>(3L, "Triannually (3/yr)"),
-            new Pair<Long, String>(2L, "Semiannually (2/yr)"),
-            new Pair<Long, String>(1L, "Annually (1/yr)")
-    };
-
-    public static Pair<Long, String>[] mLegalTenders = new Pair[] {
-            new Pair<Long, String>(0L, "CA-cash"),
-            new Pair<Long, String>(1L, "CC-Credit card"),
-            new Pair<Long, String>(2L, "CK-checking"),
-            new Pair<Long, String>(3L, "DB-disbursement"),
-            new Pair<Long, String>(4L, "DC-debit card"),
-            new Pair<Long, String>(5L, "FA-Flexible Spending Account"),
-            new Pair<Long, String>(6L, "GC-gift card"),
-            new Pair<Long, String>(7L, "PP-Paypal"),
-            new Pair<Long, String>(8L, "RE-reimbursement"),
-            new Pair<Long, String>(9L, "TR-transfer"),
-            new Pair<Long, String>(10L, "VM-Venmo")
-    };
-
-    public static Pair<Long, String>[] mCategories = new Pair[] {
-            new Pair<Long, String>(0L, "Cars/Insurance"),
-            new Pair<Long, String>(1L, "Cars/Shop/Maintenance"),
-            new Pair<Long, String>(2L, "Cars/Shop/Repairs"),
-            new Pair<Long, String>(3L, "Cars/Fuel"),
-            new Pair<Long, String>(4L, "Home/Mortgage/Regular"),
-            new Pair<Long, String>(5L, "Home/Mortgage/Additional principal"),
-            new Pair<Long, String>(6L, "Home/Mortgage/Taxes"),
-            new Pair<Long, String>(7L, "Home/Mortgage/Home insurance"),
-            new Pair<Long, String>(8L, "Home/Utilities/Cellphone"),
-            new Pair<Long, String>(9L, "Home/Utilities/City"),
-            new Pair<Long, String>(10L, "Home/Utilities/Electricity"),
-            new Pair<Long, String>(11L, "Home/Utilities/Gas"),
-            new Pair<Long, String>(12L, "Home/Utilities/Internet"),
-            new Pair<Long, String>(13L, "Home/Repairs/Professional"),
-            new Pair<Long, String>(14L, "Home/Repairs/Self repairs"),
-            new Pair<Long, String>(15L, "Home/General/Household"),
-            new Pair<Long, String>(16L, "Home/General/Office"),
-            new Pair<Long, String>(17L, "Home/General/Yard"),
-            new Pair<Long, String>(18L, "Charities/Church/Fast Offerings"),
-            new Pair<Long, String>(19L, "Charities/Church/Tithing"),
-            new Pair<Long, String>(20L, "Consumables/Food"),
-            new Pair<Long, String>(21L, "Consumables/Non-Food"),
-            new Pair<Long, String>(22L, "Personal/Insurance/Dental"),
-            new Pair<Long, String>(23L, "Personal/Insurance/Medical"),
-            new Pair<Long, String>(24L, "Personal/Insurance/Prescriptions"),
-            new Pair<Long, String>(25L, "Personal/Insurance/Copay"),
-            new Pair<Long, String>(26L, "Personal/Insurance/Vision"),
-            new Pair<Long, String>(27L, "Personal/Health/General"),
-            new Pair<Long, String>(28L, "Provisions/Education"),
-            new Pair<Long, String>(29L, "Provisions/Mad Money"),
-            new Pair<Long, String>(30L, "Provisions/Gifts/Family"),
-            new Pair<Long, String>(31L, "Provisions/Gifts/Other"),
-            new Pair<Long, String>(32L, "Subscription Services/Entertainment/Amazon channels"),
-            new Pair<Long, String>(33L, "Subscription Services/Entertainment/Rentals"),
-            new Pair<Long, String>(34L, "Services/USCCA"),
-            new Pair<Long, String>(35L, "Services/Other"),
-            new Pair<Long, String>(36L, "Services/Amazon Prime"),
-            new Pair<Long, String>(37L, "Services/Audible"),
-            new Pair<Long, String>(38L, "Services/Accountants"),
-            new Pair<Long, String>(39L, "Services/Costco")
-    };
-
-    /**
-     * long getSpinnerKey(Pair<Long, String>[] list, String periodicity) - Convert the text into the database key by searching 'list'.
-     * @param list:        #Pair<Long, String>[]# The list of Spinner text and database IDs.
-     * @param periodicity: #String# The text to search.
-     * @return result:     #long# The database ID.
-     */
-    private static long getSpinnerKey(Pair<Long, String>[] list, String periodicity) {
-        long result = -1;
-        for ( Pair<Long, String> pair : list ) {
-            if ( pair.getValue().equals(periodicity) ) {
-                result = pair.getKey();
-                break;
-            }
-        }
-        return result;
+/** long getSpinnerKey(Pair<Long, String>[] list, String periodicity)
+ * Convert the text into the database key by searching 'list'.
+ * @param list:        #Pair<Long, String>[]# The list of Spinner text and database IDs.
+ * @param periodicity: #String# The text to search.
+ * @return result:     #long# The database ID.
+ */
+    private static long findSpinnerKey(Pair<Long, String>[] list, String periodicity) {
+        return Arrays.stream(list).filter((pair) -> pair.getValue().equals(periodicity)).findFirst().map(Pair::getKey).orElse(-1L);
     }
-    public static long getCategorySpinnerKey(String category) {
-        return getSpinnerKey(mCategories, category);
-    }
-    public static long getPeriodicitySpinnerKey(String periodicity) {
-        return getSpinnerKey(mPeriodicities, periodicity);
-    }
-    public static long getLegalTenderSpinnerKey(String periodicity) {
-        return getSpinnerKey(mLegalTenders, periodicity);
+    public static long getCategorySpinnerKey(String category)       { return findSpinnerKey(mCategories, category); }
+    public static long getPeriodicitySpinnerKey(String periodicity) { return findSpinnerKey(mPeriodicities, periodicity); }
+    public static long getLegalTenderSpinnerKey(String periodicity) { return findSpinnerKey(mLegalTenders, periodicity); }
+
+/** String getSpinnerText(Pair<Long, String>[] list, long period)
+ * Convert database ID into spinner-ready text.
+ * @param list:    #Pair <Long, String>[]# The list of Spinner text and database IDs.
+ * @param period:  #String# The database ID to find.
+ * @return result: #String# The Spinner-ready text.
+ */
+    private static String findSpinnerText(Pair<Long, String>[] list, Long period) {
+        return Arrays.stream(list).filter((pair) -> pair.getKey().equals(period)).findFirst().map(Pair::getValue).orElse("");
+//        String result = "";
+//        for ( Pair<Long, String> pair : list ) {
+//            if ( pair.getKey() == period ) {
+//                result = pair.getValue();
+//                break;
+//            }
+//        }
+//        return result;
     }
 
     /**
-     * String getSpinnerText(Pair<Long, String>[] list, long period) - Convert database ID into spinner-ready text.
-     * @param list:    #Pair <Long, String>[]# The list of Spinner text and database IDs.
-     * @param period:  #String# The database ID to find.
-     * @return result: #String# The Spinner-ready text.
-     */
-    private static String getSpinnerText(Pair<Long, String>[] list, long period) {
-        String result = "";
-        for ( Pair<Long, String> pair : list ) {
-            if ( pair.getKey() == period ) {
-                result = pair.getValue();
-                break;
-            }
-        }
-        return result;
-    }
-    public static String getCategorySpinnerText(long id) {
-        return getSpinnerText(mCategories, id);
-    }
-    public static String getPeriodicitySpinnerText(long id) {
-        return getSpinnerText(mPeriodicities, id);
-    }
-    public static String getLegalTenderSpinnerText(long id) {
-        return getSpinnerText(mPeriodicities, id);
-    }
+     **   Shorthand methods using generics
+     **/
+    public static String findCategorySpinnerText(long id)           { return findSpinnerText(mCategories, id);     }
+    public static String findPeriodicitySpinnerText(long id)        { return findSpinnerText(mPeriodicities, id);  }
+    public static String findLegalTenderSpinnerText(long id)        { return findSpinnerText(mPeriodicities, id);  }
+    public static long findCategorySpinnerID(String name)           { return findSpinnerKey(mCategories, name);    }
+    public static long findPeriodicitySpinnerID(String name)        { return findSpinnerKey(mPeriodicities, name); }
+    public static long findLegalTenderSpinnerText(String name)      { return findSpinnerKey(mPeriodicities, name); }
 
 //***************************************************************** CONSTANTS TABLES *****************************************************************
 //----------------------------------------------------------------- Categories Table -----------------------------------------------------------------
-    private void createLabelsTable(SQLiteDatabase db, String define_table_sql, Pair<Long, String>[] pairs, String table_name, String key_name, String value_name) {
-        db.execSQL(define_table_sql);
-        for ( Pair<Long, String> category : pairs) {
-            ContentValues columns = new ContentValues();
-            columns.put(key_name, category.getKey());
-            columns.put(value_name, category.getValue());
-            category.setKey(db.insert(table_name, null, columns)); // <-- this is temporatory, i.e., not stored in DB
+
+//    /** private void createLabelsTable(SQLiteDatabase db, String define_table_sql, Pair<Long, String>[] pairs, String table_name, String key_name, String value_name)
+//     *
+//     * @param db
+//     * @param define_table_sql
+//     * @param pairs
+//     * @param table_name
+//     * @param key_name
+//     * @param value_name
+//     */
+//    private void createLabelsTable(SQLiteDatabase db, String define_table_sql, Pair<Long, String>[] pairs, String table_name, String key_name, String value_name) {
+//        db.execSQL(define_table_sql);
+//        for ( Pair<Long, String> category : pairs) {
+//            ContentValues columns = new ContentValues();
+//            columns.put(key_name, category.getKey());
+//            columns.put(value_name, category.getValue());
+//            category.setKey(db.insert(table_name, null, columns)); // <-- this is temporatory, i.e., not stored in DB
+//        }
+//    }
+
+//    /** public ArrayList<CharSequence> queryLabelsTable(String query_string, String key_name, String value_name)
+//     *
+//     * @param query_string
+//     * @param key_name
+//     * @param value_name
+//     * @return #ArrayList<CharSequence>#
+//     */
+//    public ArrayList<CharSequence> queryLabelsTable(String query_string, String key_name, String value_name) {
+//        ArrayList<CharSequence> labels = new ArrayList<>();
+//        SQLiteDatabase db = getReadableDatabase();
+//
+//        //--- Open Periodicity table
+//        Cursor cursor = db.rawQuery(query_string, null);
+//        if (cursor.moveToFirst()) {
+//
+//            //--- Translate name to column number (a really good idea!)
+//            int key_index = cursor.getColumnIndex(key_name);
+//            int value_index = cursor.getColumnIndex(value_name);
+//
+//            //--- iterate through all of the labels.
+//            do {
+//                labels.add(cursor.getString(value_index));
+//            } while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//
+//        return labels;
+//    }
+
+//    /** void createCategoriesTable(SQLiteDatabase db)
+//     * Create the "Categories" string table.
+//     * @param db: #SQLiteDatabase# The SQLite database handle.
+//     */
+//    private void createCategoriesTable(SQLiteDatabase db) {
+//        createLabelsTable(db, CATEGORIES__DEFINE_TABLE, mCategories, CATEGORIES__TABLE_NAME, CATEGORIES__ID, CATEGORIES__NAME);
+//    }
+
+    public ArrayList<CharSequence> toStrings(Pair[] pairs) {
+        ArrayList<CharSequence> result = new ArrayList<>();
+        for ( Pair<Long, String> pair : pairs ) {
+            result.add(pair.getValue());
         }
+        return result;
     }
-    public ArrayList<CharSequence> queryLabelsTable(String query_string, String key_name, String value_name) {
-        ArrayList<CharSequence> labels = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
-
-        //--- Open Periodicity table
-        Cursor cursor = db.rawQuery(query_string, null);
-        if (cursor.moveToFirst()) {
-
-            //--- Translate name to column number (a really good idea!)
-            int key_index = cursor.getColumnIndex(key_name);
-            int value_index = cursor.getColumnIndex(value_name);
-
-            //--- iterate through all of the labels.
-            do {
-                labels.add(cursor.getString(value_index));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-
-        return labels;
-    }
-    /**
-     * void createCategoriesTable(SQLiteDatabase db) - Create the "Categories" string table.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
-    private void createCategoriesTable(SQLiteDatabase db) {
-        createLabelsTable(db, CATEGORIES__DEFINE_TABLE, mCategories, CATEGORIES__TABLE_NAME, CATEGORIES__ID, CATEGORIES__NAME);
-    }
-
-    /**
-     * ArrayList<CharSequence> queryDefaultCategories() - Retrieve all categories from the database.
+    /** ArrayList<CharSequence> queryCategories()
+     * Retrieve all categories from the database.
      * @return categories #ArrayList<CharSequence>#
      */
     public ArrayList<CharSequence> queryCategories() {
-        return queryLabelsTable(CATEGORIES__QUERY_TABLE, CATEGORIES__ID, CATEGORIES__NAME);
+//        return queryLabelsTable(CATEGORIES__QUERY_TABLE, CATEGORIES__ID, CATEGORIES__NAME);
+        return toStrings(mCategories);
     }
 
-    /**
-     * void replaceCategories(ArrayList<CharSequence> categories) - The user can modify the categories, so that's why they are stored in the database.
-     * @param categories: #ArrayList<CharSequence># - The new set of customized catergories.
-     */
-    public void replaceCategories(ArrayList<CharSequence> categories) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("drop table if exists " + CATEGORIES__TABLE_NAME);
-        Pair<Long, String>[] pairs = new Pair[categories.size()];
-        long index = 0;
-        for ( CharSequence category : categories ) {
-            pairs[(int)index] = new Pair<Long, String>(index++, category.toString());
-        }
-        mCategories = pairs;
-        createCategoriesTable(db);
-        db.close();
-    }
+//    /** void replaceCategories(ArrayList<CharSequence> categories)
+//     * The user can modify the categories, so that's why they are stored in the database.
+//     * @param categories: #ArrayList<CharSequence># - The new set of customized categories.
+//     *
+//     * FIXME: We cannot replace the table without fixing all of the references to it.
+//     */
+//    public void replaceCategories(ArrayList<CharSequence> categories) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        db.execSQL(CATEGORIES__DROP_TABLE);//"drop table if exists " + CATEGORIES__TABLE_NAME);
+//        Pair<Long, String>[] pairs = new Pair[categories.size()];
+//        long index = 0;
+//        for ( CharSequence category : categories ) {
+//            pairs[(int)index] = new Pair<Long, String>(index++, category.toString());
+//        }
+//        mCategories = pairs;
+//        createCategoriesTable(db);
+//        db.close();
+//    }
 
 //---------------------------------------------------------------- Periodicities Table ---------------------------------------------------------------
-    /**
-     * void createPeriodicitiesTable(SQLiteDatabase db) - Create the "Periodicities" string table.
+    /** void createPeriodicitiesTable(SQLiteDatabase db)
+     * Create the "Periodicities" string table.
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
-    private void createPeriodicitiesTable(SQLiteDatabase db) {
-        createLabelsTable(db, PERIODICITY_LABELS__DEFINE_TABLE, mPeriodicities, PERIODICITY_LABELS__TABLE_NAME, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
-    }
+//    private void createPeriodicitiesTable(SQLiteDatabase db) {
+//        createLabelsTable(db, PERIODICITY_LABELS__DEFINE_TABLE, mPeriodicities, PERIODICITY_LABELS__TABLE_NAME, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
+//    }
 
-    /**
-     * ArrayList<CharSequence> queryPeriodicities() - Get the periodicities from the database.
+    /** ArrayList<CharSequence> queryPeriodicities()
+     * Get the periodicities from the database.
      * @return periods - #ArrayList<CharSequence># - Periodicities.
      */
     public ArrayList<CharSequence> queryPeriodicities() {
-        return queryLabelsTable(DEFAULT_PERIODICITY_LABELS__QUERY_TABLE, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
+//        return queryLabelsTable(PERIODICITY_LABELS__QUERY_TABLE, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
+        return toStrings(mPeriodicities);
     }
 
-    /**
-     * void replacePeriodicities(ArrayList<CharSequence> periodicities) - Replace periodicities
+    /** void replacePeriodicities(ArrayList<CharSequence> periodicities)
+     * Replace periodicities
      * @param periodicities - #ArrayList<CharSequence>#
+     *
+     * FIXME: We cannot replace the table without fixing all of the references to it.
      */
-    public void replacePeriodicities(ArrayList<CharSequence> periodicities) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(DEFAULT_PERIODICITY_LABELS__DROP_TABLE);
-        Pair<Long, String>[] pairs = new Pair[periodicities.size()];
-        int index = 0;
-        for ( CharSequence periodicity : periodicities ) {
-            String periodicity_text = periodicity.toString();
-            long frequency = Long.parseLong(periodicity_text.replaceAll("[^0-9]*", ""));
-            pairs[index] = new Pair<Long, String>(frequency, periodicity_text);
-        }
-        mPeriodicities = pairs;
-        createPeriodicitiesTable(db);
-        db.close();
-    }
+//    public void replacePeriodicities(ArrayList<CharSequence> periodicities) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        db.execSQL(PERIODICITY_LABELS__DROP_TABLE);
+//        Pair<Long, String>[] pairs = new Pair[periodicities.size()];
+//        int index = 0;
+//        for ( CharSequence periodicity : periodicities ) {
+//            String periodicity_text = periodicity.toString();
+//            long frequency = Long.parseLong(periodicity_text.replaceAll("[^0-9]*", ""));
+//            pairs[index] = new Pair<Long, String>(frequency, periodicity_text);
+//        }
+//        mPeriodicities = pairs;
+//        createPeriodicitiesTable(db);
+//        db.close();
+//    }
 
 //--------------------------------------------------------------------- Tenders Table ----------------------------------------------------------------
-    /**
-     * void createTendersTable(SQLiteDatabase db) - Create the "Tenders" (or Legal Tenders) string table.
+    /** void createTendersTable(SQLiteDatabase db)
+     * Create the "Tenders" (or Legal Tenders) string table.
      * @param db: #SQLiteDatabase# The SQLite database handle.
      */
-    private void createLegalTendersTable(SQLiteDatabase db) {
-        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mLegalTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
-    }
+//    private void createLegalTendersTable(SQLiteDatabase db) {
+//        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mLegalTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
+//    }
 
-    /**
-     * ArrayList<CharSequence> queryTenders() - Get the "tenders" (the methods of payment) strings.
-     * @return tenders: ArrayList<CharSequence>
+    /** ArrayList<CharSequence> queryTenders()
+     * Get the "tenders" (the methods of payment) strings.
+     * @return tenders: #ArrayList<CharSequence>#
      */
     public ArrayList<CharSequence> queryLegalTenders() {
-        return queryLabelsTable(LEGAL_TENDER_LABELS__QUERY_TABLE, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);
+//        return queryLabelsTable(LEGAL_TENDER_LABELS__QUERY_TABLE, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);
+        return toStrings(mLegalTenders);
     }
 
-    /**
-     * void replaceTenders(ArrayList<CharSequence> tenders) - Replace (legal) tenders
+    /** void replaceTenders(ArrayList<CharSequence> tenders)
+     * Replace (legal) tenders
      * @param tenders: #ArrayList<CharSequence>#
      */
-    public void replaceLegalTenders(ArrayList<CharSequence> tenders) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(LEGAL_TENDER_LABELS__DROP_TABLE);
-        Pair<Long, String>[] pairs = new Pair[tenders.size()];
-        int index = 0;
-        for ( CharSequence tender : tenders ) {
-            pairs[index++] = new Pair<Long, String>(0L, tender.toString());
-        }
-        mLegalTenders = pairs;
-        createLegalTendersTable(db);
-        db.close();
-    }
+//    public void replaceLegalTenders(ArrayList<CharSequence> tenders) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        db.execSQL(LEGAL_TENDER_LABELS__DROP_TABLE);
+//        Pair<Long, String>[] pairs = new Pair[tenders.size()];
+//        int index = 0;
+//        for ( CharSequence tender : tenders ) {
+//            pairs[index++] = new Pair<Long, String>(0L, tender.toString());
+//        }
+//        mLegalTenders = pairs;
+//        createLegalTendersTable(db);
+//        db.close();
+//    }
 
 //********************************************************************* USER DATA ********************************************************************
 //--- Budget Record -----------------------------------------------------------------------------------------------------------------------------
-    /**
-     * ArrayList<Budget> getBudgetRecords() - Retrieve all budget records. These include "time bracketed" items which encapsulate changes in expected expenses.
-     * @return budget_records: #ArrayList<Budget>#
+    /** ArrayList<Budget> getBudgetRecords()
+     * Retrieve all budget records. These include "time bracketed" items which encapsulate changes in expected expenses.
      *
      * Basic Algorithm:
      *      Get the Budget table's field offsets
@@ -346,6 +355,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      *          Store
      *      End
      *      Return collection
+     *
+     * @return budget_records: #ArrayList<Budget>#
      */
     public ArrayList<Budget> queryBudgetRecords() {
         ArrayList<Budget> budget_records = new ArrayList<>();
@@ -385,8 +396,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return budget_records;
     }
 
-    /**
-     * long insertBudgetRecord(Budget budget) - Add a new budget budget to the database.
+    /** long insertBudgetRecord(Budget budget)
+     * Add a new budget budget to the database.
      * @param budget: #Budget#
      * @return row_id: #long# The row ID of the budget budget with the associated "time brackets."
      */
@@ -404,8 +415,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return budget_rec_id;
     }
 
-    /**
-     * void deleteBudgetRecord(long budget_id) - Delete a budget record along with all "time brackets."
+    /** void deleteBudgetRecord(long budget_id)
+     * Delete a budget record along with all "time brackets."
      * @param budget_id: #long# The database ID to delete.
      */
     public void deleteBudgetRecord(long budget_id) {
@@ -421,14 +432,18 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.delete(BUDGET__TABLE_NAME, where_clause, where_args);
         db.close();
     }
+
+    /** public void updateBudgetRecord(Budget budget)
+     *
+     * @param budget
+     */
     public void updateBudgetRecord(Budget budget) {
 //TODO
     }
 
 //--- ExpenseLog Record ----------------------------------------------------------------------------------------------------------------------------
-    /**
-     * ArrayList<ExpenseLog> queryExpenseRecords() - Get expense records. I imagine that this can ultimately be very huge. That's a problem.
-     * @return results: #ArrayList<ExpenseLog>#
+    /** ArrayList<ExpenseLog> queryExpenseRecords()
+     * Get expense records. I imagine that this can ultimately be very huge. That's a problem.
      *
      * Basic Algorithm:
      *      Get the ExpenseLog table's field offsets
@@ -443,6 +458,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      *          Store
      *      End
      *      Return collection
+     *
+     * @return results: #ArrayList<ExpenseLog>#
      */
     public ArrayList<Expense> queryExpenseRecords() {
         ArrayList<Expense> expense_records = new ArrayList<>();
@@ -477,8 +494,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return expense_records;
     }
 
-    /**
-     * long insertExpenseLogRecord(ExpenseLog expense) - Add a new expense record with all grouped expense categories.
+    /** long insertExpenseLogRecord(ExpenseLog expense)
+     * Add a new expense record with all grouped expense categories.
      * @param expense: #ExpenseLog# - The record to add.
      * @return rec_id: #long# - The database ID for the new record.
      */
@@ -500,8 +517,8 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return rec_id;
     }
 
-    /**
-     * void deleteExpenseLogRecord(long expense_id) - Delete an expense record along with the "group" of categories.
+    /** void deleteExpenseLogRecord(long expense_id)
+     * Delete an expense record along with the "group" of categories.
      * @param expense_id: #long# The database ID to delete.
      */
     public void deleteExpenseLogRecord(long expense_id) {
@@ -516,6 +533,11 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         db.delete(EXPENSE__TABLE_NAME, where_clause, where_args);
         db.close();
     }
+
+    /** public void updateExpenseLogRecord(Expense item)
+     *
+     * @param item
+     */
     public void updateExpenseLogRecord(Expense item) {
 //TODO
     }

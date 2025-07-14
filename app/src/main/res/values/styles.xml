@@ -3,25 +3,28 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="Budget_Prorated_Fields" parent="Base">
-        <item name="android:layout_width">100sp</item>
+    <style name="Budget_Prorated_Monthly_Rate" parent="Base">
+        <item name="android:layout_width">80sp</item>
         <item name="android:layout_marginStart">8dp</item>
+    </style>
+    <style name="Budget_Prorated_Weekly_Rate" parent="Budget_Prorated_Monthly_Rate">
+        <item name="android:layout_width">60sp</item>
     </style>
     <style name="Category_Spinner" parent="Base">
         <item name="android:layout_width">500dp</item>
     </style>
     <style name="Date" parent="Base">
         <item name="android:layout_width">45sp</item>
-        <item name="android:text">@string/_00_00</item>
+        <item name="android:hint">@string/_00_00</item>
     </style>
     <style name="Four_Digit_Money" parent="Base">
         <item name="android:layout_width">75sp</item>
-        <item name="android:text">@string/_0_000_00</item>
+        <item name="android:hint">@string/_0_000_00</item>
         <item name="android:layout_marginStart">5dp</item>
     </style>
     <style name="Three_Digit_Money" parent="Base">
         <item name="android:layout_width">65sp</item>
-        <item name="android:text">@string/_000_00</item>
+        <item name="android:hint">@string/_000_00</item>
         <item name="android:layout_marginStart">5dp</item>
     </style>
     <style name="Calendar_Day" parent="">
@@ -36,5 +39,12 @@
         <item name="android:layout_height">30dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#FFFF00</item>
+    </style>
+    <style name="Fragment_Expense" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:paddingHorizontal">5dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
     </style>
 </resources>

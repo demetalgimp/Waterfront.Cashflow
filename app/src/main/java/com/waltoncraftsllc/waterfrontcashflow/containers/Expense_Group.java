@@ -1,7 +1,7 @@
-package com.waltoncraftsllc.waterfrontcashflow.contaIners;
+package com.waltoncraftsllc.waterfrontcashflow.containers;
 
 import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getCategorySpinnerKey;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getCategorySpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.findCategorySpinnerText;
 import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerKey;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.EXPENSE_GROUP__CATEGORY_FK;
@@ -37,7 +37,7 @@ public class Expense_Group {
         int tax_col_index = group_cursor.getColumnIndex(EXPENSE_GROUP__TAX);
         int for_whom_col_index = group_cursor.getColumnIndex(EXPENSE_GROUP__FOR_WHOM);
         mExpense_ID =group_cursor.getLong(expense_id);
-        mCategory = getCategorySpinnerText(group_cursor.getLong(category_col_index));
+        mCategory = findCategorySpinnerText(group_cursor.getLong(category_col_index));
         mDebit = new Money(group_cursor.getString(debit_col_index));
         mTax = new Money(group_cursor.getString(tax_col_index));
         mForWhom = group_cursor.getString(for_whom_col_index);

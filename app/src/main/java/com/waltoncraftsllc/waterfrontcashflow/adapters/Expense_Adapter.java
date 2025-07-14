@@ -1,8 +1,7 @@
 package com.waltoncraftsllc.waterfrontcashflow.adapters;
 
-import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.mCategoryPeriodicity_ArrayAdapter;
-import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.mCategory_ArrayAdapter;
-import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.mTender_ArrayAdapter;
+import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getCategory_ArrayAdapter;
+import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getLegalTender_ArrayAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.waltoncraftsllc.waterfrontcashflow.R;
 import com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper;
 import com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Expense_Group;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Expense;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Expense_Group;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
 
 import java.util.ArrayList;
@@ -41,9 +40,10 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewHo
             mTextView_ForWhom = forWhom;
         }
         public void populate(Expense_Group item) {
-            mSpinner_Category.setAdapter(mCategory_ArrayAdapter);
+
+            mSpinner_Category.setAdapter(getCategory_ArrayAdapter());
             String category = item.getCategory();
-            int index = mCategory_ArrayAdapter.getPosition(category);
+            int index = getCategory_ArrayAdapter().getPosition(category);
             mSpinner_Category.setSelection(index);
 
             mTextView_Debit.setText(String.valueOf(item.getDebit()));
@@ -67,24 +67,49 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewHo
             mSpinner_Tender = itemView.findViewById(R.id.spinner_tender);
             mTextView_Vendor = itemView.findViewById(R.id.textView_vendor);
 
-            mExpenseLogGroups.add(new ExpenseLogGroup(itemView.findViewById(R.id.linearLayout_group_1),
-                    itemView.findViewById(R.id.spinner_category_1), itemView.findViewById(R.id.textView_debit_1),
-                    itemView.findViewById(R.id.textView_tax_1), itemView.findViewById(R.id.textView_for_whom_1)));
-            mExpenseLogGroups.add(new ExpenseLogGroup(itemView.findViewById(R.id.linearLayout_group_2),
-                    itemView.findViewById(R.id.spinner_category_2), itemView.findViewById(R.id.textView_debit_2),
-                    itemView.findViewById(R.id.textView_tax_2), itemView.findViewById(R.id.textView_for_whom_2)));
-            mExpenseLogGroups.add(new ExpenseLogGroup(itemView.findViewById(R.id.linearLayout_group_3),
-                    itemView.findViewById(R.id.spinner_category_3), itemView.findViewById(R.id.textView_debit_3),
-                    itemView.findViewById(R.id.textView_tax_3), itemView.findViewById(R.id.textView_for_whom_3)));
-            mExpenseLogGroups.add(new ExpenseLogGroup(itemView.findViewById(R.id.linearLayout_group_4),
-                    itemView.findViewById(R.id.spinner_category_4), itemView.findViewById(R.id.textView_debit_4),
-                    itemView.findViewById(R.id.textView_tax_4), itemView.findViewById(R.id.textView_for_whom_4)));
-            mExpenseLogGroups.add(new ExpenseLogGroup(itemView.findViewById(R.id.linearLayout_group_5),
-                    itemView.findViewById(R.id.spinner_category_5), itemView.findViewById(R.id.textView_debit_5),
-                    itemView.findViewById(R.id.textView_tax_5), itemView.findViewById(R.id.textView_for_whom_5)));
+            mExpenseLogGroups.add(
+                    new ExpenseLogGroup(
+                            itemView.findViewById(R.id.linearLayout_group_1),
+                            itemView.findViewById(R.id.spinner_category_1),
+                            itemView.findViewById(R.id.textView_debit_1),
+                            itemView.findViewById(R.id.textView_tax_1),
+                            itemView.findViewById(R.id.textView_for_whom_1))
+            );
+            mExpenseLogGroups.add(
+                    new ExpenseLogGroup(
+                            itemView.findViewById(R.id.linearLayout_group_2),
+                            itemView.findViewById(R.id.spinner_category_2),
+                            itemView.findViewById(R.id.textView_debit_2),
+                            itemView.findViewById(R.id.textView_tax_2),
+                            itemView.findViewById(R.id.textView_for_whom_2))
+            );
+            mExpenseLogGroups.add(
+                    new ExpenseLogGroup(
+                            itemView.findViewById(R.id.linearLayout_group_3),
+                            itemView.findViewById(R.id.spinner_category_3),
+                            itemView.findViewById(R.id.textView_debit_3),
+                            itemView.findViewById(R.id.textView_tax_3),
+                            itemView.findViewById(R.id.textView_for_whom_3))
+            );
+            mExpenseLogGroups.add(
+                    new ExpenseLogGroup(
+                            itemView.findViewById(R.id.linearLayout_group_4),
+                            itemView.findViewById(R.id.spinner_category_4),
+                            itemView.findViewById(R.id.textView_debit_4),
+                            itemView.findViewById(R.id.textView_tax_4),
+                            itemView.findViewById(R.id.textView_for_whom_4))
+            );
+            mExpenseLogGroups.add(
+                    new ExpenseLogGroup(
+                            itemView.findViewById(R.id.linearLayout_group_5),
+                            itemView.findViewById(R.id.spinner_category_5),
+                            itemView.findViewById(R.id.textView_debit_5),
+                            itemView.findViewById(R.id.textView_tax_5),
+                            itemView.findViewById(R.id.textView_for_whom_5))
+            );
 
             mSpinner_Periodicity = itemView.findViewById(R.id.spinner_recurring);
-            mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
+            mSpinner_Periodicity.setAdapter(getCategory_ArrayAdapter());
             mCheckbox_Receipt = itemView.findViewById(R.id.checkBox_receipt);
             mCheckbox_Server = itemView.findViewById(R.id.checkBox_server);
             mCheckbox_IsRecurring = itemView.findViewById(R.id.checkBox_is_recurring);
@@ -109,9 +134,9 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewHo
 
         Expense expense = expenses.get(position);
         holder.mTextView_Date.setText(DatabaseContract.toString(expense.getDate(), DatabaseContract.ANDROID_UI_DATE_PATTERN));
-        holder.mSpinner_Tender.setAdapter(mTender_ArrayAdapter);
+        holder.mSpinner_Tender.setAdapter(getLegalTender_ArrayAdapter());
         String tender = expense.getTenderString();
-        index = mTender_ArrayAdapter.getPosition(tender);
+        index = getLegalTender_ArrayAdapter().getPosition(tender);
         holder.mSpinner_Tender.setSelection(index);
         holder.mTextView_Vendor.setText(expense.getVendor());
 
@@ -134,8 +159,8 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.ViewHo
         holder.mCheckbox_IsRecurring.setOnClickListener(v -> holder.mSpinner_Periodicity.setVisibility((((CheckBox) v).isChecked() ? View.VISIBLE : View.GONE)));
 
         if ( expense.isRecurring() ) {
-            holder.mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
-            index = mCategoryPeriodicity_ArrayAdapter.getPosition(expense.getRecurring());
+            holder.mSpinner_Periodicity.setAdapter(getCategory_ArrayAdapter());
+            index = getCategory_ArrayAdapter().getPosition(expense.getRecurring());
             holder.mSpinner_Periodicity.setSelection(index);
         }
     }

@@ -2,7 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/constraintLayout_budget_item"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:background="@color/teal_200"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="10dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <TextView
@@ -20,7 +23,12 @@
     <TextView
         android:id="@+id/textView_Name"
         style="@style/Category_Spinner"
+        android:layout_marginTop="4dp"
+        android:background="#105010"
+        android:paddingStart="5dp"
+        android:paddingBottom="3dp"
         android:text="@string/category_name"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +37,7 @@
         android:id="@+id/linearLayout_TimeBracket_Main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/inset_border"
         android:orientation="vertical"
@@ -40,6 +48,7 @@
             android:id="@+id/linearLayout_TimeBracket_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 
             <TextView
@@ -52,10 +61,20 @@
                 app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_1"
                 app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_1" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_expense_group_add_button_1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:text="  +  "-->
+<!--                android:textSize="20sp"-->
+<!--                android:background="#005F00"-->
+<!--                android:textColor="#FFFFFF" />-->
+
             <TextView
                 android:id="@+id/textView_From_1"
                 style="@style/Date"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center_vertical|end" />
 
             <TextView
@@ -83,13 +102,13 @@
 
             <TextView
                 android:id="@+id/textView_MonthlyProrated_1"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Monthly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_0_000_mo" />
 
             <TextView
                 android:id="@+id/textView_WeeklyProrated_1"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Weekly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_000_wk" />
 
@@ -99,6 +118,7 @@
             android:id="@+id/linearLayout_TimeBracket_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:background="@color/light_teal_0">
 
             <TextView
@@ -111,11 +131,20 @@
                 app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_2"
                 app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_2" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_expense_group_add_button_2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:text="  +  "-->
+<!--                android:textSize="20sp"-->
+<!--                android:background="#005F00"-->
+<!--                android:textColor="#FFFFFF" />-->
 
             <TextView
                 android:id="@+id/textView_From_2"
                 style="@style/Date"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center_vertical|end" />
 
             <TextView
@@ -143,13 +172,13 @@
 
             <TextView
                 android:id="@+id/textView_MonthlyProrated_2"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Monthly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_0_000_mo" />
 
             <TextView
                 android:id="@+id/textView_WeeklyProrated_2"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Weekly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_000_wk" />
 
@@ -159,6 +188,7 @@
             android:id="@+id/linearLayout_TimeBracket_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 
             <TextView
@@ -171,10 +201,20 @@
                 app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_3"
                 app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_3" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_expense_group_add_button_3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:text="  +  "-->
+<!--                android:textSize="20sp"-->
+<!--                android:background="#005F00"-->
+<!--                android:textColor="#FFFFFF" />-->
+
             <TextView
                 android:id="@+id/textView_From_3"
                 style="@style/Date"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center_vertical|end" />
 
             <TextView
@@ -202,13 +242,13 @@
 
             <TextView
                 android:id="@+id/textView_MonthlyProrated_3"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Monthly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_0_000_mo" />
 
             <TextView
                 android:id="@+id/textView_WeeklyProrated_3"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Weekly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_000_wk" />
 
@@ -218,6 +258,7 @@
             android:id="@+id/linearLayout_TimeBracket_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:background="@color/light_teal_0">
 
             <TextView
@@ -230,10 +271,20 @@
                 app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_4"
                 app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_4" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_expense_group_add_button_4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:text="  +  "-->
+<!--                android:textSize="20sp"-->
+<!--                android:background="#005F00"-->
+<!--                android:textColor="#FFFFFF" />-->
+
             <TextView
                 android:id="@+id/textView_From_4"
                 style="@style/Date"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center_vertical|end" />
 
             <TextView
@@ -261,13 +312,13 @@
 
             <TextView
                 android:id="@+id/textView_MonthlyProrated_4"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Monthly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_0_000_mo" />
 
             <TextView
                 android:id="@+id/textView_WeeklyProrated_4"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Weekly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_000_wk" />
 
@@ -277,6 +328,7 @@
             android:id="@+id/linearLayout_TimeBracket_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 
             <TextView
@@ -289,10 +341,20 @@
                 app:layout_constraintStart_toStartOf="@id/linearLayout_TimeBracket_5"
                 app:layout_constraintTop_toTopOf="@id/linearLayout_TimeBracket_5" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_expense_group_add_button_5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="invisible"-->
+<!--                android:text="  +  "-->
+<!--                android:textSize="20sp"-->
+<!--                android:background="#005F00"-->
+<!--                android:textColor="#FFFFFF" />-->
+
             <TextView
                 android:id="@+id/textView_From_5"
                 style="@style/Date"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="4dp"
                 android:gravity="center_vertical|end" />
 
             <TextView
@@ -320,13 +382,13 @@
 
             <TextView
                 android:id="@+id/textView_MonthlyProrated_5"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Monthly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_0_000_mo" />
 
             <TextView
                 android:id="@+id/textView_WeeklyProrated_5"
-                style="@style/Budget_Prorated_Fields"
+                style="@style/Budget_Prorated_Weekly_Rate"
                 android:textAlignment="textEnd"
                 android:text="@string/_000_wk" />
 
@@ -338,6 +400,8 @@
         style="@style/Base"
         android:layout_width="75dp"
         android:layout_marginStart="8dp"
+        android:background="#105010"
+        android:textColor="#FFFFFF"
         android:text="@string/due_date"
         android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@+id/textView_Name"
@@ -347,6 +411,9 @@
         android:id="@+id/textView_DueDate"
         style="@style/Base"
         android:layout_width="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:background="#105010"
+        android:textColor="#FFFFFF"
         android:text="@string/_00_00"
         app:layout_constraintStart_toEndOf="@+id/label_DueDate"
         app:layout_constraintTop_toBottomOf="@+id/textView_Cap" />
@@ -356,6 +423,8 @@
         style="@style/Base"
         android:layout_width="75dp"
         android:layout_marginStart="8dp"
+        android:background="#105010"
+        android:textColor="#FFFFFF"
         android:text="@string/cap"
         android:textAlignment="textEnd"
         app:layout_constraintStart_toEndOf="@+id/textView_Name"
@@ -365,6 +434,9 @@
         android:id="@+id/textView_Cap"
         style="@style/Base"
         android:layout_width="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:background="#105010"
+        android:textColor="#FFFFFF"
         android:text="@string/_0_000_00"
         app:layout_constraintStart_toEndOf="@+id/label_AmountCap"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,11 +1,11 @@
-package com.waltoncraftsllc.waterfrontcashflow.contaIners;
+package com.waltoncraftsllc.waterfrontcashflow.containers;
 
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__AMOUNT;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__BUDGET_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__FROM_DATE;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__PERIODICITY_FK;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.BUDGET_TIME_BRACKET__TO_DATE;
-import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.getPeriodicitySpinnerText;
+import static com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper.findPeriodicitySpinnerText;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -49,7 +49,7 @@ public class Budget_TimeBracket {
         mToDate = Date.valueOf(bracket_cursor.getString(to_date_col_index));
         mAmount = new Money(bracket_cursor.getString(amount_col_index));
         mPeriodicity = bracket_cursor.getLong(periodicity_col_index);  // <-- represents both the primary key and the actual annual frequency.
-        mPeriodicity_str = getPeriodicitySpinnerText(mPeriodicity);
+        mPeriodicity_str = findPeriodicitySpinnerText(mPeriodicity);
         calculateScalers();
     }
 

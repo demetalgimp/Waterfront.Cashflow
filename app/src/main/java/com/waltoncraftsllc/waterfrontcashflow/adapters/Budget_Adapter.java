@@ -1,11 +1,13 @@
 package com.waltoncraftsllc.waterfrontcashflow.adapters;
 
-import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.mCategoryPeriodicity_ArrayAdapter;
+import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getCategory_ArrayAdapter;
+import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getPeriodicity_ArrayAdapter;
 import static com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract.ANDROID_UI_DATE_PATTERN;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -14,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
 import com.waltoncraftsllc.waterfrontcashflow.database.Sqlite_ConnectionHelper;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget;
-import com.waltoncraftsllc.waterfrontcashflow.contaIners.Budget_TimeBracket;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Budget;
+import com.waltoncraftsllc.waterfrontcashflow.containers.Budget_TimeBracket;
 import com.waltoncraftsllc.waterfrontcashflow.database.DatabaseContract;
 import com.waltoncraftsllc.waterfrontcashflow.tools.Money;
 
@@ -45,8 +47,9 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
             mTextView_FromDate.setText(DatabaseContract.toString(item.getFromDate(), ANDROID_UI_DATE_PATTERN));
             mTextView_ToDate.setText(DatabaseContract.toString(item.getToDate(), ANDROID_UI_DATE_PATTERN));
             mTextView_Amount.setText(item.getAmount().toString());
-            mSpinner_Periodicity.setAdapter(mCategoryPeriodicity_ArrayAdapter);
-            int index = mCategoryPeriodicity_ArrayAdapter.getPosition(item.getPeriodicity_str());
+            mSpinner_Periodicity.setAdapter(getCategory_ArrayAdapter());
+            ArrayAdapter adapter = getPeriodicity_ArrayAdapter();
+            int index = adapter.getPosition(item.getPeriodicity_str());
             mSpinner_Periodicity.setSelection(index);
             mTextView_Monthly.setText(item.getProratedMonthly());
             mTextView_Weekly.setText(item.getProratedWeekly());
@@ -134,7 +137,7 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
         holder.mTextView_DueDate.setVisibility( (budget.hasDueDate()? View.VISIBLE: View.GONE) );
         holder.mLabel_DueDate.setVisibility( (budget.hasDueDate()? View.VISIBLE: View.GONE) );
 
-        mCategoryPeriodicity_ArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        getPeriodicity_ArrayAdapter().setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         holder.mTextView_DueDate.setText( (budget.hasDueDate()? DatabaseContract.toString(budget.getDueDate(), ANDROID_UI_DATE_PATTERN): "") );
         holder.mTextView_AmountCap.setText( (budget.hasAmountCap()? budget.getAmountCap().toString(): "") );
