@@ -61,10 +61,10 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 /** public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version)
  *
- * @param context
- * @param name
- * @param factory
- * @param version
+ * @param context: - #Context#
+ * @param name:    - #String#
+ * @param factory: - #SQLiteDatabase.CursorFactory#
+ * @param version: - #int#
  */
     public Sqlite_ConnectionHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -84,7 +84,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 /** void onCreate(SQLiteDatabase db)
  * Do any initialization upon first creating new database.
- * @param db: #SQLiteDatabase# The SQLite database handle.
+ * @param db: - #SQLiteDatabase# The SQLite database handle.
  */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -129,9 +129,9 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 /** long getSpinnerKey(Pair<Long, String>[] list, String periodicity)
  * Convert the text into the database key by searching 'list'.
- * @param list:        #Pair<Long, String>[]# The list of Spinner text and database IDs.
- * @param periodicity: #String# The text to search.
- * @return result:     #long# The database ID.
+ * @param list:        - #Pair<Long, String>[]# The list of Spinner text and database IDs.
+ * @param periodicity: - #String# The text to search.
+ * @return result:     - #long# The database ID.
  */
     private static long findSpinnerKey(Pair<Long, String>[] list, String periodicity) {
         return Arrays.stream(list).filter((pair) -> pair.getValue().equals(periodicity)).findFirst().map(Pair::getKey).orElse(-1L);
@@ -142,9 +142,9 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
 /** String getSpinnerText(Pair<Long, String>[] list, long period)
  * Convert database ID into spinner-ready text.
- * @param list:    #Pair <Long, String>[]# The list of Spinner text and database IDs.
- * @param period:  #String# The database ID to find.
- * @return result: #String# The Spinner-ready text.
+ * @param list:    - #Pair <Long, String>[]# The list of Spinner text and database IDs.
+ * @param period:  - #String# The database ID to find.
+ * @return result: - #String# The Spinner-ready text.
  */
     private static String findSpinnerText(Pair<Long, String>[] list, Long period) {
         return Arrays.stream(list).filter((pair) -> pair.getKey().equals(period)).findFirst().map(Pair::getValue).orElse("");
@@ -266,7 +266,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 //---------------------------------------------------------------- Periodicities Table ---------------------------------------------------------------
     /** void createPeriodicitiesTable(SQLiteDatabase db)
      * Create the "Periodicities" string table.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
+     * @param db: - #SQLiteDatabase# The SQLite database handle.
      */
 //    private void createPeriodicitiesTable(SQLiteDatabase db) {
 //        createLabelsTable(db, PERIODICITY_LABELS__DEFINE_TABLE, mPeriodicities, PERIODICITY_LABELS__TABLE_NAME, PERIODICITY_LABELS__ID, PERIODICITY_LABELS__NAME);
@@ -281,12 +281,12 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return toStrings(mPeriodicities);
     }
 
-    /** void replacePeriodicities(ArrayList<CharSequence> periodicities)
-     * Replace periodicities
-     * @param periodicities - #ArrayList<CharSequence>#
-     *
-     * FIXME: We cannot replace the table without fixing all of the references to it.
-     */
+//    /** void replacePeriodicities(ArrayList<CharSequence> periodicities)
+//     * Replace periodicities
+//     * @param periodicities - #ArrayList<CharSequence>#
+//     *
+//     * FIXME: We cannot replace the table without fixing all of the references to it.
+//     */
 //    public void replacePeriodicities(ArrayList<CharSequence> periodicities) {
 //        SQLiteDatabase db = getWritableDatabase();
 //        db.execSQL(PERIODICITY_LABELS__DROP_TABLE);
@@ -303,10 +303,10 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 //    }
 
 //--------------------------------------------------------------------- Tenders Table ----------------------------------------------------------------
-    /** void createTendersTable(SQLiteDatabase db)
-     * Create the "Tenders" (or Legal Tenders) string table.
-     * @param db: #SQLiteDatabase# The SQLite database handle.
-     */
+//    /** void createTendersTable(SQLiteDatabase db)
+//     * Create the "Tenders" (or Legal Tenders) string table.
+//     * @param db: #SQLiteDatabase# The SQLite database handle.
+//     */
 //    private void createLegalTendersTable(SQLiteDatabase db) {
 //        createLabelsTable(db, LEGAL_TENDER_LABELS__DEFINE_TABLE, mLegalTenders, LEGAL_TENDER_LABELS__TABLE_NAME, LEGAL_TENDER_LABELS__ID, LEGAL_TENDER_LABELS__NAME);        db.execSQL(LEGAL_TENDER_LABELS__DEFINE_TABLE);
 //    }
@@ -320,10 +320,10 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
         return toStrings(mLegalTenders);
     }
 
-    /** void replaceTenders(ArrayList<CharSequence> tenders)
-     * Replace (legal) tenders
-     * @param tenders: #ArrayList<CharSequence>#
-     */
+//    /** void replaceTenders(ArrayList<CharSequence> tenders)
+//     * Replace (legal) tenders
+//     * @param tenders: #ArrayList<CharSequence>#
+//     */
 //    public void replaceLegalTenders(ArrayList<CharSequence> tenders) {
 //        SQLiteDatabase db = getWritableDatabase();
 //        db.execSQL(LEGAL_TENDER_LABELS__DROP_TABLE);

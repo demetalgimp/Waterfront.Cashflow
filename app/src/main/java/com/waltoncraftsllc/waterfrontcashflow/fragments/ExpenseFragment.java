@@ -1,7 +1,5 @@
 package com.waltoncraftsllc.waterfrontcashflow.fragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,17 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.waltoncraftsllc.waterfrontcashflow.MainActivity;
 import com.waltoncraftsllc.waterfrontcashflow.R;
 
 public class ExpenseFragment extends Fragment {
 
-    private ExpenseViewModel mViewModel;
-
+//    private ExpenseViewModel mViewModel;
     public static ExpenseFragment newInstance() {
         return new ExpenseFragment();
     }

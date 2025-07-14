@@ -1,7 +1,6 @@
 package com.waltoncraftsllc.waterfrontcashflow.fragments;
 
 import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getCategory_ArrayAdapter;
-import static com.waltoncraftsllc.waterfrontcashflow.MainActivity.getLegalTender_ArrayAdapter;
 
 import android.os.Bundle;
 
@@ -33,38 +32,38 @@ public class ExpenseGroupListFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    private String mParam1;
+//    private String mParam2;
 
     public ExpenseGroupListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ExpenseGroupListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ExpenseGroupListFragment newInstance(String param1, String param2) {
-        ExpenseGroupListFragment fragment = new ExpenseGroupListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment ExpenseGroupListFragment.
+//     */
+//    // TODO: Rename and change types and number of parameters
+//    public static ExpenseGroupListFragment newInstance(String param1, String param2) {
+//        ExpenseGroupListFragment fragment = new ExpenseGroupListFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
     }
 
     @Override
