@@ -19,11 +19,6 @@ import com.waltoncraftsllc.waterfrontcashflow.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ExpenseGroupListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ExpenseGroupListFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
