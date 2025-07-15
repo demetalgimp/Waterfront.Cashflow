@@ -228,7 +228,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 //        createLabelsTable(db, CATEGORIES__DEFINE_TABLE, mCategories, CATEGORIES__TABLE_NAME, CATEGORIES__ID, CATEGORIES__NAME);
 //    }
 
-    public ArrayList<CharSequence> toStrings(Pair[] pairs) {
+    public ArrayList<CharSequence> toStrings(Pair<Long, String>[] pairs) {
         ArrayList<CharSequence> result = new ArrayList<>();
         for ( Pair<Long, String> pair : pairs ) {
             result.add(pair.getValue());
@@ -407,7 +407,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     //--- First, add budget record, getting ID; then, for all time brackets, add records
         long budget_rec_id = db.insert(BUDGET__TABLE_NAME, null, Budget.fillDatabaseRecord(budget)); // <-- Grab record ID for time brackets
         for ( Budget_TimeBracket bracket: budget.getTimeBrackets() ) {
-            long id = db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
+            db.insert(BUDGET_TIME_BRACKET__TABLE_NAME, null, Budget_TimeBracket.fillDatabaseRecord(bracket, budget_rec_id));
         }
 
     //--- Clean up
@@ -434,8 +434,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
     }
 
     /** public void updateBudgetRecord(Budget budget)
-     *
-     * @param budget
+     * @param budget - #Budget#
      */
     public void updateBudgetRecord(Budget budget) {
 //TODO
@@ -500,7 +499,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
      * @return rec_id: #long# - The database ID for the new record.
      */
     public long insertExpenseLogRecord(Expense expense) {
-        long rec_id = -1;
+        long rec_id;
         SQLiteDatabase db = getWritableDatabase();
 
     //--- Add Expense record
@@ -536,7 +535,7 @@ public class Sqlite_ConnectionHelper extends SQLiteOpenHelper {
 
     /** public void updateExpenseLogRecord(Expense item)
      *
-     * @param item
+     * @param item - #Expense#
      */
     public void updateExpenseLogRecord(Expense item) {
 //TODO

@@ -196,7 +196,7 @@ public class Budget_Adapter extends RecyclerView.Adapter<Budget_Adapter.ViewHold
                 new Budget_TimeBracket(0L, "2025-04-01", "2025-07-31", new Money("275"), "Weekly (52/yr)"),
                 new Budget_TimeBracket(0L, "2025-08-01", "2025-10-31", new Money("275"), "Weekly (52/yr)"),
                 new Budget_TimeBracket(0L, "2025-11-01", "2025-12-31", new Money("275"), "Weekly (52/yr)")))));
-        mBudgets.add(new Budget("./Consumables/Non-Food", new ArrayList<>(Arrays.asList(
+        mBudgets.add(new Budget("./Consumables/Non-Food", new ArrayList<>(Collections.singletonList(
                 new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("45"), "Weekly (52/yr)")))));
         mBudgets.add(new Budget("./Personal/Health/Dental", new ArrayList<>(Collections.singletonList(
                 new Budget_TimeBracket(0L, "2025-01-01", "2025-12-31", new Money("11"), "Monthly (12/yr)")))));
