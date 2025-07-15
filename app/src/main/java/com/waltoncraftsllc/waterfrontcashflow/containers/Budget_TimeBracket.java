@@ -27,7 +27,7 @@ public class Budget_TimeBracket {
         Money proratedMonthly; // <-- generated
         Money proratedWeekly; // <-- generated
 
-    public Budget_TimeBracket(long budget_fk, String from, String to, Money amount, String periodicity) {
+    private void init(long budget_fk, String from, String to, Money amount, String periodicity) {
         this.mBudget_FK = budget_fk;
         this.mFromDate = Date.valueOf(from);
         this.mToDate = Date.valueOf(to);
@@ -35,6 +35,12 @@ public class Budget_TimeBracket {
         this.mPeriodicity_str = periodicity;
         this.mPeriodicity = Integer.parseInt(periodicity.replaceAll("[^0-9]*", ""));
         calculateScalers();
+    }
+    public Budget_TimeBracket(long budget_fk, String from, String to, Money amount, String periodicity) {
+        init(budget_fk, from, to, amount, periodicity);
+    }
+    public Budget_TimeBracket(String from, String to, Money amount, String periodicity) {
+        init(0L, from, to, amount, periodicity);
     }
 
     public Budget_TimeBracket(Cursor bracket_cursor) {
