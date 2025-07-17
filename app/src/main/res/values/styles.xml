@@ -33,12 +33,15 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">@drawable/inset_border</item>
+<!--        <item name="android:background">@drawable/inset_border</item>-->
+
+        <item name="android:background">#1020B0</item>
     </style>
     <style name="Calendar_Day_Header" parent="Calendar_Day">
         <item name="android:layout_height">30dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#FFFF00</item>
+        <item name="android:background">#B02010</item>
     </style>
     <style name="Fragment_Expense" parent="">
         <item name="android:layout_width">wrap_content</item>

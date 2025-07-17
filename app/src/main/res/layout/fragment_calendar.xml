@@ -1,244 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".fragments.CalendarFragment"
-    android:background="#80FFFFFF"
-    android:rowCount="7"
-    android:columnCount="9">
+    android:background="#80000000">
 
-    <TextView android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView_Sunday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Sun" />
-    <TextView
-        android:id="@+id/textView_Monday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Mon" />
-    <TextView
-        android:id="@+id/textView_Tuesday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Tue" />
-    <TextView
-        android:id="@+id/textView_Wednesday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Wed" />
-    <TextView
-        android:id="@+id/textView_Thursday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Thu" />
-    <TextView
-        android:id="@+id/textView_Friday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Fri" />
-    <TextView
-        android:id="@+id/textView_Saturday_header_row"
-        style="@style/Calendar_Day_Header"
-        android:text="Sat" />
-    <TextView android:textSize="18sp" />
-
-    <View
-        android:id="@+id/view_Calendar_name1"
-        android:layout_width="57dp"
+    <com.waltoncraftsllc.waterfrontcashflow.VerticalTextView
+        android:id="@+id/view_previous_month_name"
+        android:layout_width="wrap_content"
         android:layout_height="270dp"
-        android:layout_rowSpan="6"
+        android:background="#50C090"
+        android:text="Previous Month"
         android:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        android:background="#203020" />
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
+        app:layout_constraintEnd_toStartOf="@+id/gridLayout"
+        tools:layout_editor_absoluteX="16dp" />
 
-    <TextView
-        android:id="@+id/textView_Sunday_week1"
-        style="@style/Calendar_Day"
-        android:text="1" />
-    <TextView
-        android:id="@+id/textView_Monday_week1"
-        style="@style/Calendar_Day"
-        android:text="2" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week1"
-        style="@style/Calendar_Day"
-        android:text="3" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week1"
-        style="@style/Calendar_Day"
-        android:text="4" />
-    <TextView
-        android:id="@+id/textView_Thursday_week1"
-        style="@style/Calendar_Day"
-        android:text="5" />
-    <TextView
-        android:id="@+id/textView_Friday_week1"
-        style="@style/Calendar_Day"
-        android:text="6" />
-    <TextView
-        android:id="@+id/textView_Saturday_week1"
-        style="@style/Calendar_Day"
-        android:text="7" />
-    <View
-        android:id="@+id/view_Calendar_name_2"
-        android:layout_width="57dp"
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:columnCount="7"
+        android:rowCount="8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_previous_month_name"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_current_month_name"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            style="@style/Calendar_Day_Header"
+            android:layout_columnSpan="7"
+            android:layout_gravity="center_horizontal"
+            android:background="#800000"
+            android:textSize="28sp"
+            android:text=" December (2025) "/>
+
+        <TextView
+            android:id="@+id/textView_Sunday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/sun" />
+
+        <TextView
+            android:id="@+id/textView_Monday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/mon" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/tue" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/wed" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/thu" />
+
+        <TextView
+            android:id="@+id/textView_Friday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/fri" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_header_row"
+            style="@style/Calendar_Day_Header"
+            android:text="@string/sat" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week1"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week2"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week3"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week4"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week5"
+            style="@style/Calendar_Day"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView_Sunday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Monday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Tuesday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Wednesday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Thursday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Friday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_Saturday_week6"
+            style="@style/Calendar_Day"
+            android:text=""
+            android:visibility="visible" />
+
+    </GridLayout>
+
+    <com.waltoncraftsllc.waterfrontcashflow.VerticalTextView
+        android:id="@+id/view_next_month_name"
+        android:layout_width="wrap_content"
         android:layout_height="270dp"
-        android:layout_rowSpan="6"
+        android:background="#50C090"
+        android:gravity="bottom"
+        android:text="Next Month"
         android:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        android:background="#203020" />
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
+        app:layout_constraintStart_toEndOf="@+id/gridLayout"
+        tools:ignore="RtlCompat" />
 
-
-    <TextView
-        android:id="@+id/textView_Sunday_week2"
-        style="@style/Calendar_Day"
-        android:text="11" />
-    <TextView
-        android:id="@+id/textView_Monday_week2"
-        style="@style/Calendar_Day"
-        android:text="12" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week2"
-        style="@style/Calendar_Day"
-        android:text="13" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week2"
-        style="@style/Calendar_Day"
-        android:text="14" />
-    <TextView
-        android:id="@+id/textView_Thursday_week2"
-        style="@style/Calendar_Day"
-        android:text="15" />
-    <TextView
-        android:id="@+id/textView_Friday_week2"
-        style="@style/Calendar_Day"
-        android:text="16" />
-    <TextView
-        android:id="@+id/textView_Saturday_week2"
-        style="@style/Calendar_Day"
-        android:text="17" />
-
-    <TextView
-        android:id="@+id/textView_Sunday_week3"
-        style="@style/Calendar_Day"
-        android:text="21" />
-    <TextView
-        android:id="@+id/textView_Monday_week3"
-        style="@style/Calendar_Day"
-        android:text="22" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week3"
-        style="@style/Calendar_Day"
-        android:text="23" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week3"
-        style="@style/Calendar_Day"
-        android:text="24" />
-    <TextView
-        android:id="@+id/textView_Thursday_week3"
-        style="@style/Calendar_Day"
-        android:text="25" />
-    <TextView
-        android:id="@+id/textView_Friday_week3"
-        style="@style/Calendar_Day"
-        android:text="26" />
-    <TextView
-        android:id="@+id/textView_Saturday_week3"
-        style="@style/Calendar_Day"
-        android:text="27" />
-
-    <TextView
-        android:id="@+id/textView_Sunday_week4"
-        style="@style/Calendar_Day"
-        android:text="31" />
-    <TextView
-        android:id="@+id/textView_Monday_week4"
-        style="@style/Calendar_Day"
-        android:text="32" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week4"
-        style="@style/Calendar_Day"
-        android:text="33" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week4"
-        style="@style/Calendar_Day"
-        android:text="34" />
-    <TextView
-        android:id="@+id/textView_Thursday_week4"
-        style="@style/Calendar_Day"
-        android:text="35" />
-    <TextView
-        android:id="@+id/textView_Friday_week4"
-        style="@style/Calendar_Day"
-        android:text="36" />
-    <TextView
-        android:id="@+id/textView_Saturday_week4"
-        style="@style/Calendar_Day"
-        android:text="37" />
-
-    <TextView
-        android:id="@+id/textView_Sunday_week5"
-        style="@style/Calendar_Day"
-        android:text="41" />
-    <TextView
-        android:id="@+id/textView_Monday_week5"
-        style="@style/Calendar_Day"
-        android:text="42" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week5"
-        style="@style/Calendar_Day"
-        android:text="43" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week5"
-        style="@style/Calendar_Day"
-        android:text="44" />
-    <TextView
-        android:id="@+id/textView_Thursday_week5"
-        style="@style/Calendar_Day"
-        android:text="45" />
-    <TextView
-        android:id="@+id/textView_Friday_week5"
-        style="@style/Calendar_Day"
-        android:text="46" />
-    <TextView
-        android:id="@+id/textView_Saturday_week5"
-        style="@style/Calendar_Day"
-        android:text="47" />
-
-    <TextView
-        android:id="@+id/textView_Sunday_week6"
-        style="@style/Calendar_Day"
-        android:text="51" />
-    <TextView
-        android:id="@+id/textView_Monday_week6"
-        style="@style/Calendar_Day"
-        android:text="52" />
-    <TextView
-        android:id="@+id/textView_Tuesday_week6"
-        style="@style/Calendar_Day"
-        android:text="53" />
-    <TextView
-        android:id="@+id/textView_Wednesday_week6"
-        style="@style/Calendar_Day"
-        android:text="54" />
-    <TextView
-        android:id="@+id/textView_Thursday_week6"
-        style="@style/Calendar_Day"
-        android:text="55" />
-    <TextView
-        android:id="@+id/textView_Friday_week6"
-        style="@style/Calendar_Day"
-        android:text="56" />
-    <TextView
-        android:id="@+id/textView_Saturday_week6"
-        style="@style/Calendar_Day"
-        android:text="57" />
-    <TextView
-        android:layout_columnSpan="9"
-        android:layout_width="511dp"
-        android:layout_height="20dp"
-        android:background="#203020"
-        />
-
-</GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
