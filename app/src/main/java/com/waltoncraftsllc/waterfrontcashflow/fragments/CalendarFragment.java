@@ -65,10 +65,10 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+//        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        }
     }
 
     private void writeMonth(TextView view, LocalDate date) {
@@ -80,7 +80,7 @@ public class CalendarFragment extends Fragment {
 
     /** private void fillCalendarView(LocalDate date)
      * Fill
-     * @param date
+     * @param date - #date# - The month that needs to be populated.
      */
     private void fillCalendarView(LocalDate date) {
         mThisMonth = date;

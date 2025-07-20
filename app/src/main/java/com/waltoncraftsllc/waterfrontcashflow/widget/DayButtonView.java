@@ -8,15 +8,17 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
 
 public class DayButtonView extends View implements View.OnClickListener {
-    private String mText = "120";
-    private float mTextSize = 12.0F;
-    private int mTextColor = 0xFFFFFF;
-    private int mBackgroundColor = 0x000000;
+    private String mText;
+    private float mTextSize;
+    private int mTextColor;
+    private int mBackgroundColor;
     private OnClickListener mOnClickListener = null;
 
     public DayButtonView(Context context, AttributeSet attrs) {
@@ -60,7 +62,7 @@ public class DayButtonView extends View implements View.OnClickListener {
     private Paint _paint = new Paint();
     private Rect _rect = new Rect();
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
         _paint.reset();
