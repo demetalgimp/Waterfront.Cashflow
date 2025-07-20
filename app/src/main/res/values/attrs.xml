@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="DayButtonView">
+        <attr name="text" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="buttonBackground" format="integer" />
+    </declare-styleable>
+</resources>

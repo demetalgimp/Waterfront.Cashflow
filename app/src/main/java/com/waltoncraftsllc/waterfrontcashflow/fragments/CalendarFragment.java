@@ -1,8 +1,5 @@
 package com.waltoncraftsllc.waterfrontcashflow.fragments;
 
-import static java.time.YearMonth.now;
-
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,12 +12,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
-import com.waltoncraftsllc.waterfrontcashflow.VerticalTextView;
+import com.waltoncraftsllc.waterfrontcashflow.widget.VerticalTextView;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 
 /**
@@ -36,8 +32,8 @@ public class CalendarFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    private String mParam1;
+//    private String mParam2;
     TextView mView_CurrentMonth;
     VerticalTextView mView_PreviousMonth;
     VerticalTextView mView_NextMonth;
@@ -70,8 +66,8 @@ public class CalendarFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -79,6 +75,7 @@ public class CalendarFragment extends Fragment {
         Month month = date.getMonth();
         String month_name = month.getDisplayName(TextStyle.FULL, Locale.US);
         view.setText(String.format(Locale.US, "  %s (%04d)  ", month_name, date.getYear()));
+//        view.setBackgroundColor(0xFF0000);
     }
 
     /** private void fillCalendarView(LocalDate date)
@@ -96,18 +93,21 @@ public class CalendarFragment extends Fragment {
 [(start_day_of_month + days_in_current_month)...(mCalendarTextViews.length - 1)] = next month
 *******************************************************************************************************/
         for ( int i = 0; i < mCalendarTextViews.length; i++ ) {
-            int background = 0xF03030;
+//            int background = 0xF03030;
             if ( i < start_day_of_month ) {
                 mCalendarTextViews[i].setText(String.valueOf(i + days_in_previous_month - start_day_of_month + 1));
+//                mCalendarTextViews[i].setTextColor(0x404040);
             }
             if ( start_day_of_month <= i  &&  i < start_day_of_month + days_in_current_month ) {
                 mCalendarTextViews[i].setText(String.valueOf(i - start_day_of_month + 1));
-                background = 0x0000FF;
+//                mCalendarTextViews[i].setTextColor(0xFFFFFF);
+//                background = 0x0000FF;
             }
             if ( (start_day_of_month + days_in_current_month) <= i  &&  i < mCalendarTextViews.length ) {
                 mCalendarTextViews[i].setText(String.valueOf(i - (days_in_current_month + start_day_of_month) + 1));
+//                mCalendarTextViews[i].setTextColor(0x404040);
             }
-            mCalendarTextViews[i].setBackgroundColor(background);
+//            mCalendarTextViews[i].setBackgroundColor(background);
         }
 
         writeMonth(mView_CurrentMonth, mThisMonth);
@@ -130,6 +130,7 @@ public class CalendarFragment extends Fragment {
             mCalendarTextViews[i] = view.findViewById(mCalendarIDs[i]);
             mCalendarTextViews[i].setOnClickListener(v -> {
                 v.setBackgroundColor(0);
+                ((TextView)v).setTextColor(0xFF0000);
             });
         }
         mView_CurrentMonth = view.findViewById(R.id.textView_current_month_name);

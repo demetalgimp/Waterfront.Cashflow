@@ -1,7 +1,8 @@
-package com.waltoncraftsllc.waterfrontcashflow;
+package com.waltoncraftsllc.waterfrontcashflow.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -24,7 +25,7 @@ public class VerticalTextView extends androidx.appcompat.widget.AppCompatTextVie
     }
 
     @Override
-    protected void onDraw( Canvas canvas ) {
+    protected void onDraw(Canvas canvas) {
         TextPaint textPaint = getPaint();
         textPaint.setColor( getCurrentTextColor() );
         textPaint.drawableState = getDrawableState();
@@ -41,6 +42,12 @@ public class VerticalTextView extends androidx.appcompat.widget.AppCompatTextVie
 
         canvas.translate(getCompoundPaddingLeft(), getExtendedPaddingTop());
         getLayout().draw(canvas);
+
+        Paint paint = getPaint();
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setColor(0xFF0000);
+        canvas.drawRect(10, 10, 100, 100, paint);
+
         canvas.restore();
     }
 }

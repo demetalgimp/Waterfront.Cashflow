@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <!-- Bottom border (e.g., Red) -->
+        <item>
+            <shape android:shape="rectangle">
+                <solid android:color="#FF0000" />
+                <size android:height="2dp" /> <!-- Adjust border thickness -->
+            </shape>
+        </item>
+
+        <!-- Top border (e.g., Blue) -->
+        <item android:bottom="2dp"> <!-- Offset to allow previous item to show -->
+            <shape android:shape="rectangle">
+                <solid android:color="#0000FF" />
+                <size android:height="2dp" />
+            </shape>
+        </item>
+
+        <!-- Left border (e.g., Green) -->
+        <item android:right="2dp"> <!-- Offset -->
+            <shape android:shape="rectangle">
+                <solid android:color="#00FF00" />
+                <size android:width="2dp" />
+            </shape>
+        </item>
+
+        <!-- Right border (e.g., Yellow) -->
+        <item android:left="2dp"> <!-- Offset -->
+            <shape android:shape="rectangle">
+                <solid android:color="#FFFF00" />
+                <size android:width="2dp" />
+            </shape>
+        </item>
+
+        <!-- Inner content (background of the box) -->
+        <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+            <shape android:shape="rectangle">
+                <solid android:color="@android:color/white" /> <!-- Set desired background color -->
+            </shape>
+        </item>
+
+</layer-list>

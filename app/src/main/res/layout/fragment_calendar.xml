@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,39 +9,52 @@
     tools:context=".fragments.CalendarFragment"
     android:background="#80000000">
 
-    <com.waltoncraftsllc.waterfrontcashflow.VerticalTextView
+    <View
+        android:id="@+id/view"
+        android:layout_width="545dp"
+        android:layout_height="380dp"
+        android:layout_row="0"
+        android:layout_column="6"
+        android:background="#000050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.waltoncraftsllc.waterfrontcashflow.widget.VerticalTextView
         android:id="@+id/view_previous_month_name"
         android:layout_width="wrap_content"
         android:layout_height="270dp"
         android:background="#50C090"
-        android:text="Previous Month"
+        android:text="@string/previous_month"
         android:textAlignment="center"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
-        app:layout_constraintEnd_toStartOf="@+id/gridLayout"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toStartOf="@+id/gridLayout" />
 
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#80000000"
         android:columnCount="7"
         android:rowCount="8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view_previous_month_name"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view">
 
         <TextView
             android:id="@+id/textView_current_month_name"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
             style="@style/Calendar_Day_Header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_columnSpan="7"
             android:layout_gravity="center_horizontal"
             android:background="#800000"
-            android:textSize="28sp"
-            android:text=" December (2025) "/>
+            android:text="@string/december_2025"
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/textView_Sunday_header_row"
@@ -293,16 +307,15 @@
             style="@style/Calendar_Day"
             android:text=""
             android:visibility="visible" />
-
     </GridLayout>
 
-    <com.waltoncraftsllc.waterfrontcashflow.VerticalTextView
+    <com.waltoncraftsllc.waterfrontcashflow.widget.VerticalTextView
         android:id="@+id/view_next_month_name"
         android:layout_width="wrap_content"
         android:layout_height="270dp"
         android:background="#50C090"
         android:gravity="bottom"
-        android:text="Next Month"
+        android:text="@string/next_month"
         android:textAlignment="center"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
