@@ -26,6 +26,7 @@
         android:layout_marginTop="4dp"
         android:background="#105010"
         android:paddingStart="5dp"
+        android:paddingEnd="0dp"
         android:paddingBottom="3dp"
         android:text="@string/category_name"
         android:textColor="#FFFFFF"
@@ -48,6 +49,7 @@
             android:id="@+id/linearLayout_TimeBracket_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 
@@ -118,6 +120,7 @@
             android:id="@+id/linearLayout_TimeBracket_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:background="@color/light_teal_0">
 
@@ -188,6 +191,7 @@
             android:id="@+id/linearLayout_TimeBracket_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 
@@ -258,6 +262,7 @@
             android:id="@+id/linearLayout_TimeBracket_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:background="@color/light_teal_0">
 
@@ -328,6 +333,7 @@
             android:id="@+id/linearLayout_TimeBracket_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:background="@color/light_teal_1">
 

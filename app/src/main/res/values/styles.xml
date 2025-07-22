@@ -33,7 +33,18 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textColor">#FFFFFF</item>
+        <item name="android:text">00</item>
         <item name="android:background">@drawable/inset_border_current_month</item>
+    </style>
+    <style name="Calendar_Day_custom" parent="">
+        <item name="android:layout_width">57dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:text">00</item>
+        <item name="android:background">#406040</item>
+        <item name="dayBorderColor">#203020</item>
+        <item name="dayBorderWidth">3sp</item>
     </style>
     <style name="Calendar_Day_Header" parent="Calendar_Day">
         <item name="android:layout_height">30dp</item>

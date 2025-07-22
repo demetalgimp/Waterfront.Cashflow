@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
+import com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView;
 import com.waltoncraftsllc.waterfrontcashflow.widget.VerticalTextView;
 
 import java.time.LocalDate;
@@ -59,8 +60,10 @@ public class CalendarFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    private static TextView[] mCalendarTextViews;
+//    private static TextView[] mCalendarTextViews;
+    private static DayButtonView[] mCalendarDayTextViews;
     private LocalDate mThisMonth;
+//    private GridLayout mGridLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,27 +90,28 @@ public class CalendarFragment extends Fragment {
         int start_day_of_month = LocalDate.of(date.getYear(), date.getMonth(), 1).getDayOfWeek().getValue();
         int days_in_current_month = mThisMonth.lengthOfMonth();
         int days_in_previous_month = mThisMonth.minusMonths(1).lengthOfMonth();
-/******************************************************************************************************
+/* *****************************************************************************************************
                                                   [0...(start_day_of_month - 1)] = previous month
          [start_day_of_month...(start_day_of_month + days_in_current_month - 1)] = current month
 [(start_day_of_month + days_in_current_month)...(mCalendarTextViews.length - 1)] = next month
-*******************************************************************************************************/
-        for ( int i = 0; i < mCalendarTextViews.length; i++ ) {
-//            int background = 0xF03030;
+****************************************************************************************************** */
+        for (int i = 0; i < mCalendarDayTextViews.length; i++ ) {
+            int background = 0x303030;
             if ( i < start_day_of_month ) {
-                mCalendarTextViews[i].setText(String.valueOf(i + days_in_previous_month - start_day_of_month + 1));
-//                mCalendarTextViews[i].setTextColor(0x404040);
+                mCalendarDayTextViews[i].setText(String.valueOf(i + days_in_previous_month - start_day_of_month + 1));
+//                mCalendarDayTextViews[i].setTextColor(0x404040);
             }
             if ( start_day_of_month <= i  &&  i < start_day_of_month + days_in_current_month ) {
-                mCalendarTextViews[i].setText(String.valueOf(i - start_day_of_month + 1));
-//                mCalendarTextViews[i].setTextColor(0xFFFFFF);
-//                background = 0x0000FF;
+                mCalendarDayTextViews[i].setText(String.valueOf(i - start_day_of_month + 1));
+//                mCalendarDayTextViews[i].setTextColor(0xFFFFFF);
+                background = 0x0000FF;
             }
-            if ( (start_day_of_month + days_in_current_month) <= i  &&  i < mCalendarTextViews.length ) {
-                mCalendarTextViews[i].setText(String.valueOf(i - (days_in_current_month + start_day_of_month) + 1));
-//                mCalendarTextViews[i].setTextColor(0x404040);
+            if ( (start_day_of_month + days_in_current_month) <= i  &&  i < mCalendarDayTextViews.length ) {
+                mCalendarDayTextViews[i].setText(String.valueOf(i - (days_in_current_month + start_day_of_month) + 1));
+//                mCalendarDayTextViews[i].setTextColor(0x404040);
             }
-//            mCalendarTextViews[i].setBackgroundColor(background);
+            mCalendarDayTextViews[i].setBackgroundColor(background);
+            mCalendarDayTextViews[i].invalidate();
         }
 
         writeMonth(mView_CurrentMonth, mThisMonth);
@@ -118,19 +122,21 @@ public class CalendarFragment extends Fragment {
         if ( mThisMonth.getMonth() == now.getMonth()  &&  mThisMonth.getYear() == now.getYear() ) {
             int current_day = mThisMonth.getDayOfMonth();
             int index_to_TextView = (7 - mThisMonth.getDayOfWeek().getValue()) + current_day - 1;
-            mCalendarTextViews[index_to_TextView - 1].setBackgroundColor(0);
+            mCalendarDayTextViews[index_to_TextView - 1].setBackgroundColor(0);
         }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCalendarTextViews = new TextView[mCalendarIDs.length];
+
+        mCalendarDayTextViews = new DayButtonView[mCalendarIDs.length];
         for ( int i = 0; i < mCalendarIDs.length; i++ ) {
-            mCalendarTextViews[i] = view.findViewById(mCalendarIDs[i]);
-            mCalendarTextViews[i].setOnClickListener(v -> {
-                v.setBackgroundColor(0);
-                ((TextView)v).setTextColor(0xFF0000);
+            mCalendarDayTextViews[i] = view.findViewById(mCalendarIDs[i]);
+            mCalendarDayTextViews[i].setOnClickListener(v -> {
+                ((DayButtonView)v).setBackgroundColor(0);
+                ((DayButtonView)v).setTextColor(0xFF0000);
+                ((DayButtonView)v).invalidate();
             });
         }
         mView_CurrentMonth = view.findViewById(R.id.textView_current_month_name);
@@ -150,23 +156,15 @@ public class CalendarFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
-    //            R.id.view_Calendar_name,
     final int[] mCalendarIDs = {
-            R.id.textView_Sunday_week1, R.id.textView_Monday_week1, R.id.textView_Tuesday_week1, R.id.textView_Wednesday_week1,
-                R.id.textView_Thursday_week1, R.id.textView_Friday_week1, R.id.textView_Saturday_week1,
-            R.id.textView_Sunday_week2, R.id.textView_Monday_week2, R.id.textView_Tuesday_week2, R.id.textView_Wednesday_week2,
-                R.id.textView_Thursday_week2, R.id.textView_Friday_week2, R.id.textView_Saturday_week2,
-            R.id.textView_Sunday_week3, R.id.textView_Monday_week3, R.id.textView_Tuesday_week3, R.id.textView_Wednesday_week3,
-                R.id.textView_Thursday_week3, R.id.textView_Friday_week3, R.id.textView_Saturday_week3,
-            R.id.textView_Sunday_week4, R.id.textView_Monday_week4, R.id.textView_Tuesday_week4, R.id.textView_Wednesday_week4,
-                R.id.textView_Thursday_week4, R.id.textView_Friday_week4, R.id.textView_Saturday_week4,
-            R.id.textView_Sunday_week5, R.id.textView_Monday_week5, R.id.textView_Tuesday_week5, R.id.textView_Wednesday_week5,
-                R.id.textView_Thursday_week5, R.id.textView_Friday_week5, R.id.textView_Saturday_week5,
-            R.id.textView_Sunday_week6, R.id.textView_Monday_week6, R.id.textView_Tuesday_week6, R.id.textView_Wednesday_week6,
-                R.id.textView_Thursday_week6, R.id.textView_Friday_week6, R.id.textView_Saturday_week6
+        R.id.sun_1, R.id.mon_1, R.id.tue_1, R.id.wed_1, R.id.thu_1, R.id.fri_1, R.id.sat_1,
+        R.id.sun_2, R.id.mon_2, R.id.tue_2, R.id.wed_2, R.id.thu_2, R.id.fri_2, R.id.sat_2,
+        R.id.sun_3, R.id.mon_3, R.id.tue_3, R.id.wed_3, R.id.thu_3, R.id.fri_3, R.id.sat_3,
+        R.id.sun_4, R.id.mon_4, R.id.tue_4, R.id.wed_4, R.id.thu_4, R.id.fri_4, R.id.sat_4,
+        R.id.sun_5, R.id.mon_5, R.id.tue_5, R.id.wed_5, R.id.thu_5, R.id.fri_5, R.id.sat_5,
+        R.id.sun_6, R.id.mon_6, R.id.tue_6, R.id.wed_6, R.id.thu_6, R.id.fri_6, R.id.sat_6
     };
 }
 

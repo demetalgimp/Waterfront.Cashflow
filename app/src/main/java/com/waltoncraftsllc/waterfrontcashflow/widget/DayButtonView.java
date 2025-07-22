@@ -14,34 +14,77 @@ import androidx.annotation.Nullable;
 
 import com.waltoncraftsllc.waterfrontcashflow.R;
 
-public class DayButtonView extends View implements View.OnClickListener {
+public class DayButtonView extends View {
     private String mText;
     private float mTextSize;
     private int mTextColor;
     private int mBackgroundColor;
-    private OnClickListener mOnClickListener = null;
+    private int mBorderColor;
+    private float mBorderWidth;
+    private String mTypeface;
+    private Paint mPaint = new Paint();
+    private Rect mRect = new Rect();
 
-    public DayButtonView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        TypedArray ta = null;
-        try {
-            ta = context.obtainStyledAttributes(attrs, R.styleable.DayButtonView, 0, 0);
-            mBackgroundColor = ta.getColor(R.styleable.DayButtonView_buttonBackground, 0x000000);
-            mTextColor = ta.getColor(R.styleable.DayButtonView_textColor, 0x000000);
-            mText = ta.getString(R.styleable.DayButtonView_text);
-            mTextSize = ta.getDimension(R.styleable.DayButtonView_textSize, 12.0F);
-        } finally {
-            if ( ta != null ) {
-                ta.recycle();
+    public DayButtonView copy(Context context) {
+        DayButtonView day = new DayButtonView(context);
+        day.mText = this.mText;
+        day.mTextSize = this.mTextSize;
+        day.mTextColor = this.mTextColor;
+        day.mBackgroundColor = this.mBackgroundColor;
+        day.mBorderColor = this.mBorderColor;
+        day.mBorderWidth = this.mBorderWidth;
+        day.mTypeface = this.mTypeface;
+        return day;
+    }
+
+    private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
+        if ( attrs != null ) {
+            TypedArray ta = null;
+            try {
+                ta = context.obtainStyledAttributes(attrs, R.styleable.DayButtonView, 0, 0);
+                mBackgroundColor = ta.getColor(R.styleable.DayButtonView_android_background, 0x000000);
+                mTextColor = ta.getColor(R.styleable.DayButtonView_android_textColor, 0x000000);
+                mBorderColor = ta.getColor(R.styleable.DayButtonView_dayBorderColor, 0xFFFFFF);
+                mBorderWidth = ta.getDimension(R.styleable.DayButtonView_dayBorderWidth, 5.0F);
+                mText = ta.getString(R.styleable.DayButtonView_android_text);
+                if ( mText == null  ||  mText.isEmpty() ) {
+                    mText = "null";
+                }
+                mTextSize = ta.getDimension(R.styleable.DayButtonView_android_textSize, 20.0F);
+                mTypeface = ta.getString(R.styleable.DayButtonView_android_fontFamily);
+
+            } finally {
+                if (ta != null) {
+                    ta.recycle();
+                }
             }
         }
     }
+    public DayButtonView(Context context) {
+        super(context);
+        init(context, null);
+    }
+
+    public DayButtonView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
+
+//    public DayButtonView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+//        super(context, attrs, defStyleAttr);
+//        init(context, attrs);
+//    }
+//
+//    public DayButtonView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//        init(context, attrs);
+//    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(heightMeasureSpec, widthMeasureSpec);
-        _paint.setTextSize(mTextSize);
-        float textWidth = _paint.measureText(mText);
+        mPaint.setTextSize(mTextSize);
+        float textWidth = mPaint.measureText(mText);
 
         int min_width = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
         int widget_width = resolveSizeAndState(min_width, widthMeasureSpec, 1);
@@ -52,53 +95,88 @@ public class DayButtonView extends View implements View.OnClickListener {
         setMeasuredDimension(widget_width, widget_height);
     }
 
-    @Override
-    protected void onSizeChanged(int width, int height, int old_width, int old_height) {
-        super.onSizeChanged(width, height, old_width, old_height);
-//        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-//        canvas = new Canvas(bitmap);
-    }
+//    @Override
+//    protected void onSizeChanged(int width, int height, int old_width, int old_height) {
+//        super.onSizeChanged(width, height, old_width, old_height);
+////        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+////        canvas = new Canvas(bitmap);
+//    }
 
-    private Paint _paint = new Paint();
-    private Rect _rect = new Rect();
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
+        mPaint.reset();
+//        canvas.save();
 
-        _paint.reset();
-        _paint.setColor(mTextColor);
-        _paint.setTextSize(24.0F);//mTextSize);
-        _paint.setTypeface(Typeface.DEFAULT);
-        _paint.setColor(mBackgroundColor);
-        _paint.setStyle(Paint.Style.STROKE);
+    //--- Fill box
+        mPaint.setColor(mBackgroundColor);
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-        canvas.save();
-        canvas.getClipBounds(_rect);
-        canvas.drawRGB((mBackgroundColor >> 16) & 0xFF,(mBackgroundColor >> 8) & 0xFF,mBackgroundColor & 0xFF);  // <-- this works
-        canvas.drawRect(_rect, _paint); // <-- this doesn't do anything
+        canvas.getClipBounds(mRect);
+        canvas.drawRect(mRect, mPaint);
+
+    //--- Draw box
+        mPaint.setStrokeWidth(mBorderWidth);
+        mPaint.setColor(mBorderColor);
+        mPaint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(mRect, mPaint);
 
 //        Typeface typeface = paint.setTypeface(...);
-        canvas.drawText((mText != null? mText: "DayButtonView"), 10, 10, _paint);
-        canvas.restore();
+        String text = (mText != null? mText: "DayButtonView");
+        float textWidth = mPaint.measureText(text);
+        float x = (getWidth() - textWidth) / 2;
+        float y = (getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2) ;
+        mPaint.reset();
+        mPaint.setColor(mTextColor);
+        mPaint.setTextSize(mTextSize);
+        mPaint.setTypeface(Typeface.DEFAULT);
+        mPaint.setAntiAlias(true);
+        canvas.drawText(text, x, y, mPaint);
+//        canvas.restore();
     }
 
-    public void setText(String text)        { mText = text; invalidate(); }
-    public String getText()                 { return mText; }
-    public void setTextColor(int RGB)       { mTextColor = RGB; invalidate(); }
-    public int getTextColor()               { return mTextColor; }
-    public void setBackgroundColor(int RGB) { mBackgroundColor = RGB; invalidate(); }
-    public int getBackgroundColor()         { return mBackgroundColor; }
-    public void setTextSize(float size)     { mTextSize = size; invalidate(); }
-    public float getTextSize()              { return mTextSize; }
-
+    public void setText(String text) {
+        mText = text;
+    }
+    public String getText() {
+        return mText;
+    }
+    public void setTextColor(int RGB) {
+        mTextColor = RGB;
+    }
+    public int getTextColor() {
+        return mTextColor;
+    }
     @Override
-    public void onClick(View view) {
-        mOnClickListener.onClick(view);
+    public void setBackgroundColor(int color) {
+        mBackgroundColor = color;
+//        super.setBackgroundColor(color);
     }
-    public void setOnClickListener(@Nullable OnClickListener l) {
-        if (!isClickable()) {
-            setClickable(true);
-        }
-        mOnClickListener = l;
+    public int getBackgroundColor() {
+        return mBackgroundColor;
+    }
+    public void setTextSize(float size) {
+        mTextSize = size;
+    }
+    public float getTextSize() {
+        return mTextSize;
+    }
+    public int getBorderColor() {
+        return mBorderColor;
+    }
+    public void setBorderColor(int mBorderColor) {
+        this.mBorderColor = mBorderColor;
+    }
+    public float getBorderWidth() {
+        return mBorderWidth;
+    }
+    public void setBorderWidth(float mBorderWidth) {
+        this.mBorderWidth = mBorderWidth;
+    }
+    public String getTypeface() {
+        return mTypeface;
+    }
+    public void setTypeface(String mTypeface) {
+        this.mTypeface = mTypeface;
     }
 }

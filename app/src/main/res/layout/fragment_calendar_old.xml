@@ -91,173 +91,173 @@
             style="@style/Calendar_Day_Header"
             android:text="@string/sat" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_1"
-            style="@style/Calendar_Day_custom"/>
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_1"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_2"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day"/>
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_3"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_4"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_5"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sun_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/mon_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/tue_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/wed_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/thu_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/fri_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
 
-        <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
+        <TextView
             android:id="@+id/sat_6"
-            style="@style/Calendar_Day_custom" />
+            style="@style/Calendar_Day" />
     </GridLayout>
 
     <com.waltoncraftsllc.waterfrontcashflow.widget.VerticalTextView

@@ -51,7 +51,7 @@
         android:name="com.waltoncraftsllc.waterfrontcashflow.fragments.CalendarFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -59,16 +59,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.10" />
 
-    <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView
-        android:id="@+id/dayButtonView3"
-        android:layout_width="388dp"
-        android:layout_height="342dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061"
-        app:text="This is a test" />
+<!--    <com.waltoncraftsllc.waterfrontcashflow.widget.DayButtonView-->
+<!--        android:id="@+id/dayButtonView3"-->
+<!--        android:layout_width="78dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:background="#0000FF"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.022"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.061"-->
+<!--        android:text="00"-->
+<!--        android:textColor="#FF0000"-->
+<!--        android:textSize="30sp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
