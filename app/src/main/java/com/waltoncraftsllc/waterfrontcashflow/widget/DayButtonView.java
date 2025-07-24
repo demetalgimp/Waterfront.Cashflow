@@ -25,23 +25,21 @@ public class DayButtonView extends View {
     private final Paint mPaint = new Paint();
     private final Rect mRect = new Rect();
 
-    public DayButtonView copy(Context context) {
-        DayButtonView day = new DayButtonView(context);
-        day.mText = this.mText;
-        day.mTextSize = this.mTextSize;
-        day.mTextColor = this.mTextColor;
-        day.mBackgroundColor = this.mBackgroundColor;
-        day.mBorderColor = this.mBorderColor;
-        day.mBorderWidth = this.mBorderWidth;
-        day.mTypeface = this.mTypeface;
-        return day;
-    }
+//    public DayButtonView copy(Context context) {
+//        DayButtonView day = new DayButtonView(context);
+//        day.mText = this.mText;
+//        day.mTextSize = this.mTextSize;
+//        day.mTextColor = this.mTextColor;
+//        day.mBackgroundColor = this.mBackgroundColor;
+//        day.mBorderColor = this.mBorderColor;
+//        day.mBorderWidth = this.mBorderWidth;
+//        day.mTypeface = this.mTypeface;
+//        return day;
+//    }
 
     private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
         if ( attrs != null ) {
-            TypedArray ta = null;
-            try {
-                ta = context.obtainStyledAttributes(attrs, R.styleable.DayButtonView, 0, 0);
+            try ( TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DayButtonView, 0, 0) ) {
                 mBackgroundColor = ta.getColor(R.styleable.DayButtonView_android_background, 0x000000);
                 mTextColor = ta.getColor(R.styleable.DayButtonView_android_textColor, 0x000000);
                 mBorderColor = ta.getColor(R.styleable.DayButtonView_dayBorderColor, 0xFFFFFF);
@@ -53,10 +51,8 @@ public class DayButtonView extends View {
                 mTextSize = ta.getDimension(R.styleable.DayButtonView_android_textSize, 20.0F);
                 mTypeface = ta.getString(R.styleable.DayButtonView_android_fontFamily);
 
-            } finally {
-                if (ta != null) {
-                    ta.recycle();
-                }
+            } catch ( Exception e ) {
+                System.err.println("An error occurred: " + e.getMessage());
             }
         }
     }
@@ -82,7 +78,7 @@ public class DayButtonView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(heightMeasureSpec, widthMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mPaint.setTextSize(mTextSize);
         float textWidth = mPaint.measureText(mText);
 
