@@ -22,8 +22,8 @@ public class DayButtonView extends View {
     private int mBorderColor;
     private float mBorderWidth;
     private String mTypeface;
-    private Paint mPaint = new Paint();
-    private Rect mRect = new Rect();
+    private final Paint mPaint = new Paint();
+    private final Rect mRect = new Rect();
 
     public DayButtonView copy(Context context) {
         DayButtonView day = new DayButtonView(context);
@@ -125,7 +125,7 @@ public class DayButtonView extends View {
         String text = (mText != null? mText: "DayButtonView");
         float textWidth = mPaint.measureText(text);
         float x = (getWidth() - textWidth) / 2;
-        float y = (getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2) ;
+        float y = (getHeight() / 2.0f) - ((mPaint.descent() + mPaint.ascent()) / 2.0f) ;
         mPaint.reset();
         mPaint.setColor(mTextColor);
         mPaint.setTextSize(mTextSize);
@@ -144,39 +144,39 @@ public class DayButtonView extends View {
     public void setTextColor(int RGB) {
         mTextColor = RGB;
     }
-    public int getTextColor() {
-        return mTextColor;
-    }
+//    public int getTextColor() {
+//        return mTextColor;
+//    }
     @Override
     public void setBackgroundColor(int color) {
         mBackgroundColor = color;
 //        super.setBackgroundColor(color);
     }
-    public int getBackgroundColor() {
-        return mBackgroundColor;
-    }
-    public void setTextSize(float size) {
-        mTextSize = size;
-    }
-    public float getTextSize() {
-        return mTextSize;
-    }
-    public int getBorderColor() {
-        return mBorderColor;
-    }
-    public void setBorderColor(int mBorderColor) {
-        this.mBorderColor = mBorderColor;
-    }
-    public float getBorderWidth() {
-        return mBorderWidth;
-    }
-    public void setBorderWidth(float mBorderWidth) {
-        this.mBorderWidth = mBorderWidth;
-    }
-    public String getTypeface() {
-        return mTypeface;
-    }
-    public void setTypeface(String mTypeface) {
-        this.mTypeface = mTypeface;
-    }
+//    public int getBackgroundColor() {
+//        return mBackgroundColor;
+//    }
+//    public void setTextSize(float size) {
+//        mTextSize = size;
+//    }
+//    public float getTextSize() {
+//        return mTextSize;
+//    }
+//    public int getBorderColor() {
+//        return mBorderColor;
+//    }
+//    public void setBorderColor(int mBorderColor) {
+//        this.mBorderColor = mBorderColor;
+//    }
+//    public float getBorderWidth() {
+//        return mBorderWidth;
+//    }
+//    public void setBorderWidth(float mBorderWidth) {
+//        this.mBorderWidth = mBorderWidth;
+//    }
+//    public String getTypeface() {
+//        return mTypeface;
+//    }
+//    public void setTypeface(String mTypeface) {
+//        this.mTypeface = mTypeface;
+//    }
 }

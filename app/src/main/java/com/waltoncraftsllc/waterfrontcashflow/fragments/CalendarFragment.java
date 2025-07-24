@@ -1,5 +1,6 @@
 package com.waltoncraftsllc.waterfrontcashflow.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -96,7 +97,7 @@ public class CalendarFragment extends Fragment {
 [(start_day_of_month + days_in_current_month)...(mCalendarTextViews.length - 1)] = next month
 ****************************************************************************************************** */
         for (int i = 0; i < mCalendarDayTextViews.length; i++ ) {
-            int background = 0x303030;
+            String background = "#303030";
             if ( i < start_day_of_month ) {
                 mCalendarDayTextViews[i].setText(String.valueOf(i + days_in_previous_month - start_day_of_month + 1));
 //                mCalendarDayTextViews[i].setTextColor(0x404040);
@@ -104,13 +105,13 @@ public class CalendarFragment extends Fragment {
             if ( start_day_of_month <= i  &&  i < start_day_of_month + days_in_current_month ) {
                 mCalendarDayTextViews[i].setText(String.valueOf(i - start_day_of_month + 1));
 //                mCalendarDayTextViews[i].setTextColor(0xFFFFFF);
-                background = 0x0000FF;
+                background = "#0000FF";
             }
             if ( (start_day_of_month + days_in_current_month) <= i  &&  i < mCalendarDayTextViews.length ) {
                 mCalendarDayTextViews[i].setText(String.valueOf(i - (days_in_current_month + start_day_of_month) + 1));
 //                mCalendarDayTextViews[i].setTextColor(0x404040);
             }
-            mCalendarDayTextViews[i].setBackgroundColor(background);
+            mCalendarDayTextViews[i].setBackgroundColor(Color.parseColor(background));
             mCalendarDayTextViews[i].invalidate();
         }
 
@@ -134,8 +135,8 @@ public class CalendarFragment extends Fragment {
         for ( int i = 0; i < mCalendarIDs.length; i++ ) {
             mCalendarDayTextViews[i] = view.findViewById(mCalendarIDs[i]);
             mCalendarDayTextViews[i].setOnClickListener(v -> {
-                ((DayButtonView)v).setBackgroundColor(0);
-                ((DayButtonView)v).setTextColor(0xFF0000);
+                ((DayButtonView)v).setBackgroundColor(Color.parseColor("#000000"));
+                ((DayButtonView)v).setTextColor(Color.parseColor("#FF0000"));
                 ((DayButtonView)v).invalidate();
             });
         }
